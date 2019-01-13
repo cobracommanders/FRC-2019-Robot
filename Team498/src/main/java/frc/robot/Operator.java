@@ -11,8 +11,9 @@ package frc.robot;
 public class Operator {
 
     private static Operator operator = null;
+    
     public static Operator getOperator() {
-        operator = operator == null? new Operator() : operator;
+        operator = operator == null ? new Operator() : operator;
         return operator;
     }
 
