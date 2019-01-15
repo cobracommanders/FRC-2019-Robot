@@ -9,12 +9,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.WristSubsystem;
+import frc.robot.ConstantAccelerationCalculator;
 import frc.robot.Operator;
 
 public class ManualWrist extends Command {
 
   private Operator operator = Operator.getOperator();
   private WristSubsystem wrist;
+  private ConstantAccelerationCalculator calculator = new ConstantAccelerationCalculator(.00005);
 
 
   public ManualWrist() {
@@ -32,9 +34,9 @@ public class ManualWrist extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double power;
+    double power = calculator.getNextDataPoint(operator.controller.axisRightY.getAxisValue());
 
-    wrist.wristPower(0);
+    wrist.wristPower(power);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -46,6 +48,7 @@ public class ManualWrist extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    wrist.wristPower(0);
   }
 
   // Called when another command which requires one or more of the same

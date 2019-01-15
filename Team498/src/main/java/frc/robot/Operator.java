@@ -17,7 +17,7 @@ public class Operator {
         return operator;
     }
 
-    //public Controller controller = new Controller(Mappings.ControllerPort);
+    public Controller controller = new Controller(Mappings.ControllerPort);
 
     public Operator() {
         
