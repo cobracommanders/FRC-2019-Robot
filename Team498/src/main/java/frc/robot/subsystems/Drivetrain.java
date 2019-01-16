@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 
 public class Drivetrain extends Subsystem {
@@ -24,18 +25,11 @@ public class Drivetrain extends Subsystem {
   }
 
 
-  // TODO: may need to change the motor controllers and will need to change the motor channels.
-  private Spark frontLeftDrive = new Spark(0);
-  private Spark frontRightDrive = new Spark(0);
-  private Spark backLeftDrive = new Spark(0);
-  private Spark backRightDrive = new Spark(0);
-
-  private SpeedControllerGroup leftGroup = new SpeedControllerGroup(frontLeftDrive, backLeftDrive);
-  private SpeedControllerGroup rightGroup = new SpeedControllerGroup(frontRightDrive, backRightDrive);
-
-  private DifferentialDrive drive = new DifferentialDrive(leftGroup, rightGroup);
-
-
+  // TODO:will need to change the motor channels.
+  private WPI_TalonSRX frontLeftDrive = new WPI_TalonSRX(0);
+  private WPI_TalonSRX frontRightDrive = new WPI_TalonSRX(0);
+  private WPI_TalonSRX backLeftDrive = new WPI_TalonSRX(0);
+  private WPI_TalonSRX backRightDrive = new WPI_TalonSRX(0);
 
   @Override
   public void initDefaultCommand() {
@@ -43,7 +37,10 @@ public class Drivetrain extends Subsystem {
   }
 
   public void drive(double move, double turn) {
-    drive.arcadeDrive(move, turn);
+    frontLeftDrive.set(move + turn);
+    frontRightDrive.set(move - turn);
+    backLeftDrive.set(move - turn);
+    backRightDrive.set(move - turn);
   }
 
 }
