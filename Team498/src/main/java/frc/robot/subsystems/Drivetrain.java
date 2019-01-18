@@ -36,14 +36,14 @@ public class Drivetrain extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    //setDefaultCommand(new ManualDrive());
+    setDefaultCommand(new ManualDrive());
   }
 
   public void drive(double move, double turn) {
-    frontLeftDrive.set(move + turn);
-    frontRightDrive.set(move - turn);
-    backLeftDrive.set(move - turn);
-    backRightDrive.set(move - turn);
+    frontLeftDrive.set( (move + turn) * .8 );
+    frontRightDrive.set( (move - turn) * .8 );
+    backLeftDrive.set( (move - turn)  * .8 );
+    backRightDrive.set( (move - turn) * .8 );
   }
 
 }
