@@ -27,4 +27,10 @@ public class Mappings {
 	public static final int RightYAxis = 5;
 	public static final int RightTrigger = 3;
 	public static final int LeftTrigger = 2;
+
+	//TODO: need to change these motor channels
+	public static final int frontLeftDriveMotorChannel = 0;
+	public static final int backLeftDriveMotorChannel = 0; 
+	public static final int frontRightDriveMotorChannel = 0;
+	public static final int backRightDriveMotorChannel = 0;
 }
