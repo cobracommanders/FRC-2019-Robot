@@ -9,6 +9,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.ConstantAccelerationCalculator;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.Operator;
 
 public class ManualDrive extends Command {
 
