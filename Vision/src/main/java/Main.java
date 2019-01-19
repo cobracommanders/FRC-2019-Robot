@@ -22,6 +22,7 @@ import com.google.gson.JsonParser;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.vision.VisionPipeline;
 import edu.wpi.first.vision.VisionThread;
 
@@ -212,14 +213,35 @@ public final class Main {
     if (cameras.size() >= 1) {
 
       var camera = cameras.get(0);
-      System.out.println("Found a camera!");
+      System.out.println("Found a camera 0!");
 
       System.out.println("Initializing VisionThread with GripPipeline!");
       VisionThread visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+               
+        try {
+                    
+          System.out.println("VISION THREAD RUNNING!");
 
-        // TODO: do something with pipeline results
-        System.out.println("VISION THREAD RUNNING!");
-        // int x = pipeline.val;
+          // TODO: Do something with pipeline results
+
+          var bwMat = pipeline.desaturateOutput();
+          System.out.println("Vision - desaturateOutput");
+
+          var bwWidth = bwMat.width(); // Just some random data
+          System.out.println("Vision - width");
+
+          // Log some data to network tables
+          var entry = ntinst.getEntry("SpecialValue");
+          System.out.println("Table - getEntry");
+
+          entry.setString(Integer.toString(bwWidth));
+          System.out.println("Table - setString: " + bwWidth);
+
+        } catch (Exception e) {
+          System.out.println("VISION ERROR");
+          System.out.println(e.toString());
+        }
+
 
       });
 
