@@ -41,7 +41,7 @@ def includeDesktopSupport = false
 repositories {
     mavenCentral()
     flatDir {
-        dirs 'lib', '.'
+        dirs 'lib', '.', '..'
     }
 }
 
