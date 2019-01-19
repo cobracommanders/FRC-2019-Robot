@@ -7,10 +7,7 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Mappings;
 import frc.robot.commands.ManualDrive;
@@ -40,6 +37,7 @@ public class Drivetrain extends Subsystem {
   }
 
   public void drive(double move, double turn) {
+    //arcade drive made manually due to talon SRX not able to be used in differential drive 
     frontLeftDrive.set( (move + turn) * .8 );
     frontRightDrive.set( (move - turn) * .8 );
     backLeftDrive.set( (move - turn)  * .8 );
