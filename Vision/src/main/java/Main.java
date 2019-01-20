@@ -22,6 +22,7 @@ import com.google.gson.JsonParser;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.VideoSource;
+import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.NetworkTable;
@@ -222,8 +223,7 @@ public final class Main {
       System.out.println("Found a camera 0!");
 
       int resWidth = 320;
-      int resHeight = 240;
-      CvSink cvSink = CameraServer.getInstance().getVideo();
+      int resHeight = 240;      
       CvSource outputStream = CameraServer.getInstance().putVideo("Rectangle", resWidth, resHeight);
 
       System.out.println("Initializing VisionThread with GripPipeline!");
@@ -244,15 +244,11 @@ public final class Main {
           // If we found a target then...
           if (target != null) {
 
-            System.out.println(String.format("X: %s  Y: %s W: %s H: %s", target.x, target.y, target.width, target.height));
+            //System.out.println(String.format("X: %s  Y: %s W: %s H: %s", target.x, target.y, target.width, target.height));
 
             // Capture the current frame from the video source
-            Mat frame = new Mat();
-            if (cvSink.grabFrame(frame) == 0) {
-              outputStream.notifyError(cvSink.getError());
-              throw new Exception("GrabFrame Exception");
-            }
-
+            Mat frame = pipeline.mat;
+ 
             double lengthOfScreen = Math.sqrt(frame.width() * frame.width() + frame.height() * frame.height());
             Point targetCenter = new Point(target.x + target.width / 2, target.y + target.height / 2);
             Point screenCenter = new Point(frame.width() / 2, frame.height() / 2);
@@ -261,16 +257,15 @@ public final class Main {
 
             targetOffset = (targetCenter.x - screenCenter.x) / (frame.width() / 2);
 
-            System.out.println(String.format("Percent: %s   distFromCent: %s, screenLength: %s", redPerc, distanceFromCenter, lengthOfScreen));
-            System.out.println(String.format("Offset: %s", targetOffset));
+            //System.out.println(String.format("Percent: %s   distFromCent: %s, screenLength: %s", redPerc, distanceFromCenter, lengthOfScreen));
+            //System.out.println(String.format("Offset: %s", targetOffset));
 
-            // Draw rect on image
+            // // Draw rect on image
             Imgproc.rectangle(frame, target.tl(), target.br(), new Scalar(0, 255 - 255 * redPerc, 255 * redPerc), 5);
 
-            // Publish modified video
+            // Publish modified video4
             outputStream.putFrame(frame);
-            frame.release();
-
+            
           } else {
             System.out.println("Nothing Detected!");
           }

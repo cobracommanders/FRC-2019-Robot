@@ -28,6 +28,7 @@ import org.opencv.objdetect.*;
 public class GripPipeline implements VisionPipeline {
 
     // Outputs
+    public Mat mat = new Mat();
     private Mat hslThresholdOutput = new Mat();
     private ArrayList<MatOfPoint> findContoursOutput = new ArrayList<MatOfPoint>();
     private ArrayList<MatOfPoint> filterContoursOutput = new ArrayList<MatOfPoint>();
@@ -42,6 +43,7 @@ public class GripPipeline implements VisionPipeline {
      */
     @Override
     public void process(Mat source0) {
+        mat = source0;
         // Step HSL_Threshold0:
         Mat hslThresholdInput = source0;
         double[] hslThresholdHue = { 24.46690129910484, 46.92183440934926 };
