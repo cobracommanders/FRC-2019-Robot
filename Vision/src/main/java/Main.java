@@ -19,6 +19,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -27,6 +29,10 @@ import edu.wpi.first.vision.VisionPipeline;
 import edu.wpi.first.vision.VisionThread;
 
 import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
 import org.opencv.core.Core;
 
 /*
@@ -215,33 +221,67 @@ public final class Main {
       var camera = cameras.get(0);
       System.out.println("Found a camera 0!");
 
+      int resWidth = 320;
+      int resHeight = 240;
+      CvSink cvSink = CameraServer.getInstance().getVideo();
+      CvSource outputStream = CameraServer.getInstance().putVideo("Rectangle", resWidth, resHeight);
+
       System.out.println("Initializing VisionThread with GripPipeline!");
       VisionThread visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
-               
+
         try {
-                    
-          System.out.println("VISION THREAD RUNNING!");
 
-          // TODO: Do something with pipeline results
+          Double targetOffset = 0.0;
 
-          var bwMat = pipeline.desaturateOutput();
-          System.out.println("Vision - desaturateOutput");
+          // Pick target from detected contours
+          Rect target = null;
+          var targets = pipeline.filterContoursOutput();
+          if(targets.size() > 0)
+          {
+            target = Imgproc.boundingRect(targets.get(0));     
+          }   
 
-          var bwWidth = bwMat.width(); // Just some random data
-          System.out.println("Vision - width");
+          // If we found a target then...
+          if (target != null) {
 
-          // Log some data to network tables
-          var entry = ntinst.getEntry("SpecialValue");
-          System.out.println("Table - getEntry");
+            System.out.println(String.format("X: %s  Y: %s W: %s H: %s", target.x, target.y, target.width, target.height));
 
-          entry.setString(Integer.toString(bwWidth));
-          System.out.println("Table - setString: " + bwWidth);
+            // Capture the current frame from the video source
+            Mat frame = new Mat();
+            if (cvSink.grabFrame(frame) == 0) {
+              outputStream.notifyError(cvSink.getError());
+              throw new Exception("GrabFrame Exception");
+            }
+
+            double lengthOfScreen = Math.sqrt(frame.width() * frame.width() + frame.height() * frame.height());
+            Point targetCenter = new Point(target.x + target.width / 2, target.y + target.height / 2);
+            Point screenCenter = new Point(frame.width() / 2, frame.height() / 2);
+            double distanceFromCenter = Math.sqrt((targetCenter.x - screenCenter.x) * (targetCenter.x - screenCenter.x) + (targetCenter.y - screenCenter.y) * (targetCenter.y - screenCenter.y));
+            double redPerc = distanceFromCenter / (lengthOfScreen / 2);
+
+            targetOffset = (targetCenter.x - screenCenter.x) / (frame.width() / 2);
+
+            System.out.println(String.format("Percent: %s   distFromCent: %s, screenLength: %s", redPerc, distanceFromCenter, lengthOfScreen));
+            System.out.println(String.format("Offset: %s", targetOffset));
+
+            // Draw rect on image
+            Imgproc.rectangle(frame, target.tl(), target.br(), new Scalar(0, 255 - 255 * redPerc, 255 * redPerc), 5);
+
+            // Publish modified video
+            outputStream.putFrame(frame);
+            frame.release();
+
+          } else {
+            System.out.println("Nothing Detected!");
+          }
+
+          // Broadcast the calculated X VisionOffset to the NetworkTables to be shown on the dashboard
+          var visionEntry = ntinst.getEntry("TargetOffset");
+          visionEntry.setDouble(targetOffset);
 
         } catch (Exception e) {
-          System.out.println("VISION ERROR");
-          System.out.println(e.toString());
+          System.out.println(e.getMessage());
         }
-
 
       });
 
