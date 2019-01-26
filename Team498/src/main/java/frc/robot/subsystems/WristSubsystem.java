@@ -9,7 +9,8 @@ package frc.robot.subsystems;
 
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.ManualWrist;
+import frc.robot.Mappings;
+import frc.robot.commands.ManualWristCommand;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 /**
@@ -22,7 +23,7 @@ public class WristSubsystem extends Subsystem {
   private static WristSubsystem wristSubsystem = null;
 
   //TODO: Need to change motor control channel :3
-  private WPI_VictorSPX wrist = new WPI_VictorSPX(0);
+  private WPI_VictorSPX wrist = new WPI_VictorSPX(Mappings.wristMotorChannel);
 
   
 
@@ -38,7 +39,7 @@ public class WristSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-     setDefaultCommand(new ManualWrist());
+     setDefaultCommand(new ManualWristCommand());
   }
 
   public void wristPower(double power) {

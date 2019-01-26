@@ -7,23 +7,55 @@
 
 package frc.robot.commands;
 
+
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.WristSubsystem;
 import frc.robot.ConstantAccelerationCalculator;
-import frc.robot.Operator;
 
-public class ManualWrist extends Command {
+public class AutomaticWristCommand extends Command {
 
-  private Operator operator = Operator.getOperator();
   private WristSubsystem wrist;
   private ConstantAccelerationCalculator calculator = new ConstantAccelerationCalculator(.00005);
 
+  enum Positions {
+    first,
+    second,
+    third
+  }
 
-  public ManualWrist() {
-    super("ManualWrist");
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+  Positions position = Positions.first;
+  private int direction = 0; //0 = up; 1 = down
+  
+  public void moveNext() {
+
+    switch (position) {
+
+      case first:
+        position = Positions.second;
+        break;
+
+      case second:
+        if (direction == 0) {
+          position = Positions.third;
+
+        } else {
+          position = Positions.first;
+        }
+        break;
+      
+      case third:
+        position = Positions.second;
+        direction = 1;
+      break;
+
+    }
+  }
+
+  public AutomaticWristCommand() {
+    super("AutomaticWristCommand");
     requires(this.wrist = WristSubsystem.getWristSubsystem());
+
   }
 
   // Called just before this Command runs the first time
@@ -34,9 +66,6 @@ public class ManualWrist extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double power = calculator.getNextDataPoint(operator.controller.axisRightY.getAxisValue());
-
-    wrist.wristPower(power);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -48,7 +77,6 @@ public class ManualWrist extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    wrist.wristPower(0);
   }
 
   // Called when another command which requires one or more of the same
