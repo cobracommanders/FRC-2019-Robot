@@ -10,9 +10,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ManualWrist;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.SensorCollection;
-
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 /**
  * Add your docs here.
@@ -23,21 +21,19 @@ public class WristSubsystem extends Subsystem {
   
   private static WristSubsystem wristSubsystem = null;
 
+  //TODO: Need to change motor control channel :3
+  private WPI_VictorSPX wrist = new WPI_VictorSPX(0);
+
+  
+
   public static WristSubsystem getWristSubsystem() {
     wristSubsystem = wristSubsystem == null ? new WristSubsystem() : wristSubsystem;
     return wristSubsystem;
   }
 
-
-  private SensorCollection encoder;
-
-  //TODO: Need to change motor control channel :3
-  private WPI_TalonSRX wrist = new WPI_TalonSRX(0);
-
   public WristSubsystem() {
     super("WristSubsystem");
-    encoder = wrist.getSensorCollection();
-
+ 
   }
 
   @Override
@@ -49,11 +45,5 @@ public class WristSubsystem extends Subsystem {
     wrist.set(power);
   }
 
-  public int getPulseWidthVelocity() {
-    return encoder.getPulseWidthVelocity();
-  }
-
-  public int getPulseWidthPosition() {
-    return encoder.getPulseWidthPosition();
-  }
+  
 }
