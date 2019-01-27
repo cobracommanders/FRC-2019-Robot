@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import frc.robot.commands.ToggleIntake;
 
 public class Operator {
 
@@ -21,6 +22,9 @@ public class Operator {
     public Controller controller = new Controller(Mappings.ControllerPort);
 
     public Operator() {
+
+        controller.buttonB.whenPressed(new ToggleIntake(1, 1));
+        controller.buttonX.whenPressed(new ToggleIntake(-1, -1));
         
     }
 
