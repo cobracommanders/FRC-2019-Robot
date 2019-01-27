@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class Controller {
+    //controller 
     private Joystick joystick; 
 
     public JoystickButton buttonA;
@@ -56,10 +57,12 @@ public class Controller {
     }
 
     public class JoystickAxis {
+        //tolerance fixes any issues with the joysticks
         private Joystick joystick; 
         private int axis;
         private double tolerance;
 
+        //this is for the joysticks and the triggers 
         public JoystickAxis(Joystick joystick, int axis, double tolerance) {
             this.joystick = joystick;
             this.axis = axis;

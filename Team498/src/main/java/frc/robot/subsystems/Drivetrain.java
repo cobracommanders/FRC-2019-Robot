@@ -7,13 +7,13 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Mappings;
-
+import frc.robot.commands.ManualDrive;
 
 
 
@@ -34,16 +34,18 @@ public class Drivetrain extends Subsystem {
   private WPI_TalonSRX backLeftDrive = new WPI_TalonSRX(Mappings.backLeftDriveMotorChannel);
   private WPI_TalonSRX backRightDrive = new WPI_TalonSRX(Mappings.backRightDriveMotorChannel);
 
+  private SpeedControllerGroup leftGroup = new SpeedControllerGroup(frontLeftDrive, backLeftDrive);
+  private SpeedControllerGroup rightGroup = new SpeedControllerGroup(frontRightDrive, backRightDrive);
+
+  private DifferentialDrive drive = new DifferentialDrive(leftGroup, rightGroup);
+
   @Override
   public void initDefaultCommand() {
-    //setDefaultCommand(new ManualDrive());
+    setDefaultCommand(new ManualDrive());
   }
 
   public void drive(double move, double turn) {
-    frontLeftDrive.set(move + turn);
-    frontRightDrive.set(move - turn);
-    backLeftDrive.set(move - turn);
-    backRightDrive.set(move - turn);
+    drive.arcadeDrive(move, turn);
   }
 
 }
