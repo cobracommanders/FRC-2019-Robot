@@ -38,4 +38,10 @@ public class Mappings {
 	public static final int backLeftDriveMotorChannel = 0; 
 	public static final int frontRightDriveMotorChannel = 0;
 	public static final int backRightDriveMotorChannel = 0;
+
+
+	//double solenoid channels
+	//TODO: need to change these motor channels
+	public static final int clawForwardChannel = 0;
+	public static final int clawReverseChannel = 0;
 }
