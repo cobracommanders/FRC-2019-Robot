@@ -21,6 +21,8 @@ public class Operator {
     public Controller controller = new Controller(Mappings.ControllerPort);
 
     public Operator() {
+
+        
         
     }
 
