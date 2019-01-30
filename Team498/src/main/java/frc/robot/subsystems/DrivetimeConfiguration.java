@@ -5,24 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.subsystems;
 
+/**
+ * Add your docs here.
+ */
+public class DrivetimeConfiguration {
 
-public class Operator {
-
-    private static Operator operator = null;
+    //motor channels
+	//TODO: need to change these motor channels
+	public static final int frontLeftDriveMotorChannel = 0;
+	public static final int backLeftDriveMotorChannel = 0; 
+	public static final int frontRightDriveMotorChannel = 0;
+    public static final int backRightDriveMotorChannel = 0;
     
-    public static Operator getOperator() {
-        operator = operator == null ? new Operator() : operator;
-        return operator;
-    }
-
-    //instantiate one or more controllers here
-    public Controller controller = new Controller(ControllerConfiguration.ControllerPort);
-
-    public Operator() {
-        
-    }
-
-
 }

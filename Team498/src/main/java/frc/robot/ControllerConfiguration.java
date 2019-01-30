@@ -8,7 +8,7 @@
 package frc.robot;
 
 
-public class Mappings {
+public class ControllerConfiguration {
 	//controller port(s)
 	public static final int ControllerPort = 0;
 	
@@ -32,10 +32,5 @@ public class Mappings {
 	public static final int RightTrigger = 3;
 	public static final int LeftTrigger = 2;
 
-	//motor channels
-	//TODO: need to change these motor channels
-	public static final int frontLeftDriveMotorChannel = 0;
-	public static final int backLeftDriveMotorChannel = 0; 
-	public static final int frontRightDriveMotorChannel = 0;
-	public static final int backRightDriveMotorChannel = 0;
+	
 }
