@@ -22,6 +22,8 @@ public class Controller {
     public JoystickButton rightBumper;
     public JoystickButton leftJoyPress;
     public JoystickButton rightJoyPress;
+    public JoystickButton start;
+    public JoystickButton back;
 
     public JoystickAxis axisLeftX;
     public JoystickAxis axisRightX;
@@ -44,6 +46,8 @@ public class Controller {
         rightBumper = new JoystickButton(joystick, ControllerConfiguration.RightBumper);
         leftJoyPress = new JoystickButton(joystick, ControllerConfiguration.LeftJoyPress);
         rightJoyPress = new JoystickButton(joystick, ControllerConfiguration.RightJoyPress);
+        start = new JoystickButton(joystick, Mappings.ButtonStart);
+        back = new JoystickButton(joystick, Mappings.ButtonBack);
 
 
         //Axes 
