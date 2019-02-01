@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import frc.robot.configurations.ControllerConfiguration;
 import frc.robot.commands.ToggleIntake;
 import frc.robot.commands.ToggleClaw;
 import frc.robot.commands.ToggleClamp;

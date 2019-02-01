@@ -10,7 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import frc.robot.Mappings;
+import frc.robot.configurations.ClawSubsystemConfiguration;
 import frc.robot.commands.ToggleClaw;
 
 /**
@@ -25,7 +25,7 @@ public class ClawSubsystem extends Subsystem {
     return clawSubsystem;
   }
 
-  private DoubleSolenoid claw = new DoubleSolenoid(Mappings.clawForwardChannel, Mappings.clawReverseChannel);
+  private DoubleSolenoid claw = new DoubleSolenoid(ClawSubsystemConfiguration.clawForwardChannel, ClawSubsystemConfiguration.clawReverseChannel);
 
   private boolean holdingOnToHatch;
 

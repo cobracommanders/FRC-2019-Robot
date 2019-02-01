@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.configurations.ControllerConfiguration;
 
 public class Controller {
     //controller 
@@ -46,8 +47,8 @@ public class Controller {
         rightBumper = new JoystickButton(joystick, ControllerConfiguration.RightBumper);
         leftJoyPress = new JoystickButton(joystick, ControllerConfiguration.LeftJoyPress);
         rightJoyPress = new JoystickButton(joystick, ControllerConfiguration.RightJoyPress);
-        start = new JoystickButton(joystick, Mappings.ButtonStart);
-        back = new JoystickButton(joystick, Mappings.ButtonBack);
+        start = new JoystickButton(joystick, ControllerConfiguration.ButtonStart);
+        back = new JoystickButton(joystick, ControllerConfiguration.ButtonBack);
 
 
         //Axes 

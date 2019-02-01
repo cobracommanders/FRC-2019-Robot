@@ -5,18 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot.configurations;
 
 /**
  * Add your docs here.
  */
-public class DrivetimeConfiguration {
-
-    //motor channels
-	//TODO: need to change these motor channels
-	public static final int frontLeftDriveMotorChannel = 0;
-	public static final int backLeftDriveMotorChannel = 0; 
-	public static final int frontRightDriveMotorChannel = 0;
-    public static final int backRightDriveMotorChannel = 0;
-    
+public class IntakeSubsystemConfiguration {
+    //TODO: change these motor channels
+    public static final int intakeLeftMotorChannel = 0;
+    public static final int intakeRightMotorChannel = 0;
 }

@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.configurations.IntakeSubsystemConfiguration;
 import edu.wpi.first.wpilibj.Victor;
 
 
@@ -22,8 +23,8 @@ public class IntakeSubsystem extends Subsystem {
   
 
   //TODO: Need to change motor channels
-  private Victor intakeLeft = new Victor(0);
-  private Victor intakeRight = new Victor(0);
+  private Victor intakeLeft = new Victor(IntakeSubsystemConfiguration.intakeLeftMotorChannel);
+  private Victor intakeRight = new Victor(IntakeSubsystemConfiguration.intakeRightMotorChannel);
 
 
   private double lastLeft = 0;
