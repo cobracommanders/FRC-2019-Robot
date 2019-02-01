@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import frc.robot.commands.ToggleClaw;
 
 public class Operator {
 
@@ -21,6 +22,8 @@ public class Operator {
     public Controller controller = new Controller(ControllerConfiguration.ControllerPort);
 
     public Operator() {
+
+        controller.buttonA.whenPressed(new ToggleClaw());
         
     }
 
