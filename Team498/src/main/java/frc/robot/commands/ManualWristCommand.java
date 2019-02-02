@@ -16,13 +16,12 @@ import frc.robot.Robot;
 public class ManualWristCommand extends Command {
 
   private Operator operator = Operator.getOperator();
-  private WristSubsystem wrist;
   private ConstantAccelerationCalculator calculator = new ConstantAccelerationCalculator(.00005);
 
 
   public ManualWristCommand() {
     super("ManualWristCommand");
-    requires(Robot.wristSubsystem);
+    requires(Robot.wrist);
   }
 
   // Called just before this Command runs the first time
@@ -35,7 +34,7 @@ public class ManualWristCommand extends Command {
   protected void execute() {
     double power = calculator.getNextDataPoint(operator.controller.axisRightY.getAxisValue());
 
-    wrist.wristPower(power);
+    Robot.wrist.wristPower(power);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -47,7 +46,7 @@ public class ManualWristCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    wrist.wristPower(0);
+    Robot.wrist.wristPower(0);
   }
 
   // Called when another command which requires one or more of the same

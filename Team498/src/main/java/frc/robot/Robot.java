@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
   
   // Subsystems
   public static Drivetrain drivetrain = new Drivetrain();
-  public static WristSubsystem wristSubsystem = new WristSubsystem();
+  public static WristSubsystem wrist = new WristSubsystem();
 
   @Override
   public void robotInit() {

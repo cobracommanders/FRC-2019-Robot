@@ -55,7 +55,7 @@ public class AutomaticWristCommand extends Command {
 
   public AutomaticWristCommand() {
     super("AutomaticWristCommand");
-    requires(Robot.wristSubsystem);
+    requires(Robot.wrist);
 
   }
 
