@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.Robot;
 
 public class ToggleIntake extends Command {
 
@@ -21,7 +22,7 @@ public class ToggleIntake extends Command {
     super("ManualIntake");
     this.leftPower = leftPower;
     this.rightPower = rightPower;
-    requires(this.ballIntake = IntakeSubsystem.getIntakeSubsystem());
+    requires(Robot.intakeSubsystem);
    
   }
 

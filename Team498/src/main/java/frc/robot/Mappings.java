@@ -38,4 +38,8 @@ public class Mappings {
 	public static final int backLeftDriveMotorChannel = 0; 
 	public static final int frontRightDriveMotorChannel = 0;
 	public static final int backRightDriveMotorChannel = 0;
+
+	//TODO: need to chnage these
+	public static final int intakeLeft = 0;
+	public static final int intakeRight = 0;
 }
