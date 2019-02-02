@@ -9,7 +9,10 @@ package frc.robot;
 
 
 public class Mappings {
-    public static final int ControllerPort = 0;
+	//controller port(s)
+	public static final int ControllerPort = 0;
+	
+	//buttons on controller
 	public static final int ButtonA = 1;
 	public static final int ButtonB = 2;
 	public static final int ButtonX = 3;
@@ -21,6 +24,7 @@ public class Mappings {
 	public static final int LeftJoyPress = 9;
 	public static final int RightJoyPress = 10;
 
+	//triggers and joysticks 
 	public static final int LeftXAxis = 0;
 	public static final int LeftYAxis = 1;
 	public static final int RightXAxis = 4;
@@ -28,9 +32,14 @@ public class Mappings {
 	public static final int RightTrigger = 3;
 	public static final int LeftTrigger = 2;
 
+	//motor channels
 	//TODO: need to change these motor channels
 	public static final int frontLeftDriveMotorChannel = 0;
-	public static final int backLeftDriveMotorChannel = 0; 
-	public static final int frontRightDriveMotorChannel = 0;
-	public static final int backRightDriveMotorChannel = 0;
+	public static final int backLeftDriveMotorChannel = 1; 
+	public static final int frontRightDriveMotorChannel = 2;
+	public static final int backRightDriveMotorChannel = 3;
+
+
+	//TODO: need to change this motor channel
+	public static final int wristMotorChannel = 4;
 }
