@@ -14,10 +14,6 @@ import edu.wpi.first.wpilibj.Victor;
 
 public class IntakeSubsystem extends Subsystem {
 
- 
-  private Victor intakeLeft = new Victor(Mappings.intakeLeft);
-  private Victor intakeRight = new Victor(Mappings.intakeRight);
-  
 
   //TODO: Need to change motor channels
   private Victor intakeLeft = new Victor(IntakeSubsystemConfiguration.intakeLeftMotorChannel);
