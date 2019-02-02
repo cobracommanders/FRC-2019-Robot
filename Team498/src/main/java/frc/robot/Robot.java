@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
   
   // Subsystems
   public static Drivetrain drivetrain = new Drivetrain();
-  public static ClampSubsystem clampSubsystem = new ClampSubsystem();
+  public static ClampSubsystem clamp = new ClampSubsystem();
 
   @Override
   public void robotInit() {

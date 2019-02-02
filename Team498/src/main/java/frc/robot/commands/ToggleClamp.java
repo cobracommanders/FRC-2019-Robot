@@ -14,12 +14,12 @@ import frc.robot.Robot;
 
 public class ToggleClamp extends InstantCommand {
 
-  private ClampSubsystem clamp;
+
   public boolean isClamped = false; 
 
   public ToggleClamp() {
     super("ToggleClamp");
-    requires(Robot.clampSubsystem);
+    requires(Robot.clamp);
    
   }
 
@@ -29,9 +29,9 @@ public class ToggleClamp extends InstantCommand {
     this.isClamped = !isClamped;
     
     if (isClamped) {
-      clamp.setClamp(true);
+      Robot.clamp.setClamp(true);
     } else {
-      clamp.setClamp(false);
+      Robot.clamp.setClamp(false);
     }
   }
 
