@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
+import frc.robot.Robot;
 import frc.robot.subsystems.ClawSubsystem;
 
 /**
@@ -22,9 +23,8 @@ public class ToggleClaw extends InstantCommand {
    * Add your docs here.
    */
   public ToggleClaw() {
-    super("ToggleClaws");
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    super("ToggleClaw");
+    requires(Robot.clawSubsystem);
   }
 
   // Called once when the command executes

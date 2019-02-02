@@ -18,12 +18,6 @@ import frc.robot.commands.ToggleClaw;
  */
 public class ClawSubsystem extends Subsystem {
 
-  public static ClawSubsystem clawSubsystem = null;
-
-  public static ClawSubsystem getClawSubsystem() {
-    clawSubsystem = clawSubsystem == null ? new ClawSubsystem() : clawSubsystem;
-    return clawSubsystem;
-  }
 
   private DoubleSolenoid claw = new DoubleSolenoid(Mappings.clawForwardChannel, Mappings.clawReverseChannel);
 
