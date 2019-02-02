@@ -19,15 +19,6 @@ import frc.robot.commands.ManualDrive;
 
 public class Drivetrain extends Subsystem {
 
-
-  private static Drivetrain drivetrain = null;
-
-  public static Drivetrain getDrivetrain() {
-    drivetrain = drivetrain == null ? new Drivetrain() : drivetrain;
-    return drivetrain;
-  }
-
-
   // TODO:will need to change the motor channels.
   private WPI_TalonSRX frontLeftDrive = new WPI_TalonSRX(DrivetrainConfiguration.frontLeftDriveMotorChannel);
   private WPI_TalonSRX frontRightDrive = new WPI_TalonSRX(DrivetrainConfiguration.frontRightDriveMotorChannel);
