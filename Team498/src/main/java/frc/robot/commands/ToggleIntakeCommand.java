@@ -10,13 +10,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ToggleIntake extends Command {
+public class ToggleIntakeCommand extends Command {
 
   private double leftPower;
   private double rightPower; 
 
 
-  public ToggleIntake(double leftPower, double rightPower) {
+  public ToggleIntakeCommand(double leftPower, double rightPower) {
     super("ManualIntake");
     this.leftPower = leftPower;
     this.rightPower = rightPower;
