@@ -18,7 +18,7 @@ import frc.robot.configurations.ClampSubsystemConfiguration;
  */
 public class ClampSubsystem extends Subsystem {
 
-  // TODO: Need to change the forward and reverse channels of double solenoid
+
   private DoubleSolenoid clamp = new DoubleSolenoid(ClampSubsystemConfiguration.clampForwardChannel, ClampSubsystemConfiguration.clampReverseChannel);
 
   private boolean isClamped;

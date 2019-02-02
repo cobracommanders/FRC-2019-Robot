@@ -9,6 +9,5 @@ package frc.robot.configurations;
 
 
 public class WristSubsystemConfiguration {
-	//TODO: need to change this motor channel
-	public static final int wristMotorChannel = 0;
+	public static final int wristMotorChannel = 4;
 }

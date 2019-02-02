@@ -11,7 +11,6 @@ package frc.robot.configurations;
  * Add your docs here.
  */
 public class IntakeSubsystemConfiguration {
-    //TODO: change these motor channels
-    public static final int intakeLeftMotorChannel = 0;
-    public static final int intakeRightMotorChannel = 0;
+    public static final int intakeLeftMotorChannel = 5;
+    public static final int intakeRightMotorChannel = 6;
 }

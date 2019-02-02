@@ -16,8 +16,8 @@ import frc.robot.configurations.IntakeSubsystemConfiguration;
 public class IntakeSubsystem extends Subsystem {
 
  
-  private WPI_VictorSPX intakeLeft = new WPI_VictorSPX(Mappings.intakeLeft);
-  private WPI_VictorSPX intakeRight = new WPI_VictorSPX(Mappings.intakeRight);
+  private WPI_VictorSPX intakeLeft = new WPI_VictorSPX(IntakeSubsystemConfiguration.intakeLeftMotorChannel);
+  private WPI_VictorSPX intakeRight = new WPI_VictorSPX(IntakeSubsystemConfiguration.intakeRightMotorChannel);
   
   private double lastLeft = 0;
   private double lastRight = 0;
