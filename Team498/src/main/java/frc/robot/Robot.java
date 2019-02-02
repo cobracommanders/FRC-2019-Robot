@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.WristSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
 
@@ -29,6 +30,7 @@ public class Robot extends TimedRobot {
   // Subsystems
   public static Drivetrain drivetrain = new Drivetrain();
   public static IntakeSubsystem intake = new IntakeSubsystem();
+  public static WristSubsystem wrist = new WristSubsystem();
 
   @Override
   public void robotInit() {
