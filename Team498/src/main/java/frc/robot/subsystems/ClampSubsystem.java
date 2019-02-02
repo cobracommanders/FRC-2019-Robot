@@ -10,7 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.ToggleClamp;
+import frc.robot.commands.ToggleClampCommand;
 
 /**
  * Add your docs here.
@@ -24,7 +24,7 @@ public class ClampSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new ToggleClamp());
+    setDefaultCommand(new ToggleClampCommand());
   }
 
   public void setClamp(boolean isClamped) {
