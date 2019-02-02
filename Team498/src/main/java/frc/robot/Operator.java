@@ -7,8 +7,8 @@
 
 package frc.robot;
 
+import frc.robot.commands.ToggleIntakeCommand;
 import frc.robot.configurations.ControllerConfiguration;
-import frc.robot.commands.ToggleIntake;
 import frc.robot.commands.ToggleClaw;
 import frc.robot.commands.ToggleClamp;
 
@@ -26,11 +26,11 @@ public class Operator {
 
     public Operator() {
 
-        controller.buttonB.whenPressed(new ToggleIntake(1, 1));
-        controller.buttonX.whenPressed(new ToggleIntake(-1, -1));
-
         controller.buttonA.whenPressed(new ToggleClaw());
         controller.start.whenPressed(new ToggleClamp());
+
+        controller.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
+        controller.buttonX.whenPressed(new ToggleIntakeCommand(-1, -1));
         
         
     }
