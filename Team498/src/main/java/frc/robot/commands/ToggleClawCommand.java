@@ -14,7 +14,7 @@ import frc.robot.subsystems.ClawSubsystem;
 /**
  * Add your docs here.
  */
-public class ToggleClaw extends InstantCommand {
+public class ToggleClawCommand extends InstantCommand {
 
   private ClawSubsystem claw;
   public boolean holdingOnToHatch = false;
@@ -22,7 +22,7 @@ public class ToggleClaw extends InstantCommand {
   /**
    * Add your docs here.
    */
-  public ToggleClaw() {
+  public ToggleClawCommand() {
     super("ToggleClaw");
     requires(Robot.clawSubsystem);
   }
