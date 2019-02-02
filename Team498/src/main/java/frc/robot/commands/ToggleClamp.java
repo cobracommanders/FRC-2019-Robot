@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.subsystems.ClampSubsystem;
+import frc.robot.Robot;
 
 
 public class ToggleClamp extends InstantCommand {
@@ -18,6 +19,7 @@ public class ToggleClamp extends InstantCommand {
 
   public ToggleClamp() {
     super("ToggleClamp");
+    requires(Robot.clampSubsystem);
    
   }
 

@@ -16,14 +16,6 @@ import frc.robot.commands.ToggleClamp;
  * Add your docs here.
  */
 public class ClampSubsystem extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-  public static ClampSubsystem clampSubsystem = null;
-
-  public static ClampSubsystem getClampSubsystem() {
-    clampSubsystem = clampSubsystem == null ? new ClampSubsystem() : clampSubsystem;
-    return clampSubsystem;
-  }
 
   // TODO: Need to change the forward and reverse channels of double solenoid
   private DoubleSolenoid clamp = new DoubleSolenoid(0, 0);
