@@ -8,19 +8,50 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.WristSubsystem;
 import frc.robot.ConstantAccelerationCalculator;
-import frc.robot.Operator;
 import frc.robot.Robot;
 
-public class ManualWristCommand extends Command {
+public class AutomaticWristCommand extends Command {
 
-  private Operator operator = Operator.getOperator();
+
   private ConstantAccelerationCalculator calculator = new ConstantAccelerationCalculator(.00005);
 
+  enum Positions {
+    first,
+    second,
+    third
+  }
 
-  public ManualWristCommand() {
-    super("ManualWristCommand");
+  Positions position = Positions.first;
+  private int direction = 0; //0 = up; 1 = down
+  
+  public void moveNext() {
+
+    switch (position) {
+
+      case first:
+        position = Positions.second;
+        break;
+
+      case second:
+        if (direction == 0) {
+          position = Positions.third;
+
+        } else {
+          position = Positions.first;
+        }
+        break;
+
+      case third:
+        position = Positions.second;
+        direction = 1;
+      break;
+
+    }
+  }
+
+  public AutomaticWristCommand() {
+    super("AutomaticWristCommand");
     requires(Robot.wrist);
   }
 
@@ -32,9 +63,6 @@ public class ManualWristCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double power = calculator.getNextDataPoint(operator.controller.axisRightTrigger.getAxisValue() - operator.controller.axisLeftTrigger.getAxisValue());
-
-    Robot.wrist.wristPower(power);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -46,13 +74,11 @@ public class ManualWristCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.wrist.wristPower(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }
