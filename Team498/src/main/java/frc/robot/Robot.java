@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
   
   // Subsystems
   public static Drivetrain drivetrain = new Drivetrain();
-  public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  public static IntakeSubsystem intake = new IntakeSubsystem();
 
   @Override
   public void robotInit() {

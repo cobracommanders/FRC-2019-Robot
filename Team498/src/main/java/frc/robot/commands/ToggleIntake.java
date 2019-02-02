@@ -8,12 +8,10 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.Robot;
 
 public class ToggleIntake extends Command {
 
-  private IntakeSubsystem ballIntake;
   private double leftPower;
   private double rightPower; 
 
@@ -22,7 +20,7 @@ public class ToggleIntake extends Command {
     super("ManualIntake");
     this.leftPower = leftPower;
     this.rightPower = rightPower;
-    requires(Robot.intakeSubsystem);
+    requires(Robot.intake);
    
   }
 
@@ -33,10 +31,10 @@ public class ToggleIntake extends Command {
 
   @Override
   protected void execute() {
-    if (ballIntake.getLastLeft() == leftPower) {
-      ballIntake.setIntake(0, 0);
+    if (Robot.intake.getLastLeft() == leftPower) {
+      Robot.intake.setIntake(0, 0);
     } else {
-      ballIntake.setIntake(leftPower, rightPower);
+      Robot.intake.setIntake(leftPower, rightPower);
     }
   }
 
