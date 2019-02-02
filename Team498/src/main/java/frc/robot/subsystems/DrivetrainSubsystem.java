@@ -12,18 +12,18 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import frc.robot.configurations.DrivetrainConfiguration;
-import frc.robot.commands.ManualDrive;
+import frc.robot.Mappings;
+import frc.robot.commands.ManualDriveCommand;
 
 
 
-public class Drivetrain extends Subsystem {
+public class DrivetrainSubsystem extends Subsystem {
 
   // TODO:will need to change the motor channels.
-  private WPI_TalonSRX frontLeftDrive = new WPI_TalonSRX(DrivetrainConfiguration.frontLeftDriveMotorChannel);
-  private WPI_TalonSRX frontRightDrive = new WPI_TalonSRX(DrivetrainConfiguration.frontRightDriveMotorChannel);
-  private WPI_TalonSRX backLeftDrive = new WPI_TalonSRX(DrivetrainConfiguration.backLeftDriveMotorChannel);
-  private WPI_TalonSRX backRightDrive = new WPI_TalonSRX(DrivetrainConfiguration.backRightDriveMotorChannel);
+  private WPI_TalonSRX frontLeftDrive = new WPI_TalonSRX(Mappings.frontLeftDriveMotorChannel);
+  private WPI_TalonSRX frontRightDrive = new WPI_TalonSRX(Mappings.frontRightDriveMotorChannel);
+  private WPI_TalonSRX backLeftDrive = new WPI_TalonSRX(Mappings.backLeftDriveMotorChannel);
+  private WPI_TalonSRX backRightDrive = new WPI_TalonSRX(Mappings.backRightDriveMotorChannel);
 
   private SpeedControllerGroup leftGroup = new SpeedControllerGroup(frontLeftDrive, backLeftDrive);
   private SpeedControllerGroup rightGroup = new SpeedControllerGroup(frontRightDrive, backRightDrive);
@@ -32,7 +32,7 @@ public class Drivetrain extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new ManualDrive());
+    setDefaultCommand(new ManualDriveCommand());
   }
 
   public void drive(double move, double turn) {

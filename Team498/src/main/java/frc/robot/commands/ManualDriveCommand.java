@@ -7,56 +7,21 @@
 
 package frc.robot.commands;
 
-
-
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.WristSubsystem;
 import frc.robot.ConstantAccelerationCalculator;
+import frc.robot.Operator;
 import frc.robot.Robot;
 
-public class AutomaticWristCommand extends Command {
+public class ManualDriveCommand extends Command {
 
-  private WristSubsystem wrist;
-  private ConstantAccelerationCalculator calculator = new ConstantAccelerationCalculator(.00005);
+  private Operator operator = Operator.getOperator();
+  private ConstantAccelerationCalculator moveAcceleration = new ConstantAccelerationCalculator(0.00005);
+  private ConstantAccelerationCalculator turnAcceleration = new ConstantAccelerationCalculator(0.00005);
 
-  enum Positions {
-    first,
-    second,
-    third
-  }
 
-  Positions position = Positions.first;
-  private int direction = 0; //0 = up; 1 = down
-  
-  public void moveNext() {
-
-    switch (position) {
-
-      case first:
-        position = Positions.second;
-        break;
-
-      case second:
-        if (direction == 0) {
-          position = Positions.third;
-
-        } else {
-          position = Positions.first;
-        }
-        break;
-      
-      case third:
-        position = Positions.second;
-        direction = 1;
-      break;
-
-    }
-  }
-
-  public AutomaticWristCommand() {
-    super("AutomaticWristCommand");
-    requires(Robot.wristSubsystem);
-
+  public ManualDriveCommand() {
+    super("RampDrive");
+    requires(Robot.drivetrain);
   }
 
   // Called just before this Command runs the first time
@@ -67,6 +32,11 @@ public class AutomaticWristCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    double move = moveAcceleration.getNextDataPoint(operator.controller.axisLeftY.getAxisValue());
+    double turn = moveAcceleration.getNextDataPoint(operator.controller.axisRightX.getAxisValue());
+
+    Robot.drivetrain.drive(move, turn);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -78,11 +48,13 @@ public class AutomaticWristCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.drivetrain.drive(0,0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

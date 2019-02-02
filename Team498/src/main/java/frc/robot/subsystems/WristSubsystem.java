@@ -11,7 +11,9 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.configurations.WristSubsystemConfiguration;
 import frc.robot.commands.ManualWristCommand;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 
 /**
  * Add your docs here.
@@ -19,7 +21,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 public class WristSubsystem extends Subsystem {
 
   //TODO: Need to change motor control channel :3
-  private WPI_VictorSPX wrist = new WPI_VictorSPX(WristSubsystemConfiguration.wristMotorChannel);
+  private CANSparkMax wrist = new CANSparkMax(Mappings.wristMotorChannel, MotorType.kBrushed);
 
 
   @Override

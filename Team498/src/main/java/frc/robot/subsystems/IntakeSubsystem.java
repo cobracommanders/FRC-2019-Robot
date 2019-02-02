@@ -7,19 +7,18 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.configurations.IntakeSubsystemConfiguration;
-import edu.wpi.first.wpilibj.Victor;
+
 
 
 public class IntakeSubsystem extends Subsystem {
 
-
-  //TODO: Need to change motor channels
-  private Victor intakeLeft = new Victor(IntakeSubsystemConfiguration.intakeLeftMotorChannel);
-  private Victor intakeRight = new Victor(IntakeSubsystemConfiguration.intakeRightMotorChannel);
-
-
+ 
+  private WPI_VictorSPX intakeLeft = new WPI_VictorSPX(Mappings.intakeLeft);
+  private WPI_VictorSPX intakeRight = new WPI_VictorSPX(Mappings.intakeRight);
+  
   private double lastLeft = 0;
   private double lastRight = 0;
 
