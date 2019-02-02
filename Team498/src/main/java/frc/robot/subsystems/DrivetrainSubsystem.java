@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Mappings;
-import frc.robot.commands.ManualDrive;
+import frc.robot.commands.ManualDriveCommand;
 
 
 
-public class Drivetrain extends Subsystem {
+public class DrivetrainSubsystem extends Subsystem {
 
   // TODO:will need to change the motor channels.
   private WPI_TalonSRX frontLeftDrive = new WPI_TalonSRX(Mappings.frontLeftDriveMotorChannel);
@@ -32,7 +32,7 @@ public class Drivetrain extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new ManualDrive());
+    setDefaultCommand(new ManualDriveCommand());
   }
 
   public void drive(double move, double turn) {
