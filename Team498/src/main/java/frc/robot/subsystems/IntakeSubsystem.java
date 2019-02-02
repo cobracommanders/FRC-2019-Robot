@@ -7,16 +7,17 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Mappings;
-import edu.wpi.first.wpilibj.Victor;
+
 
 
 public class IntakeSubsystem extends Subsystem {
 
  
-  private Victor intakeLeft = new Victor(Mappings.intakeLeft);
-  private Victor intakeRight = new Victor(Mappings.intakeRight);
+  private WPI_VictorSPX intakeLeft = new WPI_VictorSPX(Mappings.intakeLeft);
+  private WPI_VictorSPX intakeRight = new WPI_VictorSPX(Mappings.intakeRight);
   
   private double lastLeft = 0;
   private double lastRight = 0;
