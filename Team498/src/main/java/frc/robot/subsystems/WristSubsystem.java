@@ -17,20 +17,10 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
  * Add your docs here.
  */
 public class WristSubsystem extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-  
-  private static WristSubsystem wristSubsystem = null;
 
   //TODO: Need to change motor control channel :3
   private WPI_VictorSPX wrist = new WPI_VictorSPX(WristSubsystemConfiguration.wristMotorChannel);
 
-  
-
-  public static WristSubsystem getWristSubsystem() {
-    wristSubsystem = wristSubsystem == null ? new WristSubsystem() : wristSubsystem;
-    return wristSubsystem;
-  }
 
   public WristSubsystem() {
     super("WristSubsystem");

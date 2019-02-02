@@ -16,6 +16,7 @@ import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.ClampSubsystem;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.WristSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
 
 
@@ -33,6 +34,7 @@ public class Robot extends TimedRobot {
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   public static ClawSubsystem clawSubsystem = new ClawSubsystem();
   public static ClampSubsystem clampSubsystem = new ClampSubsystem();
+  public static WristSubsystem wristSubsystem = new WristSubsystem();
 
   @Override
   public void robotInit() {
