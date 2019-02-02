@@ -22,11 +22,6 @@ public class WristSubsystem extends Subsystem {
   private WPI_VictorSPX wrist = new WPI_VictorSPX(Mappings.wristMotorChannel);
 
 
-  public WristSubsystem() {
-    super("WristSubsystem");
- 
-  }
-
   @Override
   public void initDefaultCommand() {
      setDefaultCommand(new ManualWristCommand());
