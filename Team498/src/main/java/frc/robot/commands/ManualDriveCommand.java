@@ -12,14 +12,14 @@ import frc.robot.ConstantAccelerationCalculator;
 import frc.robot.Operator;
 import frc.robot.Robot;
 
-public class ManualDrive extends Command {
+public class ManualDriveCommand extends Command {
 
   private Operator operator = Operator.getOperator();
   private ConstantAccelerationCalculator moveAcceleration = new ConstantAccelerationCalculator(0.00005);
   private ConstantAccelerationCalculator turnAcceleration = new ConstantAccelerationCalculator(0.00005);
 
 
-  public ManualDrive() {
+  public ManualDriveCommand() {
     super("RampDrive");
     requires(Robot.drivetrain);
   }
