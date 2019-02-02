@@ -33,9 +33,13 @@ public class Mappings {
 	public static final int LeftTrigger = 2;
 
 	//motor channels
-	//TODO: need to change these motor channels
 	public static final int frontLeftDriveMotorChannel = 0;
-	public static final int backLeftDriveMotorChannel = 0; 
-	public static final int frontRightDriveMotorChannel = 0;
-	public static final int backRightDriveMotorChannel = 0;
+	public static final int backLeftDriveMotorChannel = 1; 
+	public static final int frontRightDriveMotorChannel = 2;
+	public static final int backRightDriveMotorChannel = 3;
+
+	public static final int wristMotorChannel = 4;
+
+	public static final int intakeLeft = 5;
+	public static final int intakeRight = 6;
 }
