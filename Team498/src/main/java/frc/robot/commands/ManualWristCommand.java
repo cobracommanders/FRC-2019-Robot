@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.WristSubsystem;
 import frc.robot.ConstantAccelerationCalculator;
 import frc.robot.Operator;
+import frc.robot.Robot;
 
 public class ManualWristCommand extends Command {
 
@@ -21,9 +22,7 @@ public class ManualWristCommand extends Command {
 
   public ManualWristCommand() {
     super("ManualWristCommand");
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(this.wrist = WristSubsystem.getWristSubsystem());
+    requires(Robot.wristSubsystem);
   }
 
   // Called just before this Command runs the first time

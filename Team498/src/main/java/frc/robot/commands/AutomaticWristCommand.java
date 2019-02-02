@@ -12,6 +12,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.WristSubsystem;
 import frc.robot.ConstantAccelerationCalculator;
+import frc.robot.Robot;
 
 public class AutomaticWristCommand extends Command {
 
@@ -54,7 +55,7 @@ public class AutomaticWristCommand extends Command {
 
   public AutomaticWristCommand() {
     super("AutomaticWristCommand");
-    requires(this.wrist = WristSubsystem.getWristSubsystem());
+    requires(Robot.wristSubsystem);
 
   }
 
