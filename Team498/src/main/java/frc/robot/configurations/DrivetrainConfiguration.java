@@ -10,7 +10,7 @@ package frc.robot.configurations;
 /**
  * Add your docs here.
  */
-public class DrivetimeConfiguration {
+public class DrivetrainConfiguration {
 	//TODO: need to change these motor channels
 	public static final int frontLeftDriveMotorChannel = 0;
 	public static final int backLeftDriveMotorChannel = 0; 
