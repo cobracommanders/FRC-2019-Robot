@@ -12,8 +12,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.WristSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
-import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.DriverStation;
 
 
@@ -27,7 +29,9 @@ public class Robot extends TimedRobot {
   public static Operator operator;
   
   // Subsystems
-  public static Drivetrain drivetrain = new Drivetrain();
+  public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
+  public static IntakeSubsystem intake = new IntakeSubsystem();
+  public static WristSubsystem wrist = new WristSubsystem();
   public static ClawSubsystem clawSubsystem = new ClawSubsystem();
 
   @Override

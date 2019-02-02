@@ -8,20 +8,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.subsystems.WristSubsystem;
 import frc.robot.ConstantAccelerationCalculator;
 import frc.robot.Operator;
 import frc.robot.Robot;
 
-public class ManualDrive extends Command {
+public class ManualWristCommand extends Command {
 
   private Operator operator = Operator.getOperator();
-  private ConstantAccelerationCalculator moveAcceleration = new ConstantAccelerationCalculator(0.00005);
-  private ConstantAccelerationCalculator turnAcceleration = new ConstantAccelerationCalculator(0.00005);
+  private ConstantAccelerationCalculator calculator = new ConstantAccelerationCalculator(.00005);
 
 
-  public ManualDrive() {
-    super("RampDrive");
-    requires(Robot.drivetrain);
+  public ManualWristCommand() {
+    super("ManualWristCommand");
+    requires(Robot.wrist);
   }
 
   // Called just before this Command runs the first time
@@ -32,11 +32,9 @@ public class ManualDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double move = moveAcceleration.getNextDataPoint(operator.controller.axisLeftY.getAxisValue());
-    double turn = moveAcceleration.getNextDataPoint(operator.controller.axisRightX.getAxisValue());
+    double power = calculator.getNextDataPoint(operator.controller.axisRightY.getAxisValue());
 
-    Robot.drivetrain.drive(move, turn);
-
+    Robot.wrist.wristPower(power);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -48,7 +46,7 @@ public class ManualDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.drive(0,0);
+    Robot.wrist.wristPower(0);
   }
 
   // Called when another command which requires one or more of the same
