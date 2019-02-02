@@ -8,16 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.subsystems.ClampSubsystem;
 import frc.robot.Robot;
 
 
-public class ToggleClamp extends InstantCommand {
+public class ToggleClampCommand extends InstantCommand {
 
 
   public boolean isClamped = false; 
 
-  public ToggleClamp() {
+  public ToggleClampCommand() {
     super("ToggleClamp");
     requires(Robot.clamp);
    
