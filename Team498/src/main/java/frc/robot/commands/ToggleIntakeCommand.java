@@ -15,15 +15,12 @@ public class ToggleIntakeCommand extends Command {
   private double leftPower;
   private double rightPower; 
 
-
   public ToggleIntakeCommand(double leftPower, double rightPower) {
-    super("ManualIntake");
+    super("ToggleIntakeCommand");
     this.leftPower = leftPower;
     this.rightPower = rightPower;
-    requires(Robot.intake);
-   
+    requires(Robot.intake);   
   }
-
 
   @Override
   protected void initialize() {
@@ -38,17 +35,14 @@ public class ToggleIntakeCommand extends Command {
     }
   }
 
-
   @Override
   protected boolean isFinished() {
     return true;
   }
-
   
   @Override
   protected void end() {
   }
-
 
   @Override
   protected void interrupted() {
