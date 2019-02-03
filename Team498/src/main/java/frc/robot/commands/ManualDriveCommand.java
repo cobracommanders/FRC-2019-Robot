@@ -29,8 +29,8 @@ public class ManualDriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double move = moveAcceleration.getNextDataPoint(Robot.operator.controller.axisLeftY.getAxisValue());
-    double turn = moveAcceleration.getNextDataPoint(Robot.operator.controller.axisRightX.getAxisValue());
+    double move = moveAcceleration.getNextDataPoint(Robot.controller.axisLeftY.getAxisValue());
+    double turn = moveAcceleration.getNextDataPoint(Robot.controller.axisRightX.getAxisValue());
 
     Robot.drivetrain.drive(move, turn);
   }
