@@ -12,21 +12,14 @@ import frc.robot.commands.ToggleClampCommand;
 
 public class Operator {
 
-    private static Operator operator = null;
-    
-    public static Operator getOperator() {
-        operator = operator == null ? new Operator() : operator;
-        return operator;
-    }
-
     //instantiate one or more controllers here
     public Controller controller = new Controller(Mappings.ControllerPort);
 
     public Operator() {
         controller.start.whenPressed(new ToggleClampCommand());
 
-        controller.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
-        controller.buttonX.whenPressed(new ToggleIntakeCommand(-1, -1));
+        controller.buttonB.whenPressed(new ToggleIntakeCommand(.8, .8));
+        controller.buttonX.whenPressed(new ToggleIntakeCommand(-.8, -.8));
         
         
     }
