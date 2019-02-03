@@ -24,9 +24,9 @@ public class Robot extends TimedRobot {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   // Controls
-  public static DriverStation driverstation;
-  public static Operator operator;
-  
+  public static DriverStation driverstation = DriverStation.getInstance();
+  public static Operator operator = new Operator();
+
   // Subsystems
   public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
   public static IntakeSubsystem intake = new IntakeSubsystem();
@@ -35,8 +35,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-    driverstation = DriverStation.getInstance();
-    operator = new Operator();
+  
 
     SmartDashboard.putData("Auto mode", m_chooser);
   }
