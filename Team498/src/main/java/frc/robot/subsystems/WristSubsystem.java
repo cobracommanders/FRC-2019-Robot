@@ -21,7 +21,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class WristSubsystem extends Subsystem {
 
   //TODO: Need to change motor control channel :3
-  private CANSparkMax wrist = new CANSparkMax(Mappings.wristMotorChannel, MotorType.kBrushed);
+  private CANSparkMax wrist = new CANSparkMax(Mappings.wristMotorChannel, MotorType.kBrushless);
 
 
   @Override
@@ -30,7 +30,7 @@ public class WristSubsystem extends Subsystem {
   }
 
   public void wristPower(double power) {
-    wrist.set(power);
+    wrist.set(.8 * power);
   }
 
   

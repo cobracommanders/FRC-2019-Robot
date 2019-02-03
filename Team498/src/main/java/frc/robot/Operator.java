@@ -23,8 +23,8 @@ public class Operator {
 
     public Operator() {
 
-        controller.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
-        controller.buttonX.whenPressed(new ToggleIntakeCommand(-1, -1));
+        controller.buttonB.whenPressed(new ToggleIntakeCommand(.8, .8));
+        controller.buttonX.whenPressed(new ToggleIntakeCommand(-.8, -.8));
         
     }
 
