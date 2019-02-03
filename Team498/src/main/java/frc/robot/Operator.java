@@ -11,13 +11,6 @@ import frc.robot.commands.ToggleIntakeCommand;
 
 public class Operator {
 
-    private static Operator operator = null;
-    
-    public static Operator getOperator() {
-        operator = operator == null ? new Operator() : operator;
-        return operator;
-    }
-
     //instantiate one or more controllers here
     public Controller controller = new Controller(Mappings.ControllerPort);
 
