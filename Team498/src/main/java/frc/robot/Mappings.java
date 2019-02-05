@@ -42,4 +42,7 @@ public class Mappings {
 
 	public static final int intakeLeft = 4;
 	public static final int intakeRight = 5;
+
+
+	public static final int rampChannel = 0;
 }
