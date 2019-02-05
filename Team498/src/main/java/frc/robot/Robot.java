@@ -26,7 +26,9 @@ public class Robot extends TimedRobot {
 
   // Controls
   public static DriverStation driverstation = DriverStation.getInstance();
-  public static Operator operator = new Operator();
+  
+  //instantiate one or more controllers here
+  public static Controller controller = new Controller(Mappings.ControllerPort);
   
   // Subsystems  
   public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
@@ -34,6 +36,8 @@ public class Robot extends TimedRobot {
   public static WristSubsystem wrist = new WristSubsystem();
   public static ClawSubsystem clawSubsystem = new ClawSubsystem();
   public static ClampSubsystem clampSubsystem = new ClampSubsystem();
+
+  public static Operator operator = new Operator();
 
   @Override
   public void robotInit() {
