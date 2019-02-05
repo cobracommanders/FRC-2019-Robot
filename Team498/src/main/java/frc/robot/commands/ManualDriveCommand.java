@@ -8,19 +8,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.ConstantAccelerationCalculator;
-import frc.robot.Operator;
 import frc.robot.Robot;
 
 public class ManualDriveCommand extends Command {
 
-  private Operator operator = Operator.getOperator();
   private ConstantAccelerationCalculator moveAcceleration = new ConstantAccelerationCalculator(0.00005);
   private ConstantAccelerationCalculator turnAcceleration = new ConstantAccelerationCalculator(0.00005);
 
-
   public ManualDriveCommand() {
-    super("RampDrive");
+    super("ManualDriveCommand");
     requires(Robot.drivetrain);
   }
 
@@ -32,11 +30,14 @@ public class ManualDriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double move = moveAcceleration.getNextDataPoint(operator.controller.axisLeftY.getAxisValue());
-    double turn = moveAcceleration.getNextDataPoint(operator.controller.axisRightX.getAxisValue());
+    double move = moveAcceleration.getNextDataPoint(Robot.controller.axisLeftY.getAxisValue());
+    double turn = turnAcceleration.getNextDataPoint(Robot.controller.axisRightX.getAxisValue());
 
     Robot.drivetrain.drive(move, turn);
-
+    SmartDashboard.putNumber("MoveValue", move);
+    SmartDashboard.putNumber("TurnValue", turn);
+    SmartDashboard.putNumber("LeftYAxis", Robot.controller.axisLeftY.getAxisValue());
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
