@@ -19,7 +19,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class WristSubsystem extends Subsystem {
 
   //TODO: Need to change motor control channel :3
-  private CANSparkMax wrist = new CANSparkMax(Mappings.wristMotorChannel, MotorType.kBrushless);
+  private CANSparkMax wrist = new CANSparkMax(WristSubsystemConfiguration.wristMotorChannel, MotorType.kBrushed);
 
   @Override
   public void initDefaultCommand() {

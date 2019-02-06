@@ -18,6 +18,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
+import frc.robot.configurations.ControllerConfiguration;
 
 public class Robot extends TimedRobot {
 
@@ -28,7 +29,7 @@ public class Robot extends TimedRobot {
   public static DriverStation driverstation = DriverStation.getInstance();
   
   //instantiate one or more controllers here
-  public static Controller controller = new Controller(Mappings.ControllerPort);
+  public static Controller controller = new Controller(ControllerConfiguration.ControllerPort);
   
   // Subsystems  
   public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
