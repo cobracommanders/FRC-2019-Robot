@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
   public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
   public static IntakeSubsystem intake = new IntakeSubsystem();
   public static WristSubsystem wrist = new WristSubsystem();
-  public static ClawSubsystem clawSubsystem = new ClawSubsystem();
+  public static ClawSubsystem claw = new ClawSubsystem();
 
   public static Operator operator = new Operator();
 

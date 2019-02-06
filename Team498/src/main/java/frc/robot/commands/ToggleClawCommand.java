@@ -9,14 +9,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
-import frc.robot.subsystems.ClawSubsystem;
+
 
 /**
  * Add your docs here.
  */
 public class ToggleClawCommand extends InstantCommand {
 
-  private ClawSubsystem claw;
   public boolean clawUp = false;
   
   /**
@@ -24,7 +23,7 @@ public class ToggleClawCommand extends InstantCommand {
    */
   public ToggleClawCommand() {
     super("ToggleClaw");
-    requires(Robot.clawSubsystem);
+    requires(Robot.claw);
   }
 
   // Called once when the command executes
@@ -32,7 +31,7 @@ public class ToggleClawCommand extends InstantCommand {
   protected void initialize() {
     this.clawUp = !clawUp;
 
-    claw.setClaw(clawUp);
+    Robot.claw.setClaw(clawUp);
   }
 
 }
