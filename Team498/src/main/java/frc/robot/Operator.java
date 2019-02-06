@@ -16,7 +16,7 @@ public class Operator {
 
         Robot.controller.buttonB.whenPressed(new ToggleIntakeCommand(.8, .8));
         Robot.controller.buttonX.whenPressed(new ToggleIntakeCommand(-.8, -.8));
-        controller.buttonA.whenPressed(new ToggleClawCommand());
+        Robot.controller.buttonA.whenPressed(new ToggleClawCommand());
         
     }
 

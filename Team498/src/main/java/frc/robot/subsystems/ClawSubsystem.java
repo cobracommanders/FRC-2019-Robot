@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.Mappings;
-import frc.robot.commands.ToggleClawCommand;
+
 
 /**
  * Add your docs here.
@@ -26,8 +26,7 @@ public class ClawSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    setDefaultCommand(new ToggleClawCommand());
+  
   }
 
   public void setClaw(boolean holdingOnToHatch) {

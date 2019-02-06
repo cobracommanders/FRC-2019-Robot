@@ -17,7 +17,7 @@ import frc.robot.subsystems.ClawSubsystem;
 public class ToggleClawCommand extends InstantCommand {
 
   private ClawSubsystem claw;
-  public boolean holdingOnToHatch = false;
+  public boolean clawUp = false;
   
   /**
    * Add your docs here.
@@ -30,13 +30,9 @@ public class ToggleClawCommand extends InstantCommand {
   // Called once when the command executes
   @Override
   protected void initialize() {
-    this.holdingOnToHatch = !holdingOnToHatch;
+    this.clawUp = !clawUp;
 
-    if(holdingOnToHatch) {
-      claw.setClaw(true);
-    } else {
-      claw.setClaw(false);
-    }
+    claw.setClaw(clawUp);
   }
 
 }
