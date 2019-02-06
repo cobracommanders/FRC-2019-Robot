@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 public class Controller {
     //controller 
@@ -55,6 +56,16 @@ public class Controller {
         axisRightTrigger = new JoystickAxis(joystick, Mappings.RightTrigger, 0);
 
     }
+
+    public void setRumble(double value) {
+		joystick.setRumble(RumbleType.kLeftRumble, value);
+		joystick.setRumble(RumbleType.kRightRumble, value);
+	} 
+	
+	public void setRumble(double leftPower, double rightPower) {
+		joystick.setRumble(RumbleType.kLeftRumble, leftPower);
+		joystick.setRumble(RumbleType.kRightRumble, rightPower);
+	}
 
     public class JoystickAxis {
         //tolerance fixes any issues with the joysticks
