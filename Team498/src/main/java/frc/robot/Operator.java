@@ -8,21 +8,14 @@
 package frc.robot;
 
 import frc.robot.commands.ToggleIntakeCommand;
-import frc.robot.configurations.ControllerConfiguration;
-import frc.robot.commands.ToggleClaw;
-import frc.robot.commands.ToggleClamp;
+
 
 public class Operator {
 
     public Operator() {
 
         Robot.controller.buttonB.whenPressed(new ToggleIntakeCommand(.8, .8));
-        Robot.controller.buttonX.whenPressed(new ToggleIntakeCommand(-.8, -.8));
-
-        Robot.controller.buttonA.whenPressed(new ToggleClaw());
-        Robot.controller.start.whenPressed(new ToggleClamp());
-        
-        
+        Robot.controller.buttonX.whenPressed(new ToggleIntakeCommand(-.8, -.8));  
     }
 
 }
