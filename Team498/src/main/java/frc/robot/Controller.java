@@ -9,6 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
+
 
 public class Controller {
     //controller 
@@ -22,6 +24,7 @@ public class Controller {
     public JoystickButton rightBumper;
     public JoystickButton leftJoyPress;
     public JoystickButton rightJoyPress;
+    public DoubleButton bothJoyPresses;
 
     public JoystickAxis axisLeftX;
     public JoystickAxis axisRightX;
@@ -44,6 +47,8 @@ public class Controller {
         rightBumper = new JoystickButton(joystick, Mappings.RightBumper);
         leftJoyPress = new JoystickButton(joystick, Mappings.LeftJoyPress);
         rightJoyPress = new JoystickButton(joystick, Mappings.RightJoyPress);
+        bothJoyPresses = new DoubleButton(joystick, Mappings.LeftJoyPress, Mappings.RightJoyPress);
+
 
 
         //Axes 
@@ -74,5 +79,19 @@ public class Controller {
         }
     }    
 
+    public class DoubleButton extends Trigger {
+        private Joystick joy;
+        private int button1, button2;
+        
+        public DoubleButton(Joystick joy, int button1, int button2) {
+            this.joy = joy;
+            this.button1 = button1;
+            this.button2 = button2;
+        }	
+        
+        public boolean get() {
+            return joy.getRawButton(button1) && joy.getRawButton(button2);
+        }
+    }
 
 }
