@@ -13,19 +13,15 @@ import frc.robot.Robot;
 
 public class ReleaseRampCommand extends InstantCommand {
 
-  public boolean isRampReleased = false;
 
   public ReleaseRampCommand() {
     super("ReleaseRampCommand");
     requires(Robot.ramp);
   }
 
-
   @Override
   protected void initialize() {
-    this.isRampReleased = !isRampReleased;
-    Robot.ramp.releaseRamp(isRampReleased);
-    System.out.print(isRampReleased);
+    Robot.ramp.releaseRamp(false);
   }
 
 }

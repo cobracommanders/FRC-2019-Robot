@@ -24,6 +24,7 @@ public class RampSubsystem extends Subsystem {
   public void releaseRamp(boolean isRampNotReleased) {
     if (isRampNotReleased) {
       ramp.set(true);
+      isRampNotReleased = false;
     } else {
       ramp.set(false);
     }
