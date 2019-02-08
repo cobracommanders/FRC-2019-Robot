@@ -12,17 +12,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.Mappings;
 
-
-/**
- * Add your docs here.
- */
 public class ClawSubsystem extends Subsystem {
-
 
   private DoubleSolenoid claw = new DoubleSolenoid(Mappings.clawForwardChannel, Mappings.clawReverseChannel);
 
   private boolean holdingOnToHatch;
-
 
   @Override
   public void initDefaultCommand() {
@@ -30,13 +24,11 @@ public class ClawSubsystem extends Subsystem {
   }
 
   public void setClaw(boolean holdingOnToHatch) {
-
     if (holdingOnToHatch) {
       claw.set(Value.kForward);
-      this.holdingOnToHatch = holdingOnToHatch;
     } else {
       claw.set(Value.kReverse);
-      this.holdingOnToHatch = holdingOnToHatch;
     }
+    this.holdingOnToHatch = holdingOnToHatch;
   }
 }
