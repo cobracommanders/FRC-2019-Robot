@@ -8,50 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.ConstantAccelerationCalculator;
 import frc.robot.Robot;
 
-public class AutomaticWristCommand extends Command {
-
-
-  private ConstantAccelerationCalculator calculator = new ConstantAccelerationCalculator(.00005);
-
-  enum Positions {
-    first,
-    second,
-    third
-  }
-
-  Positions position = Positions.first;
-  private int direction = 0; //0 = up; 1 = down
-  
-  public void moveNext() {
-
-    switch (position) {
-
-      case first:
-        position = Positions.second;
-        break;
-
-      case second:
-        if (direction == 0) {
-          position = Positions.third;
-
-        } else {
-          position = Positions.first;
-        }
-        break;
-
-      case third:
-        position = Positions.second;
-        direction = 1;
-      break;
-
-    }
-  }
-
-  public AutomaticWristCommand() {
-    super("AutomaticWristCommand");
+public class AutomaticWristDownCommand extends Command {
+  public AutomaticWristDownCommand() {
+    super("AutomaticWristDownCommand");
     requires(Robot.wrist);
   }
 

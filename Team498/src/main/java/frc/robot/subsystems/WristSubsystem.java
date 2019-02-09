@@ -19,6 +19,13 @@ import edu.wpi.first.wpilibj.DigitalInput;
  */
 public class WristSubsystem extends Subsystem {
 
+    enum Positions {
+        first,
+        second,
+        third
+      }
+    
+    Positions position = Positions.first;
 
     private DigitalInput topLimitSwitch = new DigitalInput(Mappings.topLimitSwitchChannel);
     private DigitalInput bottomLimitSwitch = new DigitalInput(Mappings.bottomLimitSwitchChannel);
@@ -39,5 +46,42 @@ public class WristSubsystem extends Subsystem {
             wrist.set(.8 * power);
         }
     }
+
+    public void moveUp() {
+
+        switch (position) {
+    
+          case first:
+            position = Positions.second;
+            break;
+    
+          case second:
+              position = Positions.third;
+            break;
+    
+          case third:
+            break;
+    
+        }
+      }
+
+    public void moveDown() {
+
+        switch (position) {
+
+            case third:
+                position = Positions.second;
+                break;
+
+            case second:
+                position = Positions.first;
+                break;
+
+            case first:
+                break;
+
+        }
+    }
+    
   
 }
