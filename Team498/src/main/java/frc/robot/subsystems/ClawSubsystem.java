@@ -8,26 +8,27 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.Mappings;
-import frc.robot.commands.ManualWristCommand;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-/**
- * Add your docs here.
- */
-public class WristSubsystem extends Subsystem {
+public class ClawSubsystem extends Subsystem {
 
-  //TODO: Need to change motor control channel :3
-  private CANSparkMax wrist = new CANSparkMax(Mappings.wristMotorChannel, MotorType.kBrushed);
+  private DoubleSolenoid claw = new DoubleSolenoid(Mappings.clawForwardChannel, Mappings.clawReverseChannel);
+
+  private boolean holdingOnToHatch;
 
   @Override
   public void initDefaultCommand() {
-     setDefaultCommand(new ManualWristCommand());
+  
   }
 
-  public void wristPower(double power) {
-    wrist.set(.8 * power);
+  public void setClaw(boolean holdingOnToHatch) {
+    if (holdingOnToHatch) {
+      claw.set(Value.kForward);
+    } else {
+      claw.set(Value.kReverse);
+    }
+    this.holdingOnToHatch = holdingOnToHatch;
   }
-  
 }
