@@ -45,5 +45,5 @@ public class Mappings {
 	//double solenoid channels
 	//TODO: need to change these motor channels
 	public static final int clawForwardChannel = 0;
-	public static final int clawReverseChannel = 0;
+	public static final int clawReverseChannel = 1;
 }
