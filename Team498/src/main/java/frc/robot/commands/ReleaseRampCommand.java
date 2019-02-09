@@ -21,7 +21,7 @@ public class ReleaseRampCommand extends InstantCommand {
 
   @Override
   protected void initialize() {
-    Robot.ramp.releaseRamp(false);
+    Robot.ramp.releaseRamp();
   }
 
 }

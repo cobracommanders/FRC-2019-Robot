@@ -13,21 +13,19 @@ import frc.robot.Mappings;
 
 public class RampSubsystem extends Subsystem {
 
+  private Solenoid ramp;
 
-  private Solenoid ramp = new Solenoid(Mappings.rampChannel);
+  public RampSubsystem() {
+      ramp = new Solenoid(Mappings.rampChannel);
+      ramp.set(false);
+  } 
 
   @Override
   public void initDefaultCommand() {
 
   }
 
-  public void releaseRamp(boolean isRampNotReleased) {
-    if (isRampNotReleased) {
+  public void releaseRamp() {
       ramp.set(true);
-      isRampNotReleased = false;
-    } else {
-      ramp.set(false);
-    }
-
   }
 }
