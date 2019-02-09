@@ -12,22 +12,32 @@ import frc.robot.Mappings;
 import frc.robot.commands.ManualWristCommand;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * Add your docs here.
  */
 public class WristSubsystem extends Subsystem {
 
-  //TODO: Need to change motor control channel :3
-  private CANSparkMax wrist = new CANSparkMax(Mappings.wristMotorChannel, MotorType.kBrushed);
 
-  @Override
-  public void initDefaultCommand() {
-     setDefaultCommand(new ManualWristCommand());
-  }
+    private DigitalInput topLimitSwitch = new DigitalInput(Mappings.topLimitSwitchChannel);
+    private DigitalInput bottomLimitSwitch = new DigitalInput(Mappings.bottomLimitSwitchChannel);
 
-  public void wristPower(double power) {
-    wrist.set(.8 * power);
-  }
+    private CANSparkMax wrist = new CANSparkMax(Mappings.wristMotorChannel, MotorType.kBrushed);
+
+    @Override
+    public void initDefaultCommand() {
+        setDefaultCommand(new ManualWristCommand());
+    }
+
+    public void wristPower(double power) {
+        if (topLimitSwitch.get() && power > 0) {
+            wrist.set(0);
+        } else if (bottomLimitSwitch.get() && power < 0) {
+            wrist.set(0);
+        } else {
+            wrist.set(.8 * power);
+        }
+    }
   
 }
