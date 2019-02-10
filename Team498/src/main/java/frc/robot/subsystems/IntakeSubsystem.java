@@ -10,7 +10,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-
 public class IntakeSubsystem extends Subsystem {
   private int intakeLeftMotorChannel = 5;
   private int intakeRightMotorChannel = 6;
@@ -23,7 +22,6 @@ public class IntakeSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-
   }
 
   public void setIntake(double leftPower, double rightPower) {
@@ -31,7 +29,6 @@ public class IntakeSubsystem extends Subsystem {
     intakeRight.set(rightPower);
     lastLeft = leftPower;
     lastRight = rightPower;
-
   }
 
   public double getLastLeft() {
@@ -41,5 +38,4 @@ public class IntakeSubsystem extends Subsystem {
   public double getLastRight() {
     return lastRight;
   }
-
 }

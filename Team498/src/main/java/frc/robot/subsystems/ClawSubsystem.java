@@ -12,9 +12,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.commands.ToggleClawCommand;
 
-/**
- * Add your docs here.
- */
 public class ClawSubsystem extends Subsystem {
 
   private int clawForwardChannel = 0;
@@ -34,10 +31,9 @@ public class ClawSubsystem extends Subsystem {
 
     if (holdingOnToHatch) {
       claw.set(Value.kForward);
-      this.holdingOnToHatch = holdingOnToHatch;
     } else {
       claw.set(Value.kReverse);
-      this.holdingOnToHatch = holdingOnToHatch;
     }
+    this.holdingOnToHatch = holdingOnToHatch;
   }
 }

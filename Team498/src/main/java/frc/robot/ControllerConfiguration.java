@@ -24,7 +24,6 @@ public class ControllerConfiguration {
 	public static final int LeftJoyPress = 9;
 	public static final int RightJoyPress = 10;
 	
-
 	//triggers and joysticks 
 	public static final int LeftXAxis = 0;
 	public static final int LeftYAxis = 1;
@@ -32,6 +31,4 @@ public class ControllerConfiguration {
 	public static final int RightYAxis = 5;
 	public static final int RightTrigger = 3;
 	public static final int LeftTrigger = 2;
-
-	
 }

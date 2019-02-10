@@ -36,7 +36,6 @@ public class Robot extends TimedRobot {
   public static WristSubsystem wrist = new WristSubsystem();
   public static ClawSubsystem claw = new ClawSubsystem();
 
-
   public static Operator operator = new Operator();
 
   @Override

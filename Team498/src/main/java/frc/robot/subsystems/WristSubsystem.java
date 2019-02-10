@@ -12,9 +12,6 @@ import frc.robot.commands.ManualWristCommand;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-/**
- * Add your docs here.
- */
 public class WristSubsystem extends Subsystem {
   private int wristMotorChannel = 4;
 
@@ -28,5 +25,4 @@ public class WristSubsystem extends Subsystem {
   public void wristPower(double power) {
     wrist.set(.8 * power);
   }
-  
 }
