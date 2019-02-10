@@ -15,12 +15,9 @@ public class Operator {
 
     public Operator() {
         controller.start.whenPressed(new ToggleClampCommand());
-
         Robot.controller.buttonB.whenPressed(new ToggleIntakeCommand(.8, .8));
         Robot.controller.buttonX.whenPressed(new ToggleIntakeCommand(-.8, -.8));
         Robot.controller.buttonA.whenPressed(new ToggleClawCommand());
-        
-        
     }
 
 }
