@@ -9,15 +9,16 @@ package frc.robot;
 
 import frc.robot.commands.ToggleClawCommand;
 import frc.robot.commands.ToggleIntakeCommand;
+import frc.robot.commands.UpdateWristTargetCommand;
 
 public class Operator {
 
     public Operator() {
-
         Robot.controller.buttonB.whenPressed(new ToggleIntakeCommand(.8, .8));
         Robot.controller.buttonX.whenPressed(new ToggleIntakeCommand(-.8, -.8));
         Robot.controller.buttonA.whenPressed(new ToggleClawCommand());
-        
+        Robot.controller.rightBumper.whenPressed(new UpdateWristTargetCommand(false));
+        Robot.controller.rightBumper.whenPressed(new UpdateWristTargetCommand(true));
     }
 
 }
