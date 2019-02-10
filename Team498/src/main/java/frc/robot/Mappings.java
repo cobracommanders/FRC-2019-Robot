@@ -48,5 +48,9 @@ public class Mappings {
     public static final int clawReverseChannel = 1;
     
     public static final int inLimitSwitchChannel = 0;
-    public static final int outLimitSwitchChannel = 1;
+	public static final int outLimitSwitchChannel = 1;
+	
+	//encoder channels
+	public static final int wristEncoderA = 6;
+	public static final int wristEncoderB = 7;
 }
