@@ -23,8 +23,6 @@ public class ClawSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    setDefaultCommand(new ToggleClawCommand());
   }
 
   public void setClaw(boolean holdingOnToHatch) {
