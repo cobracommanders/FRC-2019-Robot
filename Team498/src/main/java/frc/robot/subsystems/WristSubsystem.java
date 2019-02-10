@@ -49,14 +49,13 @@ public class WristSubsystem extends Subsystem {
         setDefaultCommand(new PursueWristTargetCommand());
     }
 
-    public void wristPower(double power) {
-        if (inLimitSwitch.get() && power > 0) {
-            wrist.set(0);
-        } else if (outLimitSwitch.get() && power < 0) {
-            wrist.set(0);
-        } else {
-            wrist.set(.8 * power);
-        }
+    private void wristPower(boolean moveOut) {
+        if(moveOut) wrist.set(wristPow);
+        else wrist.set(-wristPow);
+    }
+
+    public void stop(){
+        wrist.set(0);
     }
 
     public void pursueTarget() {
@@ -67,11 +66,11 @@ public class WristSubsystem extends Subsystem {
         if(inLimitSwitch.get()) currentPosition = Positions.IN;
 
         if (targetPosition.getPositionCode() > currentPosition.getPositionCode()) {
-            wristPower(-wristPow);
+            wristPower(true);
         } else if (targetPosition.getPositionCode() < currentPosition.getPositionCode()) {
-            wristPower(wristPow);
+            wristPower(false);
         } else {
-            wristPower(0);
+            stop();
         }
         
     }
