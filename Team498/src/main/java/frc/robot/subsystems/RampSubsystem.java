@@ -9,14 +9,15 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Mappings;
 
 public class RampSubsystem extends Subsystem {
+  
+  private static final int rampChannel = 0;
 
   private Solenoid ramp;
 
   public RampSubsystem() {
-      ramp = new Solenoid(Mappings.rampChannel);
+      ramp = new Solenoid(rampChannel);
       ramp.set(false);
   } 
 

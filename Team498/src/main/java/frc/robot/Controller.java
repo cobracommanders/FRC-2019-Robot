@@ -51,8 +51,7 @@ public class Controller {
         rightJoyPress = new JoystickButton(joystick, ControllerConfiguration.RightJoyPress);
         start = new JoystickButton(joystick, ControllerConfiguration.ButtonStart);
         back = new JoystickButton(joystick, ControllerConfiguration.ButtonBack);
-
-
+        bothJoyPresses = new DoubleButton(joystick, ControllerConfiguration.LeftJoyPress, ControllerConfiguration.RightJoyPress);
 
         //Axes 
         axisLeftX = new JoystickAxis(joystick, ControllerConfiguration.LeftXAxis, 0.25);
