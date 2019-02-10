@@ -17,10 +17,7 @@ import frc.robot.Robot;
 public class ToggleClawCommand extends InstantCommand {
 
   public boolean clawUp = false;
-  
-  /**
-   * Add your docs here.
-   */
+
   public ToggleClawCommand() {
     super("ToggleClaw");
     requires(Robot.claw);
@@ -30,7 +27,6 @@ public class ToggleClawCommand extends InstantCommand {
   @Override
   protected void initialize() {
     this.clawUp = !clawUp;
-
     Robot.claw.setClaw(clawUp);
   }
 
