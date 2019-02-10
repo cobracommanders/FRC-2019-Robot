@@ -9,7 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Mappings;
-import frc.robot.commands.ManualWristCommand;
+import frc.robot.commands.PursueWristTargetCommand;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -20,68 +20,90 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class WristSubsystem extends Subsystem {
 
     enum Positions {
-        first,
-        second,
-        third
+        OUT(2),
+        SHOOT(1),
+        IN(0);
+        
+        private final int positionCode;
+        private Positions(int positionCode) {
+            this.positionCode = positionCode;
+        }
+
+        public int getPositionCode() {
+            return this.positionCode;
+        }
       }
     
-    Positions position = Positions.first;
+    Positions currentPosition = Positions.IN;
+    Positions targetPosition = Positions.IN;
 
-    private DigitalInput topLimitSwitch = new DigitalInput(Mappings.topLimitSwitchChannel);
-    private DigitalInput bottomLimitSwitch = new DigitalInput(Mappings.bottomLimitSwitchChannel);
-
+    private DigitalInput inLimitSwitch = new DigitalInput(Mappings.inLimitSwitchChannel);
+    private DigitalInput outLimitSwitch = new DigitalInput(Mappings.outLimitSwitchChannel);
+    
+    private final double wristPow = 0.8;
+    
     private CANSparkMax wrist = new CANSparkMax(Mappings.wristMotorChannel, MotorType.kBrushed);
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new ManualWristCommand());
+        setDefaultCommand(new PursueWristTargetCommand());
     }
 
     public void wristPower(double power) {
-        if (topLimitSwitch.get() && power > 0) {
+        if (inLimitSwitch.get() && power > 0) {
             wrist.set(0);
-        } else if (bottomLimitSwitch.get() && power < 0) {
+        } else if (outLimitSwitch.get() && power < 0) {
             wrist.set(0);
         } else {
             wrist.set(.8 * power);
         }
     }
 
-    public void moveUp() {
+    public void pursueTarget() {
+        //check if we hit the out angle
+        if(outLimitSwitch.get()) currentPosition = Positions.OUT;
 
-        switch (position) {
-    
-          case first:
-            position = Positions.second;
+        //check if we hit the in angle
+        if(inLimitSwitch.get()) currentPosition = Positions.IN;
+
+        if (targetPosition.getPositionCode() > currentPosition.getPositionCode()) {
+            wristPower(-wristPow);
+        } else if (targetPosition.getPositionCode() < currentPosition.getPositionCode()) {
+            wristPower(wristPow);
+        } else {
+            wristPower(0);
+        }
+        
+    }
+
+    public void moveOut() {
+        switch (currentPosition) {
+          case IN:
+            targetPosition = Positions.SHOOT;
             break;
     
-          case second:
-              position = Positions.third;
+          case SHOOT:
+            targetPosition = Positions.OUT;
             break;
     
-          case third:
+          case OUT:
             break;
-    
         }
       }
 
-    public void moveDown() {
-
-        switch (position) {
-
-            case third:
-                position = Positions.second;
+    public void moveIn() {
+        switch (currentPosition) {
+            case OUT:
+                targetPosition = Positions.SHOOT;
                 break;
 
-            case second:
-                position = Positions.first;
+            case SHOOT:
+                targetPosition = Positions.IN;
                 break;
 
-            case first:
+            case IN:
                 break;
-
         }
     }
-    
-  
+
 }

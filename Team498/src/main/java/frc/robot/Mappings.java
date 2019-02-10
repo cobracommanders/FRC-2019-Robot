@@ -47,7 +47,6 @@ public class Mappings {
 	public static final int clawForwardChannel = 0;
     public static final int clawReverseChannel = 1;
     
-    //TODO: Change these please this is
-    public static final int topLimitSwitchChannel = 0;
-    public static final int bottomLimitSwitchChannel = 0;
+    public static final int inLimitSwitchChannel = 0;
+    public static final int outLimitSwitchChannel = 1;
 }

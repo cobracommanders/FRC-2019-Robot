@@ -10,9 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class AutomaticWristDownCommand extends Command {
-  public AutomaticWristDownCommand() {
-    super("AutomaticWristDownCommand");
+public class PursueWristTargetCommand extends Command {
+  public PursueWristTargetCommand() {
+    super("PursueWristTargetCommand");
     requires(Robot.wrist);
   }
 
@@ -24,6 +24,7 @@ public class AutomaticWristDownCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+      Robot.wrist.pursueTarget();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,6 +36,7 @@ public class AutomaticWristDownCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.wrist.wristPower(0);
   }
 
   // Called when another command which requires one or more of the same
