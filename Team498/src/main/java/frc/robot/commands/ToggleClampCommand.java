@@ -10,19 +10,15 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-
 public class ToggleClampCommand extends InstantCommand {
-
 
   public boolean isClamped = false; 
 
   public ToggleClampCommand() {
     super("ToggleClamp");
     requires(Robot.clamp);
-   
   }
 
- 
   @Override
   protected void initialize() {
     this.isClamped = !isClamped;
@@ -33,5 +29,4 @@ public class ToggleClampCommand extends InstantCommand {
       Robot.clamp.setClamp(false);
     }
   }
-
 }
