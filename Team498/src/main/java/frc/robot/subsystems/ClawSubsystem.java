@@ -14,8 +14,8 @@ import frc.robot.commands.ToggleClawCommand;
 
 public class ClawSubsystem extends Subsystem {
 
-  private int clawForwardChannel = 0;
-  private int clawReverseChannel = 1;  
+  private static final int clawForwardChannel = 0;
+  private static final int clawReverseChannel = 1;  
 
   private DoubleSolenoid claw = new DoubleSolenoid(clawForwardChannel, clawReverseChannel);
 

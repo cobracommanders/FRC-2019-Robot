@@ -11,8 +11,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class IntakeSubsystem extends Subsystem {
-  private int intakeLeftMotorChannel = 5;
-  private int intakeRightMotorChannel = 6;
+
+  private static final int intakeLeftMotorChannel = 5;
+  private static final int intakeRightMotorChannel = 6;
  
   private WPI_VictorSPX intakeLeft = new WPI_VictorSPX(intakeLeftMotorChannel);
   private WPI_VictorSPX intakeRight = new WPI_VictorSPX(intakeRightMotorChannel);
