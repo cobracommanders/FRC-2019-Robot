@@ -13,8 +13,8 @@ public class ConstantAccelerationCalculator {
 	private double FtN1 = 0;
 	private double FtN2 = 0;
 	
-	public ConstantAccelerationCalculator(double targetAcceleration) {
-		c = targetAcceleration;
+	public ConstantAccelerationCalculator(int targetAcceleration) {
+		c = targetAcceleration / 10000;
 	}
 	
 	public double getNextDataPoint(double targetValue) {
