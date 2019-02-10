@@ -7,18 +7,20 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class RampSubsystem extends Subsystem {
   
-  private static final int rampChannel = 0;
+  private static final int rampForwardChannel = 0;
+  private static final int rampReverseChannel = 0;
 
-  private Solenoid ramp;
+  private DoubleSolenoid ramp;
 
   public RampSubsystem() {
-      ramp = new Solenoid(rampChannel);
-      ramp.set(false);
+      ramp = new DoubleSolenoid(rampForwardChannel, rampReverseChannel);
+      ramp.set(Value.kOff);
   } 
 
   @Override
@@ -27,6 +29,6 @@ public class RampSubsystem extends Subsystem {
   }
 
   public void releaseRamp() {
-      ramp.set(true);
+      ramp.set(Value.kForward); //potentially is kReverse who knows lol :)
   }
 }
