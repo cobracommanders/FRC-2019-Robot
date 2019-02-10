@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+
 public class Controller {
     //controller 
     private Joystick joystick; 
@@ -22,6 +23,8 @@ public class Controller {
     public JoystickButton rightBumper;
     public JoystickButton leftJoyPress;
     public JoystickButton rightJoyPress;
+    public JoystickButton start;
+    public JoystickButton back;
 
     public JoystickAxis axisLeftX;
     public JoystickAxis axisRightX;
@@ -36,23 +39,25 @@ public class Controller {
         joystick = new Joystick(port);
 
         //buttons 
-        buttonA = new JoystickButton(joystick, Mappings.ButtonA);
-        buttonB = new JoystickButton(joystick, Mappings.ButtonB);
-        buttonX = new JoystickButton(joystick, Mappings.ButtonX);
-        buttonY = new JoystickButton(joystick, Mappings.ButtonY);
-        leftBumper = new JoystickButton(joystick, Mappings.LeftBumper);
-        rightBumper = new JoystickButton(joystick, Mappings.RightBumper);
-        leftJoyPress = new JoystickButton(joystick, Mappings.LeftJoyPress);
-        rightJoyPress = new JoystickButton(joystick, Mappings.RightJoyPress);
+        buttonA = new JoystickButton(joystick, ControllerConfiguration.ButtonA);
+        buttonB = new JoystickButton(joystick, ControllerConfiguration.ButtonB);
+        buttonX = new JoystickButton(joystick, ControllerConfiguration.ButtonX);
+        buttonY = new JoystickButton(joystick, ControllerConfiguration.ButtonY);
+        leftBumper = new JoystickButton(joystick, ControllerConfiguration.LeftBumper);
+        rightBumper = new JoystickButton(joystick, ControllerConfiguration.RightBumper);
+        leftJoyPress = new JoystickButton(joystick, ControllerConfiguration.LeftJoyPress);
+        rightJoyPress = new JoystickButton(joystick, ControllerConfiguration.RightJoyPress);
+        start = new JoystickButton(joystick, ControllerConfiguration.ButtonStart);
+        back = new JoystickButton(joystick, ControllerConfiguration.ButtonBack);
 
 
         //Axes 
-        axisLeftX = new JoystickAxis(joystick, Mappings.LeftXAxis, 0.25);
-        axisLeftY = new JoystickAxis(joystick, Mappings.LeftYAxis, 0);
-        axisRightX = new JoystickAxis(joystick, Mappings.RightXAxis, 0);
-        axisRightY = new JoystickAxis(joystick, Mappings.RightYAxis, 0);
-        axisLeftTrigger = new JoystickAxis(joystick, Mappings.LeftTrigger, 0.25);
-        axisRightTrigger = new JoystickAxis(joystick, Mappings.RightTrigger, 0);
+        axisLeftX = new JoystickAxis(joystick, ControllerConfiguration.LeftXAxis, 0.25);
+        axisLeftY = new JoystickAxis(joystick, ControllerConfiguration.LeftYAxis, 0);
+        axisRightX = new JoystickAxis(joystick, ControllerConfiguration.RightXAxis, 0);
+        axisRightY = new JoystickAxis(joystick, ControllerConfiguration.RightYAxis, 0);
+        axisLeftTrigger = new JoystickAxis(joystick, ControllerConfiguration.LeftTrigger, 0.25);
+        axisRightTrigger = new JoystickAxis(joystick, ControllerConfiguration.RightTrigger, 0);
 
     }
 
