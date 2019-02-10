@@ -22,9 +22,15 @@ public class DrivetrainSubsystem extends Subsystem {
   private static final int backRightDriveMotorChannel = 3;
   
   private static final double WheelDiameter = 0.1016; // 4 inch wheels. This was converted to meters
-	private static final double PulsePerRevolution = 1024; // pulses per revolution
-	private static final double WheelCircumference = WheelDiameter * Math.PI;
+  private static final double PulsePerRevolution = 1024; // pulses per revolution
+  private static final double WheelCircumference = WheelDiameter * Math.PI;
   private static final double MetersPerPulse = WheelCircumference / PulsePerRevolution;
+
+  private WPI_TalonSRX frontLeftDrive = new WPI_TalonSRX(frontLeftDriveMotorChannel);
+  private WPI_TalonSRX backLeftDrive = new WPI_TalonSRX(backLeftDriveMotorChannel);
+  private WPI_TalonSRX frontRightDrive = new WPI_TalonSRX(frontRightDriveMotorChannel);
+  private WPI_TalonSRX backRightDrive = new WPI_TalonSRX(backRightDriveMotorChannel);
+
   private SpeedControllerGroup leftGroup = new SpeedControllerGroup(frontLeftDrive, backLeftDrive);
   private SpeedControllerGroup rightGroup = new SpeedControllerGroup(frontRightDrive, backRightDrive);
 
@@ -32,9 +38,6 @@ public class DrivetrainSubsystem extends Subsystem {
 
   private SensorCollection leftEncoder = new SensorCollection(frontLeftDrive);
   private SensorCollection rightEncoder = new SensorCollection(frontRightDrive);
-
-  
-
 
   public DrivetrainSubsystem() {
     super("DrivetrainSubsystem");
