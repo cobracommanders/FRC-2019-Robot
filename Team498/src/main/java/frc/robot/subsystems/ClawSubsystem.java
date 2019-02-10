@@ -10,24 +10,24 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import frc.robot.Mappings;
-import frc.robot.commands.ToggleClaw;
+import frc.robot.commands.ToggleClawCommand;
 
 /**
  * Add your docs here.
  */
 public class ClawSubsystem extends Subsystem {
 
+  private int clawForwardChannel = 0;
+  private int clawReverseChannel = 1;  
 
-  private DoubleSolenoid claw = new DoubleSolenoid(Mappings.clawForwardChannel, Mappings.clawReverseChannel);
+  private DoubleSolenoid claw = new DoubleSolenoid(clawForwardChannel, clawReverseChannel);
 
   private boolean holdingOnToHatch;
-
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new ToggleClaw());
+    setDefaultCommand(new ToggleClawCommand());
   }
 
   public void setClaw(boolean holdingOnToHatch) {

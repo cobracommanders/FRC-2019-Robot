@@ -8,7 +8,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.configurations.WristSubsystemConfiguration;
 import frc.robot.commands.ManualWristCommand;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -17,9 +16,9 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  * Add your docs here.
  */
 public class WristSubsystem extends Subsystem {
+  private int wristMotorChannel = 4;
 
-  //TODO: Need to change motor control channel :3
-  private CANSparkMax wrist = new CANSparkMax(WristSubsystemConfiguration.wristMotorChannel, MotorType.kBrushed);
+  private CANSparkMax wrist = new CANSparkMax(wristMotorChannel, MotorType.kBrushed);
 
   @Override
   public void initDefaultCommand() {

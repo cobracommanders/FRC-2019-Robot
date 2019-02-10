@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.configurations;
+package frc.robot;
 
 
 public class ControllerConfiguration {

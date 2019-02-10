@@ -9,13 +9,14 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.configurations.IntakeSubsystemConfiguration;
+
 
 public class IntakeSubsystem extends Subsystem {
-
+  private int intakeLeftMotorChannel = 5;
+  private int intakeRightMotorChannel = 6;
  
-  private WPI_VictorSPX intakeLeft = new WPI_VictorSPX(IntakeSubsystemConfiguration.intakeLeftMotorChannel);
-  private WPI_VictorSPX intakeRight = new WPI_VictorSPX(IntakeSubsystemConfiguration.intakeRightMotorChannel);
+  private WPI_VictorSPX intakeLeft = new WPI_VictorSPX(intakeLeftMotorChannel);
+  private WPI_VictorSPX intakeRight = new WPI_VictorSPX(intakeRightMotorChannel);
   
   private double lastLeft = 0;
   private double lastRight = 0;
