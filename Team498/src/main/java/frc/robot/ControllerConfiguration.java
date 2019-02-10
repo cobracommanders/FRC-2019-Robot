@@ -8,7 +8,7 @@
 package frc.robot;
 
 
-public class Mappings {
+public class ControllerConfiguration {
 	//controller port(s)
 	public static final int ControllerPort = 0;
 	
@@ -23,7 +23,7 @@ public class Mappings {
 	public static final int ButtonStart = 8;
 	public static final int LeftJoyPress = 9;
 	public static final int RightJoyPress = 10;
-
+	
 	//triggers and joysticks 
 	public static final int LeftXAxis = 0;
 	public static final int LeftYAxis = 1;
@@ -31,26 +31,4 @@ public class Mappings {
 	public static final int RightYAxis = 5;
 	public static final int RightTrigger = 3;
 	public static final int LeftTrigger = 2;
-
-	//motor channels
-	public static final int frontLeftDriveMotorChannel = 0;
-	public static final int backLeftDriveMotorChannel = 1; 
-	public static final int frontRightDriveMotorChannel = 2;
-	public static final int backRightDriveMotorChannel = 3;
-
-	public static final int wristMotorChannel = 6;
-
-	public static final int intakeLeft = 4;
-    public static final int intakeRight = 5;
-    
-	//double solenoid channels
-	public static final int clawForwardChannel = 0;
-    public static final int clawReverseChannel = 1;
-    
-    public static final int inLimitSwitchChannel = 0;
-	public static final int outLimitSwitchChannel = 1;
-	
-	//encoder channels
-	public static final int wristEncoderA = 6;
-	public static final int wristEncoderB = 7;
 }

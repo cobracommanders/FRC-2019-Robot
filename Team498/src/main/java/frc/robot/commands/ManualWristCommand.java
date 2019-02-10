@@ -13,8 +13,7 @@ import frc.robot.Robot;
 
 public class ManualWristCommand extends Command {
 
-
-  private ConstantAccelerationCalculator calculator = new ConstantAccelerationCalculator(.00005);
+  private ConstantAccelerationCalculator calculator = new ConstantAccelerationCalculator(5);
 
   public ManualWristCommand() {
     super("ManualWristCommand");
@@ -30,7 +29,6 @@ public class ManualWristCommand extends Command {
   @Override
   protected void execute() {
     double power = calculator.getNextDataPoint(Robot.controller.axisRightTrigger.getAxisValue() - Robot.controller.axisLeftTrigger.getAxisValue());
-
     //Robot.wrist.wristPower(power);
   }
 
