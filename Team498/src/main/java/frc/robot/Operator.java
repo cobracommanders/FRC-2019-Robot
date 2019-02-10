@@ -10,15 +10,12 @@ package frc.robot;
 import frc.robot.commands.ToggleClawCommand;
 import frc.robot.commands.ToggleIntakeCommand;
 
-
 public class Operator {
 
     public Operator() {
-
         Robot.controller.buttonB.whenPressed(new ToggleIntakeCommand(.8, .8));
         Robot.controller.buttonX.whenPressed(new ToggleIntakeCommand(-.8, -.8));
         Robot.controller.buttonA.whenPressed(new ToggleClawCommand());
-        
     }
 
 }

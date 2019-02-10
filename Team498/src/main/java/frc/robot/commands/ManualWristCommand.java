@@ -13,7 +13,7 @@ import frc.robot.Robot;
 
 public class ManualWristCommand extends Command {
 
-  private ConstantAccelerationCalculator calculator = new ConstantAccelerationCalculator(.00005);
+  private ConstantAccelerationCalculator calculator = new ConstantAccelerationCalculator(5);
 
   public ManualWristCommand() {
     super("ManualWristCommand");
