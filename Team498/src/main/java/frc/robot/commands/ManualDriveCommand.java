@@ -14,8 +14,8 @@ import frc.robot.Robot;
 
 public class ManualDriveCommand extends Command {
 
-  private ConstantAccelerationCalculator moveAcceleration = new ConstantAccelerationCalculator(0.00005);
-  private ConstantAccelerationCalculator turnAcceleration = new ConstantAccelerationCalculator(0.00005);
+  private ConstantAccelerationCalculator moveAcceleration = new ConstantAccelerationCalculator(5);
+  private ConstantAccelerationCalculator turnAcceleration = new ConstantAccelerationCalculator(5);
 
   public ManualDriveCommand() {
     super("ManualDriveCommand");
