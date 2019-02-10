@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.Mappings;
 import frc.robot.commands.PursueWristTargetCommand;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -19,14 +18,19 @@ import edu.wpi.first.wpilibj.Encoder;
  * Add your docs here.
  */
 public class WristSubsystem extends PIDSubsystem {
+  private static final int inLimitSwitchChannel = 0;
+  private static final int outLimitSwitchChannel = 1;
+  private static final int wristEncoderA = 0;
+  private static final int wristEncoderB = 0;
+  private static final int wristMotorChannel = 6;
 
   Positions currentPosition = Positions.IN;
   Positions targetPosition = Positions.IN;
 
-  private DigitalInput inLimitSwitch = new DigitalInput(Mappings.inLimitSwitchChannel);
-  private DigitalInput outLimitSwitch = new DigitalInput(Mappings.outLimitSwitchChannel);
+  private DigitalInput inLimitSwitch = new DigitalInput(inLimitSwitchChannel);
+  private DigitalInput outLimitSwitch = new DigitalInput(outLimitSwitchChannel);
 
-  private Encoder encoder = new Encoder(Mappings.wristEncoderA, Mappings.wristEncoderB);
+  private Encoder encoder = new Encoder(wristEncoderA, wristEncoderB);
 
   private final double wristPow = 0.2;
   private static final double p = 5.0;
@@ -34,7 +38,7 @@ public class WristSubsystem extends PIDSubsystem {
   private static final double d = 0.1;
   private static final double distancePerPulse = 360.0 / 4096.0; // Does the math to get 360 degrees out of a rotation, haven't accounted for gear ratio
 
-  private CANSparkMax wrist = new CANSparkMax(Mappings.wristMotorChannel, MotorType.kBrushed);
+  private CANSparkMax wrist = new CANSparkMax(wristMotorChannel, MotorType.kBrushed);
 
   public WristSubsystem() {
     super("WristSubsystem", p, i, d);
