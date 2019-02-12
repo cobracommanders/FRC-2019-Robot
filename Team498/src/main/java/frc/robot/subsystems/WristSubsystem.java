@@ -14,9 +14,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.Encoder;
 
-/**
- * Add your docs here.
- */
 public class WristSubsystem extends PIDSubsystem {
   private static final int inLimitSwitchChannel = 0;
   private static final int outLimitSwitchChannel = 1;
@@ -36,7 +33,7 @@ public class WristSubsystem extends PIDSubsystem {
   private static final double p = 5.0;
   private static final double i = 0.5;
   private static final double d = 0.1;
-  private static final double distancePerPulse = 360.0 / 4096.0; // Does the math to get 360 degrees out of a rotation, haven't accounted for gear ratio
+  private static final double distancePerPulse = 360.0 / (4096.0 * 150.0); // Does the math to get 360 degrees out of a rotation, ratio is 1 to 150.
 
   private CANSparkMax wrist = new CANSparkMax(wristMotorChannel, MotorType.kBrushed);
 
@@ -47,8 +44,9 @@ public class WristSubsystem extends PIDSubsystem {
     this.encoder.reset();
     this.setAbsoluteTolerance(0.05);
     this.getPIDController().setContinuous(true);
-    // this.getPIDController().setInputRange(0, 120); //120 deg, IN to OUT, might
-    // have to flip sign. If setContinuous is false this is needed
+    /* this.getPIDController().setInputRange(0, 120); 120 deg, IN to OUT, might
+       have to flip sign. If setContinuous is false this is needed
+    */
     this.getPIDController().setOutputRange(-1, 1);
   }
 
