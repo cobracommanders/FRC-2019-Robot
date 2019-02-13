@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.Encoder;
 public class WristSubsystem extends PIDSubsystem {
   private static final int inLimitSwitchChannel = 0;
   private static final int outLimitSwitchChannel = 1;
-  private static final int wristEncoderA = 0;
-  private static final int wristEncoderB = 0;
+  private static final int wristEncoderChannelA = 2;
+  private static final int wristEncoderChannelB = 3;
   private static final int wristMotorChannel = 6;
 
   Positions currentPosition = Positions.IN;
@@ -27,13 +27,15 @@ public class WristSubsystem extends PIDSubsystem {
   private DigitalInput inLimitSwitch = new DigitalInput(inLimitSwitchChannel);
   private DigitalInput outLimitSwitch = new DigitalInput(outLimitSwitchChannel);
 
-  private Encoder encoder = new Encoder(wristEncoderA, wristEncoderB);
+  private Encoder encoder = new Encoder(wristEncoderChannelA, wristEncoderChannelB);
 
-  private final double wristPow = 0.2;
+  private double wristPow = 0.2; // does this need to be final and if its final wouldn't it be static?? 
+
+  //TODO: Need to run trial tests to find out these numbers
   private static final double p = 5.0;
   private static final double i = 0.5;
   private static final double d = 0.1;
-  private static final double distancePerPulse = 360.0 / (4096.0 * 150.0); // Does the math to get 360 degrees out of a rotation, ratio is 1 to 150.
+  private static final double distancePerPulse = 360.0 / (4096.0 * 150.0); // Does the math to get 360 degrees out of a rotation, gear ratio is 1 to 150.
 
   private CANSparkMax wrist = new CANSparkMax(wristMotorChannel, MotorType.kBrushed);
 
@@ -43,10 +45,8 @@ public class WristSubsystem extends PIDSubsystem {
     this.encoder.setDistancePerPulse(distancePerPulse);
     this.encoder.reset();
     this.setAbsoluteTolerance(0.05);
-    this.getPIDController().setContinuous(true);
-    /* this.getPIDController().setInputRange(0, 120); 120 deg, IN to OUT, might
-       have to flip sign. If setContinuous is false this is needed
-    */
+    this.getPIDController().setContinuous(false); // this has to be false, otherwise the robot fails.
+    this.getPIDController().setInputRange(0, 120); //120 deg, IN to OUT, also have to have this. 4
     this.getPIDController().setOutputRange(-1, 1);
   }
 
@@ -66,6 +66,8 @@ public class WristSubsystem extends PIDSubsystem {
     wrist.set(0);
   }
 
+
+  //TODO: test this to see if this is doing what we are expecting
   public void pursueTarget() {
 
     boolean isIn = inLimitSwitch.get();
@@ -92,6 +94,7 @@ public class WristSubsystem extends PIDSubsystem {
       stop();
   }
 
+  //TODO: Test both moveOut and moveIn methods 
   public void moveOut() {
     switch (currentPosition) {
     case IN:
