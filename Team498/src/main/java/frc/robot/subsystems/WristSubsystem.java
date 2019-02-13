@@ -13,15 +13,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ManualWristCommand;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 public class WristSubsystem extends Subsystem {
   private static final int wristMotorChannel = 6;
   private static final int wristEncoderChannelA = 2;
   private static final int wristEncoderChannelB = 3;
+  private static final int inLimitSwitchChannel = 0;
+  private static final int outLimitSwitchChannel = 1; 
 
   private double distancePerPulse = 360 / (4096 * 150); //does the math to change to degrees. 1 to 150 gear ratio
 
   private CANSparkMax wrist = new CANSparkMax(wristMotorChannel, MotorType.kBrushed);
+
+  private DigitalInput inLimitSwitch = new DigitalInput(inLimitSwitchChannel);
+  private DigitalInput outLimitSwitch = new DigitalInput(outLimitSwitchChannel);
 
   private Encoder encoder = new Encoder(wristEncoderChannelA, wristEncoderChannelB);
 
@@ -39,6 +45,6 @@ public class WristSubsystem extends Subsystem {
   }
 
   public void updateDashboard() {
-      SmartDashboard.putNumber("EncoderValue", encoder.getDistance());
+    SmartDashboard.putNumber("EncoderValue", encoder.getDistance());
   }
 }
