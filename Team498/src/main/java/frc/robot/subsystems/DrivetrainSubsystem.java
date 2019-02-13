@@ -37,26 +37,18 @@ public class DrivetrainSubsystem extends Subsystem {
     setDefaultCommand(new ManualDriveCommand());
   }
 
-  /**
-   * @return the isReversed
-   */
-  public boolean isReversed() {
-    return isReversed;
-  }
 
-  /**
-   * @param isReversed the isReversed to set
-   */
-  public void setReversed(boolean isReversed) {
-    this.isReversed = isReversed;
-    SpeedControllerGroup tempGroup = leftGroup;
-    leftGroup = rightGroup;
-    rightGroup = tempGroup;
-
-  }
 
   public void drive(double move, double turn) {
+    if (isReversed) {
+        move = -move;
+        turn = -turn;
+    }
     drive.arcadeDrive(move, turn);
+  }
+
+  public void reverseDrive() {
+    isReversed = !isReversed;
   }
 
 }

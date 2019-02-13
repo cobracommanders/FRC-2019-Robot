@@ -10,6 +10,7 @@ package frc.robot;
 import frc.robot.commands.ToggleClawCommand;
 import frc.robot.commands.ReleaseRampCommand;
 import frc.robot.commands.ToggleIntakeCommand;
+import frc.robot.commands.ReverseDriveCommand;
 
 public class Operator {
 
@@ -18,6 +19,7 @@ public class Operator {
         Robot.controller.buttonX.whenPressed(new ToggleIntakeCommand(-.3, -.3));
         Robot.controller.buttonA.whenPressed(new ToggleClawCommand());
         Robot.controller.bothJoyPresses.whenActive(new ReleaseRampCommand());
+        Robot.controller.buttonY.whenPressed(new ReverseDriveCommand());
     }
 
 }

@@ -20,7 +20,7 @@ public class ReverseDriveCommand extends InstantCommand {
   // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.drivetrain.setReversed(!Robot.drivetrain.isReversed());
+      Robot.drivetrain.reverseDrive();
   }
 
 }
