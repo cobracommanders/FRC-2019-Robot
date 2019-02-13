@@ -23,6 +23,6 @@ public class WristSubsystem extends Subsystem {
   }
 
   public void wristPower(double power) {
-    wrist.set(.2 * power);
+    wrist.set(.4 * power);
   }
 }
