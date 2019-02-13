@@ -20,7 +20,7 @@ public class RampSubsystem extends Subsystem {
 
   public RampSubsystem() {
       ramp = new DoubleSolenoid(rampForwardChannel, rampReverseChannel);
-      ramp.set(Value.kOff);
+      ramp.set(Value.kForward);
   } 
 
   @Override
@@ -29,6 +29,6 @@ public class RampSubsystem extends Subsystem {
   }
 
   public void releaseRamp() {
-      ramp.set(Value.kForward); //potentially is kReverse who knows lol :)
+      ramp.set(Value.kReverse); 
   }
 }
