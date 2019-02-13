@@ -46,5 +46,7 @@ public class WristSubsystem extends Subsystem {
 
   public void updateDashboard() {
     SmartDashboard.putNumber("EncoderValue", encoder.getDistance());
+    SmartDashboard.putBoolean("InLimitSwitchValue", inLimitSwitch.get());
+    SmartDashboard.putBoolean("OutLimitSwitchValue", outLimitSwitch.get());
   }
 }
