@@ -35,13 +35,22 @@ public class WristSubsystem extends Subsystem {
       super("WristSubsystem");
       this.encoder.setDistancePerPulse(distancePerPulse);
   }
+  
   @Override
   public void initDefaultCommand() {
      setDefaultCommand(new ManualWristCommand());
   }
 
   public void wristPower(double power) {
-    wrist.set(.4 * power);
+
+    if (inLimitSwitch.get() && power > 0) {
+      wrist.set(0);
+    } else if (outLimitSwitch.get() && power < 0) {
+      wrist.set(0);
+    } else {
+      wrist.set(.4 * power);
+    }
+    
   }
 
   public void updateDashboard() {
