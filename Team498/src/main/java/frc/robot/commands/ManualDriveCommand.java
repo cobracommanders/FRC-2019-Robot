@@ -14,8 +14,8 @@ import frc.robot.Robot;
 
 public class ManualDriveCommand extends Command {
 
-  private ConstantAccelerationCalculator moveAcceleration = new ConstantAccelerationCalculator(5);
-  private ConstantAccelerationCalculator turnAcceleration = new ConstantAccelerationCalculator(5);
+  private ConstantAccelerationCalculator moveAcceleration = new ConstantAccelerationCalculator(0.00005);
+  private ConstantAccelerationCalculator turnAcceleration = new ConstantAccelerationCalculator(0.00005);
 
   public ManualDriveCommand() {
     super("ManualDriveCommand");
@@ -33,11 +33,7 @@ public class ManualDriveCommand extends Command {
     double move = moveAcceleration.getNextDataPoint(Robot.controller.axisLeftY.getAxisValue());
     double turn = turnAcceleration.getNextDataPoint(Robot.controller.axisRightX.getAxisValue());
 
-    Robot.drivetrain.drive(move, turn);
-    SmartDashboard.putNumber("MoveValue", move);
-    SmartDashboard.putNumber("TurnValue", turn);
-    SmartDashboard.putNumber("LeftYAxis", Robot.controller.axisLeftY.getAxisValue());
-    
+    Robot.drivetrain.drive(-move, turn);
   }
 
   // Make this return true when this Command no longer needs to run execute()

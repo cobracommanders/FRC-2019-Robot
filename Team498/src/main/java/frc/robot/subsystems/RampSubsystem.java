@@ -13,14 +13,14 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class RampSubsystem extends Subsystem {
   
-  private static final int rampForwardChannel = 0;
-  private static final int rampReverseChannel = 0;
+  private static final int rampForwardChannel = 2;
+  private static final int rampReverseChannel = 3;
 
   private DoubleSolenoid ramp;
 
   public RampSubsystem() {
       ramp = new DoubleSolenoid(rampForwardChannel, rampReverseChannel);
-      ramp.set(Value.kOff);
+      ramp.set(Value.kForward);
   } 
 
   @Override
@@ -29,6 +29,6 @@ public class RampSubsystem extends Subsystem {
   }
 
   public void releaseRamp() {
-      ramp.set(Value.kForward); //potentially is kReverse who knows lol :)
+      ramp.set(Value.kReverse); 
   }
 }
