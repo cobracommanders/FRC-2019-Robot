@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.commands.ManualDriveCommand;
 
 public class DrivetrainSubsystem extends Subsystem {
+  private boolean isReversed = false;
   
   private static final int frontLeftDriveMotorChannel = 0;
   private static final int backLeftDriveMotorChannel = 1; 
@@ -34,6 +35,24 @@ public class DrivetrainSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new ManualDriveCommand());
+  }
+
+  /**
+   * @return the isReversed
+   */
+  public boolean isReversed() {
+    return isReversed;
+  }
+
+  /**
+   * @param isReversed the isReversed to set
+   */
+  public void setReversed(boolean isReversed) {
+    this.isReversed = isReversed;
+    SpeedControllerGroup tempGroup = leftGroup;
+    leftGroup = rightGroup;
+    rightGroup = tempGroup;
+
   }
 
   public void drive(double move, double turn) {

@@ -34,10 +34,7 @@ public class ManualDriveCommand extends Command {
     double turn = turnAcceleration.getNextDataPoint(Robot.controller.axisRightX.getAxisValue());
 
     Robot.drivetrain.drive(move, turn);
-    SmartDashboard.putNumber("MoveValue", move);
-    SmartDashboard.putNumber("TurnValue", turn);
-    SmartDashboard.putNumber("LeftYAxis", Robot.controller.axisLeftY.getAxisValue());
-    
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
