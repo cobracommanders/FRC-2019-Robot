@@ -10,7 +10,8 @@ package frc.robot;
 
 public class ControllerConfiguration {
 	//controller port(s)
-	public static final int ControllerPort = 0;
+    public static final int ControllerPort1 = 0;
+    public static final int ControllerPort2 = 1;
 	
 	//buttons on controller
 	public static final int ButtonA = 1;
