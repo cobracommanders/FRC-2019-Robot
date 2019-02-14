@@ -13,7 +13,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class WristSubsystem extends Subsystem {
-  private static final int wristMotorChannel = 4;
+  private static final int wristMotorChannel = 6;
 
   private CANSparkMax wrist = new CANSparkMax(wristMotorChannel, MotorType.kBrushed);
 
@@ -23,6 +23,6 @@ public class WristSubsystem extends Subsystem {
   }
 
   public void wristPower(double power) {
-    wrist.set(.8 * power);
+    wrist.set(.2 * power);
   }
 }

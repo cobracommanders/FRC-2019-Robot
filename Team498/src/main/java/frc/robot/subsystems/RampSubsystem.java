@@ -7,31 +7,28 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import frc.robot.commands.ToggleClawCommand;
 
-public class ClawSubsystem extends Subsystem {
+public class RampSubsystem extends Subsystem {
+  
+  private static final int rampForwardChannel = 2;
+  private static final int rampReverseChannel = 3;
 
-  private static final int clawForwardChannel = 1;
-  private static final int clawReverseChannel = 0;  
+  private DoubleSolenoid ramp;
 
-  private DoubleSolenoid claw = new DoubleSolenoid(clawForwardChannel, clawReverseChannel);
-
-  private boolean holdingOnToHatch;
+  public RampSubsystem() {
+      ramp = new DoubleSolenoid(rampForwardChannel, rampReverseChannel);
+      ramp.set(Value.kForward);
+  } 
 
   @Override
   public void initDefaultCommand() {
+
   }
 
-  public void setClaw(boolean holdingOnToHatch) {
-
-    if (holdingOnToHatch) {
-      claw.set(Value.kForward);
-    } else {
-      claw.set(Value.kReverse);
-    }
-    this.holdingOnToHatch = holdingOnToHatch;
+  public void releaseRamp() {
+      ramp.set(Value.kReverse); 
   }
 }
