@@ -37,8 +37,6 @@ public class DrivetrainSubsystem extends Subsystem {
     setDefaultCommand(new ManualDriveCommand());
   }
 
-
-
   public void drive(double move, double turn) {
     if (isReversed) {
         move = -move;
