@@ -16,11 +16,20 @@ import frc.robot.commands.ToggleClampCommand;
  * Add your docs here.
  */
 public class ClampSubsystem extends Subsystem {
-  private static final int clampForwardChannel = 0;
-  private static final int clampReverseChannel = 0;
+  private static final int clamp1ForwardChannel = 0;
+  private static final int clamp1ReverseChannel = 0;
+  private static final int clamp2ForwardChannel = 0;
+  private static final int clamp2ReverseChannel = 0;
 
   // TODO: Need to change the forward and reverse channels of double solenoid
-  private DoubleSolenoid clamp = new DoubleSolenoid(clampForwardChannel, clampReverseChannel);
+  private DoubleSolenoid clamp1 = new DoubleSolenoid(clamp1ForwardChannel, clamp1ReverseChannel);
+  private DoubleSolenoid clamp2 = new DoubleSolenoid(clamp2ForwardChannel, clamp2ReverseChannel);
+
+  public ClampSubsystem() {
+    super("ClampSubsystem");
+    this.clamp1.set(Value.kOff);
+    this.clamp2.set(Value.kOff);
+  }
 
   private boolean isClamped;
 
@@ -32,11 +41,12 @@ public class ClampSubsystem extends Subsystem {
   public void setClamp(boolean isClamped) {
 
     if (isClamped) {
-      clamp.set(Value.kForward);
-      this.isClamped = isClamped;
+      clamp1.set(Value.kForward);
+      clamp2.set(Value.kForward);
     } else {
-      clamp.set(Value.kReverse);
-      this.isClamped = isClamped;
+      clamp1.set(Value.kReverse);
+      clamp2.set(Value.kReverse);
     }
+    this.isClamped = isClamped;
   }
 }
