@@ -28,7 +28,7 @@ public class ManualWristCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double power = calculator.getNextDataPoint(Robot.controller1.axisRightTrigger.getAxisValue() - Robot.controller1.axisLeftTrigger.getAxisValue());
+    double power = calculator.getNextDataPoint(Robot.controller2.axisRightTrigger.getAxisValue() - Robot.controller2.axisLeftTrigger.getAxisValue());
     Robot.wrist.wristPower(power);
   }
 
