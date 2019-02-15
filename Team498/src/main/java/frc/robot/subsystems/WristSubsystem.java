@@ -42,7 +42,7 @@ public class WristSubsystem extends Subsystem {
   }
 
   public void wristPower(double power) {
-    
+    /*
     if (inLimitSwitch.get() && power < 0) {
       wrist.set(0);
     } else if (outLimitSwitch.get() && power > 0) {
@@ -50,6 +50,8 @@ public class WristSubsystem extends Subsystem {
     } else {
       wrist.set(.4 * power);
     }
+*/
+    wrist.set(.4 * power);
 
   }
   public void updateDashboard() {
