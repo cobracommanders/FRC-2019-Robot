@@ -14,10 +14,10 @@ import frc.robot.commands.ToggleIntakeCommand;
 public class Operator {
 
     public Operator() {
-        Robot.controller1.buttonB.whenPressed(new ToggleIntakeCommand(.8, .8));
-        Robot.controller1.buttonX.whenPressed(new ToggleIntakeCommand(-.3, -.3));
-        Robot.controller1.buttonA.whenPressed(new ToggleClawCommand());
-        Robot.controller2.bothJoyPresses.whenActive(new ReleaseRampCommand());
+        Robot.controller.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
+        Robot.controller.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
+        Robot.controller.buttonA.whenPressed(new ToggleClawCommand());
+        Robot.controller.bothJoyPresses.whenActive(new ReleaseRampCommand());
     }
 
 }
