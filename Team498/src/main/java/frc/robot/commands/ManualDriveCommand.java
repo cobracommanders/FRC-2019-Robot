@@ -32,11 +32,13 @@ public class ManualDriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double move = moveAcceleration.getNextDataPoint(Robot.controller1.axisLeftY.getAxisValue());
-    double turn = turnAcceleration.getNextDataPoint(Robot.controller1.axisRightX.getAxisValue());
+    double move = Robot.controller1.axisLeftY.getAxisValue();
+    double turn = Robot.controller1.axisRightX.getAxisValue();
+    //double move = moveAcceleration.getNextDataPoint(Robot.controller1.axisLeftY.getAxisValue());
+    //double turn = turnAcceleration.getNextDataPoint(Robot.controller1.axisRightX.getAxisValue());
 
     //If slow mode do half speed
-    Robot.drivetrain.drive(slowMode ? -move * 0.5 : -move, slowMode ? turn * 0.5 : turn);
+    Robot.drivetrain.drive(slowMode ? -move * 0.75 : -move, slowMode ? turn * 0.6 : turn);
   }
 
   // Make this return true when this Command no longer needs to run execute()

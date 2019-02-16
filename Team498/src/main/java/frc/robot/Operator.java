@@ -10,7 +10,7 @@ package frc.robot;
 import frc.robot.commands.ToggleClawCommand;
 import frc.robot.commands.ReleaseRampCommand;
 import frc.robot.commands.ToggleIntakeCommand;
-import frc.robot.commands.ActiveSlowmodeCommand;
+import frc.robot.commands.ToggleSlowmodeCommand;
 
 public class Operator {
 
@@ -20,8 +20,7 @@ public class Operator {
         Robot.controller2.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
         Robot.controller1.buttonA.whenPressed(new ToggleClawCommand());
         Robot.controller2.bothJoyPresses.whenActive(new ReleaseRampCommand());
-        Robot.controller1.rightBumper.whenPressed(new ActiveSlowmodeCommand(true));
-        Robot.controller1.rightBumper.whenReleased(new ActiveSlowmodeCommand(false));
+        Robot.controller1.rightBumper.whenPressed(new ToggleSlowmodeCommand());
     }
 
 }
