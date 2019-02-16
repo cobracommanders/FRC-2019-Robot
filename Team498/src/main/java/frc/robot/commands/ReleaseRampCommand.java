@@ -21,7 +21,7 @@ public class ReleaseRampCommand extends InstantCommand {
   protected void initialize() {
     Robot.ramp.releaseRamp();
         try {
-            this.wait((long) 10000);
+            this.wait((long) 5000);
         } catch (Exception e) {
             // Swallow the exception
         } 
