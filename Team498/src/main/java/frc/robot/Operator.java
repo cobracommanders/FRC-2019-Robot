@@ -20,7 +20,7 @@ public class Operator {
         Robot.controller2.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
         Robot.controller1.buttonA.whenPressed(new ToggleClawCommand());
         Robot.controller1.rightBumper.whenPressed(new ToggleSlowmodeCommand());
-        Robot.controller.buttonY.whenPressed(new ReverseDriveCommand());
+        Robot.controller1.buttonY.whenPressed(new ReverseDriveCommand());
     }
 
 }
