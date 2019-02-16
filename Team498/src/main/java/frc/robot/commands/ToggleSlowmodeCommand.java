@@ -9,16 +9,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-/**
- * Add your docs here.
- */
 public class ToggleSlowmodeCommand extends InstantCommand {
 
-  /**
-   * Add your docs here.
-   */
+ 
   public ToggleSlowmodeCommand() {
-    super();
+    super("ToggleSlowmodeCommand");
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

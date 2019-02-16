@@ -8,14 +8,9 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.ConstantAccelerationCalculator;
 import frc.robot.Robot;
 
 public class ManualDriveCommand extends Command {
-
-  private ConstantAccelerationCalculator moveAcceleration = new ConstantAccelerationCalculator(0.00005);
-  private ConstantAccelerationCalculator turnAcceleration = new ConstantAccelerationCalculator(0.00005);
 
   public static boolean slowMode = false;
 
@@ -34,10 +29,9 @@ public class ManualDriveCommand extends Command {
   protected void execute() {
     double move = Robot.controller1.axisLeftY.getAxisValue();
     double turn = Robot.controller1.axisRightX.getAxisValue();
-    //double move = moveAcceleration.getNextDataPoint(Robot.controller1.axisLeftY.getAxisValue());
-    //double turn = turnAcceleration.getNextDataPoint(Robot.controller1.axisRightX.getAxisValue());
 
-    //If slow mode do half speed
+    /*if slowmode == true, move is 75%, otherwise normal.
+      if slowmode == true, turn is 60% otherwise turn*/ 
     Robot.drivetrain.drive(slowMode ? -move * 0.75 : -move, slowMode ? turn * 0.6 : turn);
   }
 
@@ -50,7 +44,7 @@ public class ManualDriveCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.drive(0,0);
+    Robot.drivetrain.drive(0, 0);
   }
 
   // Called when another command which requires one or more of the same

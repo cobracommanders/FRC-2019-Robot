@@ -10,10 +10,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-
-/**
- * Add your docs here.
- */
 public class ToggleClawCommand extends InstantCommand {
 
   public boolean clawUp = false;
@@ -28,6 +24,11 @@ public class ToggleClawCommand extends InstantCommand {
   protected void initialize() {
     this.clawUp = !clawUp;
     Robot.claw.setClaw(clawUp);
+
+    /*
+     * added a wait for 1/10 of a second. It needed to wait before settign claw to
+     * off. had to use a try/catch for it to work
+     */
     try {
       wait(100);
     } catch (InterruptedException e) {
