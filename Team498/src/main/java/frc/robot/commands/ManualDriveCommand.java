@@ -17,6 +17,8 @@ public class ManualDriveCommand extends Command {
   private ConstantAccelerationCalculator moveAcceleration = new ConstantAccelerationCalculator(0.00005);
   private ConstantAccelerationCalculator turnAcceleration = new ConstantAccelerationCalculator(0.00005);
 
+  public static boolean slowMode = false;
+
   public ManualDriveCommand() {
     super("ManualDriveCommand");
     requires(Robot.drivetrain);
@@ -33,7 +35,8 @@ public class ManualDriveCommand extends Command {
     double move = moveAcceleration.getNextDataPoint(Robot.controller1.axisLeftY.getAxisValue());
     double turn = turnAcceleration.getNextDataPoint(Robot.controller1.axisRightX.getAxisValue());
 
-    Robot.drivetrain.drive(-move, turn);
+    //If slow mode do half speed
+    Robot.drivetrain.drive(slowMode ? -move * 0.5 : -move, slowMode ? turn * 0.5 : turn);
   }
 
   // Make this return true when this Command no longer needs to run execute()

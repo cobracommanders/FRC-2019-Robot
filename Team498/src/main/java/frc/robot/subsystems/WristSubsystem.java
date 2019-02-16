@@ -42,17 +42,13 @@ public class WristSubsystem extends Subsystem {
   }
 
   public void wristPower(double power) {
-    /*
-    if (inLimitSwitch.get() && power < 0) {
+    if (inLimitSwitch.get() && power <= 0) {
       wrist.set(0);
-    } else if (outLimitSwitch.get() && power > 0) {
+    } else if (outLimitSwitch.get() && power >= 0) {
       wrist.set(0);
     } else {
       wrist.set(.4 * power);
     }
-*/
-    wrist.set(.4 * power);
-
   }
   public void updateDashboard() {
     SmartDashboard.putNumber("EncoderValue", encoder.getDistance());
