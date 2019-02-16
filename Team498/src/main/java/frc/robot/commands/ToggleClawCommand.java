@@ -28,6 +28,11 @@ public class ToggleClawCommand extends InstantCommand {
   protected void initialize() {
     this.clawUp = !clawUp;
     Robot.claw.setClaw(clawUp);
+    try {
+      wait(100);
+    } catch (InterruptedException e) {
+    }
+    Robot.claw.turnClawOff();
   }
 
 }
