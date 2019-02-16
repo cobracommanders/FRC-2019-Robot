@@ -54,11 +54,11 @@ public class Controller {
         bothJoyPresses = new DoubleButton(joystick, ControllerConfiguration.LeftJoyPress, ControllerConfiguration.RightJoyPress);
 
         //Axes 
-        axisLeftX = new JoystickAxis(joystick, ControllerConfiguration.LeftXAxis, 0.25);
+        axisLeftX = new JoystickAxis(joystick, ControllerConfiguration.LeftXAxis, 0.2);
         axisLeftY = new JoystickAxis(joystick, ControllerConfiguration.LeftYAxis, 0);
         axisRightX = new JoystickAxis(joystick, ControllerConfiguration.RightXAxis, 0);
         axisRightY = new JoystickAxis(joystick, ControllerConfiguration.RightYAxis, 0);
-        axisLeftTrigger = new JoystickAxis(joystick, ControllerConfiguration.LeftTrigger, 0.25);
+        axisLeftTrigger = new JoystickAxis(joystick, ControllerConfiguration.LeftTrigger, 0.2);
         axisRightTrigger = new JoystickAxis(joystick, ControllerConfiguration.RightTrigger, 0);
 
     }

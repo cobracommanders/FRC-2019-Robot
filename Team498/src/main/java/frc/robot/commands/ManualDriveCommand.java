@@ -8,14 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.ConstantAccelerationCalculator;
 import frc.robot.Robot;
 
 public class ManualDriveCommand extends Command {
 
-  private ConstantAccelerationCalculator moveAcceleration = new ConstantAccelerationCalculator(0.00005);
-  private ConstantAccelerationCalculator turnAcceleration = new ConstantAccelerationCalculator(0.00005);
+  public static boolean slowMode = false;
 
   public ManualDriveCommand() {
     super("ManualDriveCommand");
@@ -30,10 +27,12 @@ public class ManualDriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double move = moveAcceleration.getNextDataPoint(Robot.controller.axisLeftY.getAxisValue());
-    double turn = turnAcceleration.getNextDataPoint(Robot.controller.axisRightX.getAxisValue());
+    double move = Robot.controller1.axisLeftY.getAxisValue();
+    double turn = Robot.controller1.axisRightX.getAxisValue();
 
-    Robot.drivetrain.drive(-move, turn);
+    /*if slowmode == true, move is 75%, otherwise normal.
+      if slowmode == true, turn is 60% otherwise turn*/ 
+    Robot.drivetrain.drive(slowMode ? -move * 0.75 : -move, slowMode ? turn * 0.6 : turn);
   }
 
   // Make this return true when this Command no longer needs to run execute()
