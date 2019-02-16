@@ -28,7 +28,8 @@ public class Robot extends TimedRobot {
   public static DriverStation driverstation = DriverStation.getInstance();
   
   //instantiate one or more controllers here
-  public static Controller controller = new Controller(ControllerConfiguration.ControllerPort);
+  public static Controller controller1 = new Controller(ControllerConfiguration.ControllerPort1);
+  public static Controller controller2 = new Controller(ControllerConfiguration.ControllerPort2);
   
   // Subsystems  
   public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();

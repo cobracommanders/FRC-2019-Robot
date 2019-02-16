@@ -9,13 +9,16 @@ package frc.robot;
 
 import frc.robot.commands.ToggleClawCommand;
 import frc.robot.commands.ToggleIntakeCommand;
+import frc.robot.commands.ToggleSlowmodeCommand;
 
 public class Operator {
 
     public Operator() {
-        Robot.controller.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
-        Robot.controller.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
-        Robot.controller.buttonA.whenPressed(new ToggleClawCommand());
+        
+        Robot.controller2.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
+        Robot.controller2.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
+        Robot.controller1.buttonA.whenPressed(new ToggleClawCommand());
+        Robot.controller1.rightBumper.whenPressed(new ToggleSlowmodeCommand());
     }
 
 }
