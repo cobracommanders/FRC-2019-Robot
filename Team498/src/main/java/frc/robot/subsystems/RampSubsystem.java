@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class RampSubsystem extends Subsystem {
+
+  private boolean isReleased = false;
   
   private static final int rampForwardChannel = 2;
   private static final int rampReverseChannel = 3;
@@ -30,5 +32,12 @@ public class RampSubsystem extends Subsystem {
 
   public void releaseRamp() {
       ramp.set(Value.kReverse); 
+      isReleased = true;
+  }
+
+  public void resetRamp() {
+      if(isReleased) {
+          ramp.set(Value.kForward);
+      }
   }
 }

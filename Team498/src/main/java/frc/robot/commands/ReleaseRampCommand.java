@@ -20,6 +20,13 @@ public class ReleaseRampCommand extends InstantCommand {
   @Override
   protected void initialize() {
     Robot.ramp.releaseRamp();
+        try {
+            this.wait((long) 10000);
+        } catch (Exception e) {
+            // Swallow the exception
+        } 
+    Robot.ramp.resetRamp();
+
   }
 
 }
