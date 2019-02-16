@@ -8,7 +8,6 @@
 package frc.robot;
 
 import frc.robot.commands.ToggleClawCommand;
-import frc.robot.commands.ReleaseRampCommand;
 import frc.robot.commands.ToggleIntakeCommand;
 
 public class Operator {
@@ -17,7 +16,6 @@ public class Operator {
         Robot.controller.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
         Robot.controller.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
         Robot.controller.buttonA.whenPressed(new ToggleClawCommand());
-        Robot.controller.bothJoyPresses.whenActive(new ReleaseRampCommand());
     }
 
 }
