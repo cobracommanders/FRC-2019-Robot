@@ -27,8 +27,8 @@ public class ManualDriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double move = Robot.controller1.axisLeftY.getAxisValue();
-    double turn = Robot.controller1.axisRightX.getAxisValue();
+    double move = Robot.driverController.axisLeftY.getAxisValue();
+    double turn = Robot.driverController.axisRightX.getAxisValue();
 
     /*if slowmode == true, move is 75%, otherwise normal.
       if slowmode == true, turn is 60% otherwise turn*/ 

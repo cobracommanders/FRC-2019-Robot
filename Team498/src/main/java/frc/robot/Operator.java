@@ -15,10 +15,10 @@ public class Operator {
 
     public Operator() {
         
-        Robot.controller2.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
-        Robot.controller2.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
-        Robot.controller1.buttonA.whenPressed(new ToggleClawCommand());
-        Robot.controller1.rightBumper.whenPressed(new ToggleSlowmodeCommand());
+        Robot.operatorController.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
+        Robot.operatorController.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
+        Robot.driverController.buttonA.whenPressed(new ToggleClawCommand());
+        Robot.driverController.rightBumper.whenPressed(new ToggleSlowmodeCommand());
     }
 
 }
