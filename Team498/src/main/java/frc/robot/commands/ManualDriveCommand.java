@@ -8,9 +8,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.ConstantAccelerationCalculator;
+import frc.robot.ConstantAccelerationCalculator2;
 import frc.robot.Robot;
 
 public class ManualDriveCommand extends Command {
+
+  //private ConstantAccelerationCalculator moveAcceleration = new ConstantAccelerationCalculator(5);
+  //private ConstantAccelerationCalculator turnAcceleration = new ConstantAccelerationCalculator(5);
+
+  //bigger number is a faster accel. 
+  private ConstantAccelerationCalculator2 moveAccel = new ConstantAccelerationCalculator2(1);
+  private ConstantAccelerationCalculator2 turnAccel = new ConstantAccelerationCalculator2(1);
 
   public static boolean slowMode = false;
 
@@ -27,8 +36,8 @@ public class ManualDriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double move = Robot.driverController.axisLeftY.getAxisValue();
-    double turn = Robot.driverController.axisRightX.getAxisValue();
+    double move = moveAccel.NextDataPoint(Robot.driverController.axisLeftY.getAxisValue());
+    double turn = turnAccel.NextDataPoint(Robot.driverController.axisRightX.getAxisValue());
 
     /*if slowmode == true, move is 75%, otherwise normal.
       if slowmode == true, turn is 60% otherwise turn*/ 
