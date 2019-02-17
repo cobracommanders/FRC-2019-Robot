@@ -22,7 +22,7 @@ public class PanelCommand extends Command {
         requires(Robot.panelIntake);
         timer = new Timer();
     }
-
+ 
     // Called once when the command executes
     @Override
     protected void initialize() {
