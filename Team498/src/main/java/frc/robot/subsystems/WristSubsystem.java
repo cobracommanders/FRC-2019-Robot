@@ -49,6 +49,7 @@ public class WristSubsystem extends PIDSubsystem {
     this.getPIDController().setContinuous(false); // this has to be false, otherwise the robot fails.
     this.getPIDController().setInputRange(0, 120); // 120 deg, IN to OUT, also have to have this. 4
     this.getPIDController().setOutputRange(-1, 1);
+    this.getPIDController().enable(); // this has to be here lol. PID starts disabled 
   }
 
   @Override
