@@ -21,6 +21,7 @@ public class ConstantAccelerationCalculator2 {
     private Instant prev;
     private double tolerance;
 
+
     public ConstantAccelerationCalculator2(double c, double tolerance) {
         this.c = c;
         this.tolerance = tolerance;
@@ -38,11 +39,20 @@ public class ConstantAccelerationCalculator2 {
             prev = now;
             return 0;
         }
+        //converting from nano seconds to seconds
         double t = (now.getNano() / 1.0e9) - (prev.getNano() / 1.0e9);
         double diff = ((target - current) * c * t);
         if (Math.abs(diff) > Math.abs(target - current))
             diff = target - current;
         current += diff;
+
+        System.out.println("Current: " + current); 
+        System.out.println("Target: " + target);
+        System.out.println("Diff: " + diff);
+        System.out.println("Diff in time: " + t); //Should be 0.020
+
+        prev = now;
+
         return current;
     }
 }

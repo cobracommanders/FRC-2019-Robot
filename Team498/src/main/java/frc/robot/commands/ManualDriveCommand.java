@@ -18,8 +18,8 @@ public class ManualDriveCommand extends Command {
   //private ConstantAccelerationCalculator turnAcceleration = new ConstantAccelerationCalculator(5);
 
   //bigger number is a faster accel. 
-  private ConstantAccelerationCalculator2 moveAccel = new ConstantAccelerationCalculator2(1);
-  private ConstantAccelerationCalculator2 turnAccel = new ConstantAccelerationCalculator2(1);
+  private ConstantAccelerationCalculator2 moveAccel = new ConstantAccelerationCalculator2(8, .05);
+  private ConstantAccelerationCalculator2 turnAccel = new ConstantAccelerationCalculator2(8, .05);
 
   public static boolean slowMode = false;
 
