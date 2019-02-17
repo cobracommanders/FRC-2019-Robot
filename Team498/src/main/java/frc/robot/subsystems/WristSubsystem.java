@@ -16,15 +16,11 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class WristSubsystem extends PIDSubsystem {
-  private static final int inLimitSwitchChannel = 0;
-  private static final int outLimitSwitchChannel = 1;
-  private static final int wristEncoderChannelA = 2;
-  private static final int wristEncoderChannelB = 3;
   private static final int wristMotorChannel = 6;
   private static final int wristEncoderChannelA = 2;
   private static final int wristEncoderChannelB = 3;
   private static final int inLimitSwitchChannel = 0;
-  private static final int outLimitSwitchChannel = 1; 
+  private static final int outLimitSwitchChannel = 1;
 
   Positions currentPosition = Positions.IN;
   Positions targetPosition = Positions.IN;
@@ -34,9 +30,9 @@ public class WristSubsystem extends PIDSubsystem {
 
   private Encoder encoder = new Encoder(wristEncoderChannelA, wristEncoderChannelB);
 
-  private double wristPow = 0.2; // does this need to be final and if its final wouldn't it be static?? 
+  private double wristPow = 0.2; // does this need to be final and if its final wouldn't it be static??
 
-  //TODO: Need to run trial tests to find out these numbers
+  // TODO: Need to run trial tests to find out these numbers
   private static final double p = 5.0;
   private static final double i = 0.5;
   private static final double d = 0.1;
@@ -51,7 +47,7 @@ public class WristSubsystem extends PIDSubsystem {
     this.encoder.reset();
     this.setAbsoluteTolerance(0.05);
     this.getPIDController().setContinuous(false); // this has to be false, otherwise the robot fails.
-    this.getPIDController().setInputRange(0, 120); //120 deg, IN to OUT, also have to have this. 4
+    this.getPIDController().setInputRange(0, 120); // 120 deg, IN to OUT, also have to have this. 4
     this.getPIDController().setOutputRange(-1, 1);
   }
 
@@ -71,8 +67,7 @@ public class WristSubsystem extends PIDSubsystem {
     wrist.set(0);
   }
 
-
-  //TODO: test this to see if this is doing what we are expecting
+  // TODO: test this to see if this is doing what we are expecting
   public void pursueTarget() {
 
     boolean isIn = inLimitSwitch.get();
@@ -99,7 +94,7 @@ public class WristSubsystem extends PIDSubsystem {
       stop();
   }
 
-  //TODO: Test both moveOut and moveIn methods 
+  // TODO: Test both moveOut and moveIn methods
   public void moveOut() {
     switch (currentPosition) {
     case IN:

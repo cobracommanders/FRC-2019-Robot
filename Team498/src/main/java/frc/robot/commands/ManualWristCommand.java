@@ -29,7 +29,7 @@ public class ManualWristCommand extends Command {
   @Override
   protected void execute() {
     double power = calculator.getNextDataPoint(Robot.operatorController.axisRightTrigger.getAxisValue() - Robot.operatorController.axisLeftTrigger.getAxisValue());
-    Robot.wrist.wristPower(power);
+    //Robot.wrist.wristPower(power);
   }
 
   // Make this return true when this Command no longer needs to run execute()

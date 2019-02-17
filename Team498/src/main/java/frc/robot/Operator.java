@@ -15,8 +15,8 @@ import frc.robot.commands.ToggleSlowmodeCommand;
 public class Operator {
 
     public Operator() {
-        Robot.controller.rightBumper.whenPressed(new UpdateWristTargetCommand(false));
-        Robot.controller.rightBumper.whenPressed(new UpdateWristTargetCommand(true));
+        Robot.operatorController.rightBumper.whenPressed(new UpdateWristTargetCommand(false));
+        Robot.operatorController.rightBumper.whenPressed(new UpdateWristTargetCommand(true));
         Robot.operatorController.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
         Robot.operatorController.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
         Robot.driverController.buttonA.whenPressed(new ToggleClawCommand());
