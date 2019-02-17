@@ -8,18 +8,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.Robot;
 
-public class ReleaseRampCommand extends InstantCommand {
+public class ToggleSlowmodeCommand extends InstantCommand {
 
-  public ReleaseRampCommand() {
-    super("ReleaseRampCommand");
-    requires(Robot.ramp);
+ 
+  public ToggleSlowmodeCommand() {
+    super("ToggleSlowmodeCommand");
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
+  // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.ramp.releaseRamp();
+    ManualDriveCommand.slowMode = !ManualDriveCommand.slowMode;
   }
 
 }

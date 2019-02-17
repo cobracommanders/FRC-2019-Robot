@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.PursueWristTargetCommand;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -20,6 +21,10 @@ public class WristSubsystem extends PIDSubsystem {
   private static final int wristEncoderChannelA = 2;
   private static final int wristEncoderChannelB = 3;
   private static final int wristMotorChannel = 6;
+  private static final int wristEncoderChannelA = 2;
+  private static final int wristEncoderChannelB = 3;
+  private static final int inLimitSwitchChannel = 0;
+  private static final int outLimitSwitchChannel = 1; 
 
   Positions currentPosition = Positions.IN;
   Positions targetPosition = Positions.IN;
@@ -148,5 +153,11 @@ public class WristSubsystem extends PIDSubsystem {
     public int getPositionCode() {
       return this.positionCode;
     }
+  }
+
+  public void updateDashboard() {
+    SmartDashboard.putNumber("EncoderValue", encoder.getDistance());
+    SmartDashboard.putBoolean("InLimitSwitchValue", inLimitSwitch.get());
+    SmartDashboard.putBoolean("OutLimitSwitchValue", outLimitSwitch.get());
   }
 }

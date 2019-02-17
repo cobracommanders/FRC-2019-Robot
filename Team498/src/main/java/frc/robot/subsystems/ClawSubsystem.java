@@ -34,4 +34,8 @@ public class ClawSubsystem extends Subsystem {
     }
     this.holdingOnToHatch = holdingOnToHatch;
   }
+
+  public void turnClawOff() {
+    claw.set(Value.kOff);
+  }
 }

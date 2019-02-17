@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.RampSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
 
@@ -29,14 +28,14 @@ public class Robot extends TimedRobot {
   public static DriverStation driverstation = DriverStation.getInstance();
   
   //instantiate one or more controllers here
-  public static Controller controller = new Controller(ControllerConfiguration.ControllerPort);
+  public static Controller driverController = new Controller(ControllerConfiguration.ControllerPort1);
+  public static Controller operatorController = new Controller(ControllerConfiguration.ControllerPort2);
   
   // Subsystems  
   public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
   public static IntakeSubsystem intake = new IntakeSubsystem();
   public static WristSubsystem wrist = new WristSubsystem();
   public static ClawSubsystem claw = new ClawSubsystem();
-  public static RampSubsystem ramp = new RampSubsystem();
 
   public static Operator operator = new Operator();
 
@@ -85,10 +84,15 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    updateDashboard();
   }
 
   
   @Override
   public void testPeriodic() {
+  }
+
+  public void updateDashboard() {
+    wrist.updateDashboard();
   }
 }

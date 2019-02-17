@@ -8,19 +8,19 @@
 package frc.robot;
 
 import frc.robot.commands.ToggleClawCommand;
-import frc.robot.commands.ReleaseRampCommand;
 import frc.robot.commands.ToggleIntakeCommand;
 import frc.robot.commands.UpdateWristTargetCommand;
+import frc.robot.commands.ToggleSlowmodeCommand;
 
 public class Operator {
 
     public Operator() {
-        Robot.controller.buttonB.whenPressed(new ToggleIntakeCommand(.8, .8));
-        Robot.controller.buttonX.whenPressed(new ToggleIntakeCommand(-.3, -.3));
-        Robot.controller.buttonA.whenPressed(new ToggleClawCommand());
-        Robot.controller.bothJoyPresses.whenActive(new ReleaseRampCommand());
         Robot.controller.rightBumper.whenPressed(new UpdateWristTargetCommand(false));
         Robot.controller.rightBumper.whenPressed(new UpdateWristTargetCommand(true));
+        Robot.operatorController.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
+        Robot.operatorController.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
+        Robot.driverController.buttonA.whenPressed(new ToggleClawCommand());
+        Robot.driverController.rightBumper.whenPressed(new ToggleSlowmodeCommand());
     }
 
 }
