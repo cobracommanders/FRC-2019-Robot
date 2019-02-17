@@ -151,8 +151,10 @@ public class WristSubsystem extends PIDSubsystem {
   }
 
   public void updateDashboard() {
-    SmartDashboard.putNumber("EncoderValue", encoder.getDistance());
-    SmartDashboard.putBoolean("InLimitSwitchValue", inLimitSwitch.get());
-    SmartDashboard.putBoolean("OutLimitSwitchValue", outLimitSwitch.get());
+    SmartDashboard.putNumber("Encoder Value", encoder.getDistance());
+    SmartDashboard.putNumber("Encoder X", encoder.get());
+    SmartDashboard.putBoolean("In Limit Switch Value", inLimitSwitch.get());
+    SmartDashboard.putBoolean("Out Limit Switch Value", outLimitSwitch.get());
+    SmartDashboard.putString("Wrist Postion", currentPosition.toString());
   }
 }

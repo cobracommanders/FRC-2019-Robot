@@ -32,7 +32,7 @@ public class ManualDriveCommand extends Command {
 
     /*if slowmode == true, move is 75%, otherwise normal.
       if slowmode == true, turn is 60% otherwise turn*/ 
-    Robot.drivetrain.drive(slowMode ? -move * 0.75 : -move, slowMode ? turn * 0.6 : turn);
+    Robot.drivetrain.drive(slowMode ? -move * 0.8 : -move, slowMode ? turn * 0.6 : turn * .7);
   }
 
   // Make this return true when this Command no longer needs to run execute()
