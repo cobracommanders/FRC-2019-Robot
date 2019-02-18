@@ -16,7 +16,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class WristSubsystem extends Subsystem {
-  private static final int wristMotorChannel = 7;
+  private static final int wristMotorChannel = 6;
   private static final int wristEncoderChannelA = 2;
   private static final int wristEncoderChannelB = 3;
   private static final int inLimitSwitchChannel = 0;
