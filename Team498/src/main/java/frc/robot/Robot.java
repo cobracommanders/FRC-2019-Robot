@@ -74,10 +74,12 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
+    updateDashboard();
   }
 
   @Override
   public void teleopInit() {
+    drivetrain.resetGyro();
     
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();

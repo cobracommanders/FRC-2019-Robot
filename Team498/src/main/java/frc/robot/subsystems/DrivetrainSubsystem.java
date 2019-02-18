@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -19,7 +19,7 @@ import frc.robot.commands.ManualDriveCommand;
 import com.ctre.phoenix.sensors.PigeonIMU;
 import com.ctre.phoenix.sensors.PigeonIMU_StickyFaults;
 
-public class DrivetrainSubsystem extends Subsystem {
+public class DrivetrainSubsystem extends PIDSubsystem {
 
     private static final int frontLeftDriveMotorChannel = 0;
     private static final int backLeftDriveMotorChannel = 1;
@@ -37,6 +37,17 @@ public class DrivetrainSubsystem extends Subsystem {
     private DifferentialDrive drive = new DifferentialDrive(leftGroup, rightGroup);
 
     private Pigeon gyro = new Pigeon(backLeftDrive);
+
+    public DrivetrainSubsystem() {
+        super("DrivetrainSubsystem", 0.1, 0.01, 0.1);
+
+        this.getPIDController().setContinuous(false);
+        this.getPIDController().setInputRange(-180, 180);
+        this.getPIDController().setOutputRange(-1, 1);
+        this.getPIDController().setAbsoluteTolerance(.01); //Was 1 last year
+
+        this.getPIDController().enable();
+    }
 
     @Override
     public void initDefaultCommand() {
@@ -74,6 +85,14 @@ public class DrivetrainSubsystem extends Subsystem {
 
     public void updateDashboard() {
       SmartDashboard.putNumber("Angle X", gyro.getAngle());
+    }
+
+    public double returnPIDInput(){
+        return -gyro.getAngle();
+    }
+
+    public void usePIDOutput(double PIDInput){
+        drive.arcadeDrive(0, PIDInput);
     }
 
 }

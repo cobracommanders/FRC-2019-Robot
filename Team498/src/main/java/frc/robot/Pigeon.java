@@ -17,6 +17,7 @@ import com.ctre.phoenix.sensors.PigeonIMU;
  */
 public class Pigeon {
     private PigeonIMU gyro;
+    public double rAngle;
 
     public Pigeon(int deviceNumber) {
         gyro = new PigeonIMU(deviceNumber);
@@ -29,10 +30,12 @@ public class Pigeon {
     public double getAngle() {
         double[] d = new double[3];
         gyro.getYawPitchRoll(d);
-        return d[0];
+        return d[0] - rAngle;
     }
 
     public void resetPosition() {
-        gyro.setYaw(0);
+        double[] d = new double[3];
+        gyro.getYawPitchRoll(d);
+        rAngle = d[0];
     }
 }
