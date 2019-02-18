@@ -63,26 +63,17 @@ public class DrivetrainSubsystem extends Subsystem {
         return distance;
     }
 
-    public double getAngleX() {
-        return gyro.getAngleXPosition();
+    public double getAngle() {
+        return gyro.getAngle();
     }
 
-    public double getAngleY() {
-        return gyro.getAngleYPosition();
-    }
-
-    public double getAngleZ() {
-        return gyro.getAngleZPosition();
-    }
     
     public void resetGyro() {
         gyro.resetPosition();
     }
 
     public void updateDashboard() {
-      SmartDashboard.putNumber("Angle X", gyro.getAngleXPosition());
-      SmartDashboard.putNumber("Angle Y", gyro.getAngleYPosition());
-      SmartDashboard.putNumber("Angle Z", gyro.getAngleZPosition());
+      SmartDashboard.putNumber("Angle X", gyro.getAngle());
     }
 
 }

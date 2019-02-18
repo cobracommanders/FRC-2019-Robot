@@ -19,9 +19,9 @@ public class AutoTurnCommand extends Command {
 	}
 
 	protected void execute() {
-		if(Robot.drivetrain.getAngleX() > gyroGoal * .8) { 
+		if(Robot.drivetrain.getAngle() > gyroGoal * .8) { 
 			Robot.drivetrain.drive(0, turnPower * .5);
-		} else if(Robot.drivetrain.getAngleX() > gyroGoal * .9) {
+		} else if(Robot.drivetrain.getAngle() > gyroGoal * .9) {
 			Robot.drivetrain.drive(0, turnPower * .25);
 		} else {
 			Robot.drivetrain.drive(0, turnPower);
@@ -29,7 +29,7 @@ public class AutoTurnCommand extends Command {
 	}
 
 	protected boolean isFinished() {
-		return Math.abs(Robot.drivetrain.getAngleX()) >= Math.abs(gyroGoal);
+		return Math.abs(Robot.drivetrain.getAngle()) >= Math.abs(gyroGoal);
 	}
 
 	protected void end() {
