@@ -94,5 +94,6 @@ public class Robot extends TimedRobot {
 
   public void updateDashboard() {
     wrist.updateDashboard();
+    panelIntake.updateDashboard();
   }
 }

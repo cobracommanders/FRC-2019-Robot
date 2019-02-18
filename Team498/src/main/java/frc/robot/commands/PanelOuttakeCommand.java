@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class PanelOuttakeCommand extends Command {
@@ -40,6 +41,7 @@ public class PanelOuttakeCommand extends Command {
       Robot.panelIntake.setPush(false);
       finished = true;
     }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -51,6 +53,7 @@ public class PanelOuttakeCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    finished = false;
   }
 
   // Called when another command which requires one or more of the same

@@ -10,8 +10,6 @@ package frc.robot;
 import frc.robot.commands.PanelIntakeCommand;
 import frc.robot.commands.PanelOuttakeCommand;
 import frc.robot.commands.ToggleIntakeCommand;
-import frc.robot.commands.TogglePanelCommand;
-import frc.robot.commands.TogglePushCommand;
 import frc.robot.commands.ToggleSlowmodeCommand;
 
 public class Operator {
