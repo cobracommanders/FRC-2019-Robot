@@ -10,11 +10,14 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.Pigeon;
 import frc.robot.commands.ManualDriveCommand;
 import com.ctre.phoenix.sensors.PigeonIMU;
+import com.ctre.phoenix.sensors.PigeonIMU_StickyFaults;
 
 public class DrivetrainSubsystem extends Subsystem {
 
@@ -61,19 +64,25 @@ public class DrivetrainSubsystem extends Subsystem {
     }
 
     public double getAngleX() {
-        return gyro.getAngleX();
+        return gyro.getAngleXPosition();
     }
 
     public double getAngleY() {
-        return gyro.getAngleY();
+        return gyro.getAngleYPosition();
     }
 
     public double getAngleZ() {
-        return gyro.getAngleZ();
+        return gyro.getAngleZPosition();
     }
     
     public void resetGyro() {
-        gyro.reset();
+        gyro.resetPosition();
+    }
+
+    public void updateDashboard() {
+      SmartDashboard.putNumber("Angle X", gyro.getAngleXPosition());
+      SmartDashboard.putNumber("Angle Y", gyro.getAngleYPosition());
+      SmartDashboard.putNumber("Angle Z", gyro.getAngleZPosition());
     }
 
 }
