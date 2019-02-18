@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.AutoStrategies.TestAuto;
 import frc.robot.subsystems.ClawSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
 
@@ -59,11 +60,14 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+    //m_autonomousCommand = m_chooser.getSelected();
 
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
-    }
+    //if (m_autonomousCommand != null) {
+    //  m_autonomousCommand.start();
+    //}
+
+    m_autonomousCommand = new TestAuto();
+    m_autonomousCommand.start();
   }
 
   
@@ -74,7 +78,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-  
+    
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
