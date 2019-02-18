@@ -7,8 +7,11 @@
 
 package frc.robot;
 
-import frc.robot.commands.PanelCommand;
+import frc.robot.commands.PanelIntakeCommand;
+import frc.robot.commands.PanelOuttakeCommand;
 import frc.robot.commands.ToggleIntakeCommand;
+import frc.robot.commands.TogglePanelCommand;
+import frc.robot.commands.TogglePushCommand;
 import frc.robot.commands.ToggleSlowmodeCommand;
 
 public class Operator {
@@ -17,7 +20,8 @@ public class Operator {
         
         Robot.operatorController.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
         Robot.operatorController.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
-        Robot.driverController.rightBumper.whenPressed(new PanelCommand());
+        Robot.driverController.rightBumper.whenPressed(new PanelIntakeCommand());
+        Robot.driverController.leftBumper.whenPressed(new PanelOuttakeCommand());
         //Robot.driverController.rightBumper.whenPressed(new ToggleSlowmodeCommand());
     
 

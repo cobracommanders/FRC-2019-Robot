@@ -7,50 +7,55 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ManualDriveCommand extends Command {
+public class PanelOuttakeCommand extends Command {
 
-  public static boolean slowMode = false;
+  private Timer timer;
+  private boolean finished = false;
 
-  public ManualDriveCommand() {
-    super("ManualDriveCommand");
-    requires(Robot.drivetrain);
+  public PanelOuttakeCommand() {
+    super("PanelOuttakeCommand");
+    requires(Robot.panelIntake);
+    timer = new Timer();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    timer.reset();
+    timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double move = Robot.driverController.axisLeftY.getAxisValue();
-    double turn = Robot.driverController.axisRightX.getAxisValue();
+    double t = timer.get();
+      Robot.panelIntake.setGrip(false);
+      Robot.panelIntake.setPush(true);
 
-    /*if slowmode == true, move is 75%, otherwise normal.
-      if slowmode == true, turn is 60% otherwise turn*/ 
-    Robot.drivetrain.drive(slowMode ? move * 0.75 : move, slowMode ? turn * 0.6 : turn);
+    if (t > 1.4) {
+      Robot.panelIntake.setPush(false);
+      finished = true;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return finished;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.drive(0, 0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

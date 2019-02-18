@@ -10,7 +10,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import frc.robot.commands.PanelCommand;
 
 public class PanelSubsystem extends Subsystem {
     private static final int gripReverseChannel = 0;
@@ -30,9 +29,9 @@ public class PanelSubsystem extends Subsystem {
     public void setGrip(boolean holdingOnToHatch) {
 
         if (holdingOnToHatch) {
-            grip.set(Value.kForward);
-        } else {
             grip.set(Value.kReverse);
+        } else {
+            grip.set(Value.kForward);
         }
         this.holdingOnToHatch = holdingOnToHatch;
     }
