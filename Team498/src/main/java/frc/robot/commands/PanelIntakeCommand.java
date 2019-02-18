@@ -10,30 +10,23 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-public class ToggleClawCommand extends InstantCommand {
-
-  public boolean clawUp = false;
-
-  public ToggleClawCommand() {
-    super("ToggleClaw");
-    requires(Robot.claw);
+/**
+ * Add your docs here.
+ */
+public class PanelIntakeCommand extends InstantCommand {
+  /**
+   * Add your docs here.
+   */
+  public PanelIntakeCommand() {
+    super("PanelIntakeCommand");
+     requires(Robot.panelIntake);
   }
 
   // Called once when the command executes
   @Override
   protected void initialize() {
-    this.clawUp = !clawUp;
-    Robot.claw.setClaw(clawUp);
-
-    /*
-     * added a wait for 1/10 of a second. It needed to wait before settign claw to
-     * off. had to use a try/catch for it to work
-     */
-    try {
-      wait(100);
-    } catch (InterruptedException e) {
-    }
-    Robot.claw.turnClawOff();
+    Robot.panelIntake.setGrip(true);
   }
+  
 
 }

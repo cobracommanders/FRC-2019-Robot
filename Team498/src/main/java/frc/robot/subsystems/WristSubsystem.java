@@ -22,6 +22,7 @@ public class WristSubsystem extends Subsystem {
   private static final int inLimitSwitchChannel = 0;
   private static final int outLimitSwitchChannel = 1; 
 
+
   private double distancePerPulse = 360 / (4096 * 150); //does the math to change to degrees. 1 to 150 gear ratio
 
   private CANSparkMax wrist = new CANSparkMax(wristMotorChannel, MotorType.kBrushed);
