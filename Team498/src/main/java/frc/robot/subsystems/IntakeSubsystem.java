@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class IntakeSubsystem extends Subsystem {
 
-  private static final int intakeLeftMotorChannel = 4;
-  private static final int intakeRightMotorChannel = 5;
+  private static final int intakeLeftMotorChannel = 5;
+  private static final int intakeRightMotorChannel = 6;
  
   private WPI_VictorSPX intakeLeft = new WPI_VictorSPX(intakeLeftMotorChannel);
   private WPI_VictorSPX intakeRight = new WPI_VictorSPX(intakeRightMotorChannel);

@@ -16,10 +16,10 @@ import frc.robot.commands.ManualDriveCommand;
 
 public class DrivetrainSubsystem extends Subsystem {
   
-  private static final int frontLeftDriveMotorChannel = 0;
-  private static final int backLeftDriveMotorChannel = 1; 
-  private static final int frontRightDriveMotorChannel = 2;
-  private static final int backRightDriveMotorChannel = 3;
+  private static final int frontLeftDriveMotorChannel = 1;
+  private static final int backLeftDriveMotorChannel = 2; 
+  private static final int frontRightDriveMotorChannel = 3;
+  private static final int backRightDriveMotorChannel = 4;
     
   private WPI_TalonSRX frontLeftDrive = new WPI_TalonSRX(frontLeftDriveMotorChannel);
   private WPI_TalonSRX frontRightDrive = new WPI_TalonSRX(frontRightDriveMotorChannel);
