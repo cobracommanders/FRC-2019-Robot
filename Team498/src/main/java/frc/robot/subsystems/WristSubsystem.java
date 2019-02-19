@@ -30,13 +30,14 @@ public class WristSubsystem extends PIDSubsystem {
 
   private Encoder encoder = new Encoder(wristEncoderChannelA, wristEncoderChannelB);
 
-  private double wristPow = 0.2; // does this need to be final and if its final wouldn't it be static??
+  private static final double wristPow = 0.2; // does this need to be final and if its final wouldn't it be static??
 
   // TODO: Need to run trial tests to find out these numbers
-  private static final double p = 5.0;
-  private static final double i = 0.5;
-  private static final double d = 0.1;
-  private static final double distancePerPulse = 360.0 / (4096.0 * 150.0); // Does the math to get 360 degrees out of a rotation, gear ratio is 1 to 150.
+  private static final double p = 0.1;
+  private static final double i = 0;
+  private static final double d = 0;
+  private static final double distancePerPulse = 360.0 / (4096.0 * 150.0); // Does the math to get 360 degrees out of a
+                                                                           // rotation, gear ratio is 1 to 150.
 
   private CANSparkMax wrist = new CANSparkMax(wristMotorChannel, MotorType.kBrushed);
 
@@ -49,7 +50,7 @@ public class WristSubsystem extends PIDSubsystem {
     this.getPIDController().setContinuous(false); // this has to be false, otherwise the robot fails.
     this.getPIDController().setInputRange(0, 120); // 120 deg, IN to OUT, also have to have this. 4
     this.getPIDController().setOutputRange(-1, 1);
-    this.getPIDController().enable(); // this has to be here lol. PID starts disabled 
+    this.getPIDController().enable(); // this has to be here lol. PID starts disabled
   }
 
   @Override
@@ -90,7 +91,7 @@ public class WristSubsystem extends PIDSubsystem {
     if (targetPosition == Positions.IN && !isIn)
       wristPower(false);
     if (targetPosition == Positions.SHOOT)
-      this.getPIDController().setSetpoint(25);
+      this.getPIDController().setSetpoint(45);
     if (targetPosition == currentPosition && targetPosition != Positions.SHOOT)
       stop();
   }
