@@ -26,6 +26,8 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     private static final int frontRightDriveMotorChannel = 2;
     private static final int backRightDriveMotorChannel = 3;
 
+    private double currentMove;
+
     private WPI_TalonSRX frontLeftDrive = new WPI_TalonSRX(frontLeftDriveMotorChannel);
     private WPI_TalonSRX frontRightDrive = new WPI_TalonSRX(frontRightDriveMotorChannel);
     private WPI_TalonSRX backLeftDrive = new WPI_TalonSRX(backLeftDriveMotorChannel);
@@ -56,6 +58,35 @@ public class DrivetrainSubsystem extends PIDSubsystem {
 
     public void drive(double move, double turn) {
         drive.arcadeDrive(move, turn);
+        this.currentMove = move;
+
+        //Replacement code if we want PID turn in teleop
+        /*if(turn != 0){
+            if(getPIDController().isEnabled()){
+            getPIDController().disable();
+            }else{
+                drive.arcadeDrive(move, turn);
+                this.currentMove = move;
+            }
+        
+        }else{
+            if(!getPIDController().isEnabled()){
+                gyro.resetPosition();
+                getPIDController().setSetpoint(0);
+                getPIDController().enable();
+            }else{
+                this.currentMove = move;
+            }
+        }*/
+
+    }
+    public void autoDrive(double move, double turn){
+        if(turn != 0){
+            drive.arcadeDrive(move, turn);
+            this.currentMove = move;
+        }else{
+            this.currentMove = move;
+        }
     }
 
     public void resetEncoders() {
@@ -85,6 +116,9 @@ public class DrivetrainSubsystem extends PIDSubsystem {
 
     public void updateDashboard() {
       SmartDashboard.putNumber("Angle X", gyro.getAngle());
+      SmartDashboard.putNumber("Left Encoder", frontLeftDrive.getSensorCollection().getQuadraturePosition());
+      SmartDashboard.putNumber("Right Encoder", backLeftDrive.getSensorCollection().getQuadraturePosition());
+      SmartDashboard.putNumber("DriveDistance", getDistance());
     }
 
     public double returnPIDInput(){
@@ -92,7 +126,8 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     }
 
     public void usePIDOutput(double PIDInput){
-        drive.arcadeDrive(0, PIDInput);
+        drive.arcadeDrive(this.currentMove, PIDInput);
     }
+    
 
 }

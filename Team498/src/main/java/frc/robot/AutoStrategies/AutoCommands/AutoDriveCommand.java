@@ -25,11 +25,14 @@ public class AutoDriveCommand extends Command {
     }
 
     protected void initialize() {
-    	Robot.drivetrain.resetEncoders();
+        Robot.drivetrain.getPIDController().enable();
+        Robot.drivetrain.resetEncoders();
+        Robot.drivetrain.resetGyro();
+        Robot.drivetrain.getPIDController().setSetpoint(0);
     }
 
     protected void execute() {
-    	Robot.drivetrain.drive(moveValue, 0);
+    	Robot.drivetrain.autoDrive(moveValue, 0);
     }
 
     protected boolean isFinished() {
@@ -37,7 +40,8 @@ public class AutoDriveCommand extends Command {
     }
 
     protected void end() {
-    	Robot.drivetrain.drive(0, 0);
+        Robot.drivetrain.autoDrive(0, 0);
+        Robot.drivetrain.getPIDController().disable();
     }
 
     protected void interrupted() {
