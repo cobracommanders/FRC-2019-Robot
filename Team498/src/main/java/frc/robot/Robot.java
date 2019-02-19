@@ -16,84 +16,82 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PanelSubsystem;
+import frc.robot.subsystems.PulleySubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
-
 
 public class Robot extends TimedRobot {
 
-  Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+    Command m_autonomousCommand;
+    SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  // Controls
-  public static DriverStation driverstation = DriverStation.getInstance();
-  
-  //instantiate one or more controllers here
-  public static Controller driverController = new Controller(ControllerConfiguration.ControllerPort1);
-  public static Controller operatorController = new Controller(ControllerConfiguration.ControllerPort2);
-  
-  // Subsystems  
-  public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
-  public static IntakeSubsystem intake = new IntakeSubsystem();
-  public static WristSubsystem wrist = new WristSubsystem();
-  public static PanelSubsystem panelIntake = new PanelSubsystem();
+    // Controls
+    public static DriverStation driverstation = DriverStation.getInstance();
 
-  public static Operator operator = new Operator();
+    // instantiate one or more controllers here
+    public static Controller driverController = new Controller(ControllerConfiguration.ControllerPort1);
+    public static Controller operatorController = new Controller(ControllerConfiguration.ControllerPort2);
 
-  @Override
-  public void robotInit() {
-    SmartDashboard.putData("Auto mode", m_chooser);
-  }
+    // Subsystems
+    public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
+    public static IntakeSubsystem intake = new IntakeSubsystem();
+    public static WristSubsystem wrist = new WristSubsystem();
+    public static PanelSubsystem panelIntake = new PanelSubsystem();
+    public static PulleySubsystem pulley = new PulleySubsystem();
 
-  @Override
-  public void robotPeriodic() {
-  }
+    public static Operator operator = new Operator();
 
-  @Override
-  public void disabledInit() {
-  }
-
-  @Override
-  public void disabledPeriodic() {
-    Scheduler.getInstance().run();
-  }
-
-  @Override
-  public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
-
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
+    @Override
+    public void robotInit() {
+        SmartDashboard.putData("Auto mode", m_chooser);
     }
-  }
 
-  
-  @Override
-  public void autonomousPeriodic() {
-    Scheduler.getInstance().run();
-  }
-
-  @Override
-  public void teleopInit() {
-  
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    @Override
+    public void robotPeriodic() {
     }
-  }
 
- 
-  @Override
-  public void teleopPeriodic() {
-    Scheduler.getInstance().run();
-    updateDashboard();
-  }
+    @Override
+    public void disabledInit() {
+    }
 
-  
-  @Override
-  public void testPeriodic() {
-  }
+    @Override
+    public void disabledPeriodic() {
+        Scheduler.getInstance().run();
+    }
 
-  public void updateDashboard() {
-    wrist.updateDashboard();
-    panelIntake.updateDashboard();
-  }
+    @Override
+    public void autonomousInit() {
+        m_autonomousCommand = m_chooser.getSelected();
+
+        if (m_autonomousCommand != null) {
+            m_autonomousCommand.start();
+        }
+    }
+
+    @Override
+    public void autonomousPeriodic() {
+        Scheduler.getInstance().run();
+    }
+
+    @Override
+    public void teleopInit() {
+
+        if (m_autonomousCommand != null) {
+            m_autonomousCommand.cancel();
+        }
+    }
+
+    @Override
+    public void teleopPeriodic() {
+        Scheduler.getInstance().run();
+        updateDashboard();
+    }
+
+    @Override
+    public void testPeriodic() {
+    }
+
+    public void updateDashboard() {
+        wrist.updateDashboard();
+        panelIntake.updateDashboard();
+    }
 }
