@@ -43,6 +43,7 @@ public class Robot extends TimedRobot {
     public static WristSubsystem wrist = new WristSubsystem();
     public static PanelSubsystem panelIntake = new PanelSubsystem();
     public static PulleySubsystem pulley = new PulleySubsystem();
+    public static ClampSubsystem clamp = new ClampSubsystem();
 
     public static Operator operator = new Operator();
 
