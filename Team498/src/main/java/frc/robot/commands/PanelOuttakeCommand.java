@@ -41,7 +41,6 @@ public class PanelOuttakeCommand extends Command {
       Robot.panelIntake.setPush(false);
       finished = true;
     }
-
   }
 
   // Make this return true when this Command no longer needs to run execute()

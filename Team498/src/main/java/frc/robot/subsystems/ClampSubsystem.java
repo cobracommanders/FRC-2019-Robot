@@ -13,18 +13,13 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ToggleClampCommand;
 
-/**
- * Add your docs here.
- */
 public class ClampSubsystem extends Subsystem {
-  private static final int clamp1ForwardChannel = 0;
-  private static final int clamp1ReverseChannel = 0;
-  private static final int clamp2ForwardChannel = 0;
-  private static final int clamp2ReverseChannel = 0;
-  private static final int releaseChannel = 0;
+  private static final int clampForwardChannel = 4;
+  private static final int clampReverseChannel = 5;
+  private static final int releaseChannel = 6;
 
   // TODO: Need to change the forward and reverse channels of double solenoid
-  private DoubleSolenoid clamp = new DoubleSolenoid(clamp1ForwardChannel, clamp1ReverseChannel);
+  private DoubleSolenoid clamp = new DoubleSolenoid(clampForwardChannel, clampReverseChannel);
 
   private Solenoid open = new Solenoid(releaseChannel);
 
@@ -38,17 +33,16 @@ public class ClampSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new ToggleClampCommand());
+    
   }
 
-  public void setClamp(boolean isClamped) {
-
+  public void setClamp() {
+    isClamped = !isClamped;
     if (isClamped) {
       clamp.set(Value.kForward);
     } else {
       clamp.set(Value.kReverse);
     }
-    this.isClamped = isClamped;
   }
 
   public void releaseClamps() {

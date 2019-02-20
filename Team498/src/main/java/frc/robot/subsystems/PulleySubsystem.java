@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.Victor;
 public class PulleySubsystem extends Subsystem {
 
     private static final int leftPulleyMotorChannel = 0;
-    private static final int rightPulleyMotorChannel = 0;
+    private static final int rightPulleyMotorChannel = 1;
 
     private Victor leftPulley = new Victor(leftPulleyMotorChannel);
     private Victor rightPulley = new Victor(rightPulleyMotorChannel);
@@ -25,13 +25,13 @@ public class PulleySubsystem extends Subsystem {
     }
 
     public void setPulleyPower(double power) {
-        leftPulley.set(power);
+        leftPulley.set(-power);
         rightPulley.set(power);
     }
     
     //adds an overload
     public void setPulleyPower(double leftPower, double rightPower) {
-        leftPulley.set(leftPower);
+        leftPulley.set(-leftPower);
         rightPulley.set(rightPower);
     }
 }

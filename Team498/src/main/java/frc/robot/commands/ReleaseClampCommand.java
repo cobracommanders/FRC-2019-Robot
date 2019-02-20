@@ -10,7 +10,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-
 public class ReleaseClampCommand extends InstantCommand {
 
   public ReleaseClampCommand() {
@@ -23,5 +22,4 @@ public class ReleaseClampCommand extends InstantCommand {
   protected void initialize() {
       Robot.clamp.releaseClamps();
   }
-
 }
