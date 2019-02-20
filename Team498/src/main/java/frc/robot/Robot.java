@@ -17,6 +17,7 @@ import frc.robot.subsystems.WristSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PanelSubsystem;
 import frc.robot.subsystems.PulleySubsystem;
+import frc.robot.subsystems.ClampSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
 
 public class Robot extends TimedRobot {
@@ -26,6 +27,7 @@ public class Robot extends TimedRobot {
 
     // Controls
     public static DriverStation driverstation = DriverStation.getInstance();
+  public static ClampSubsystem clamp = new ClampSubsystem();
 
     // instantiate one or more controllers here
     public static Controller driverController = new Controller(ControllerConfiguration.ControllerPort1);
