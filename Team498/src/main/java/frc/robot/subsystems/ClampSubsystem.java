@@ -24,15 +24,13 @@ public class ClampSubsystem extends Subsystem {
   private static final int releaseChannel = 0;
 
   // TODO: Need to change the forward and reverse channels of double solenoid
-  private DoubleSolenoid clamp1 = new DoubleSolenoid(clamp1ForwardChannel, clamp1ReverseChannel);
-  private DoubleSolenoid clamp2 = new DoubleSolenoid(clamp2ForwardChannel, clamp2ReverseChannel);
+  private DoubleSolenoid clamp = new DoubleSolenoid(clamp1ForwardChannel, clamp1ReverseChannel);
 
   private Solenoid open = new Solenoid(releaseChannel);
 
   public ClampSubsystem() {
     super("ClampSubsystem");
-    this.clamp1.set(Value.kOff);
-    this.clamp2.set(Value.kOff);
+    this.clamp.set(Value.kOff);
     this.open.set(false);
   }
 
@@ -46,11 +44,9 @@ public class ClampSubsystem extends Subsystem {
   public void setClamp(boolean isClamped) {
 
     if (isClamped) {
-      clamp1.set(Value.kForward);
-      clamp2.set(Value.kForward);
+      clamp.set(Value.kForward);
     } else {
-      clamp1.set(Value.kReverse);
-      clamp2.set(Value.kReverse);
+      clamp.set(Value.kReverse);
     }
     this.isClamped = isClamped;
   }
