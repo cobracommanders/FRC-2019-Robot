@@ -13,9 +13,9 @@ import frc.robot.AutoStrategies.AutoCommands.AutoTurnCommand;
 import frc.robot.commands.PanelOuttakeCommand;
 
 public class LeftAutoStrategy extends CommandGroup {
-   
+
     public LeftAutoStrategy() {
-        //start next to the cargo
+        // start next to the cargo
         // 219.25 inches away from cargo ship
         // 47.88 inches to the right of the cargo ship
         addSequential(new AutoDriveCommand(.8, 100)); // 80% power, drives forward 100 inches

@@ -24,7 +24,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
 
     private static final double WheelDiameter = 4; // 4 inch wheels.
     private static final double PulsePerRevolution = 4096;
-    private static final double GearRatio = 10; 
+    private static final double GearRatio = 10;
     private static final double DistancePerPulse = WheelDiameter / (PulsePerRevolution * GearRatio);
 
     private double currentMove;
@@ -95,7 +95,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         double backRightDistance = backLeftDrive.getSelectedSensorPosition();
 
         double distanceInPulses = ((frontLeftDistance + backRightDistance) / 2);
-        
+
         double distance = distanceInPulses * DistancePerPulse;
 
         return distance;

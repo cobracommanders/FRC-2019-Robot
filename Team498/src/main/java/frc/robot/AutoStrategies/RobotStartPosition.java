@@ -8,6 +8,5 @@
 package frc.robot.AutoStrategies;
 
 public enum RobotStartPosition {
-	LEFT, CENTER, RIGHT, FULLSEND;
-
+    LEFT, CENTER, RIGHT, FULLSEND;
 }

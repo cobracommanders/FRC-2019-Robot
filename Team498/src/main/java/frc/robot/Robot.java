@@ -64,17 +64,17 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         autonomousPosition = chooserPosition.getSelected();
-        if(autonomousPosition == RobotStartPosition.LEFT) {
+        if (autonomousPosition == RobotStartPosition.LEFT) {
             autonomousCommand = new LeftAutoStrategy();
             autonomousCommand.start();
-        } else if(autonomousPosition == RobotStartPosition.CENTER) {
+        } else if (autonomousPosition == RobotStartPosition.CENTER) {
             autonomousCommand = new CenterAutoStrategy();
             autonomousCommand.start();
-        } else if(autonomousPosition == RobotStartPosition.RIGHT) {
+        } else if (autonomousPosition == RobotStartPosition.RIGHT) {
             autonomousCommand = new RightAutoStrategy();
             autonomousCommand.start();
-        } else if(autonomousPosition == RobotStartPosition.FULLSEND) {
-        } 
+        } else if (autonomousPosition == RobotStartPosition.FULLSEND) {
+        }
     }
 
     @Override
@@ -114,5 +114,5 @@ public class Robot extends TimedRobot {
         SmartDashboard.putString("Position Choice", autonomousPosition != null ? autonomousPosition.toString() : "");
         wrist.updateDashboard();
         panelIntake.updateDashboard();
-    }   
+    }
 }

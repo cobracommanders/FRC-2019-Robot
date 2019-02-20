@@ -15,13 +15,12 @@ import frc.robot.commands.ToggleSlowmodeCommand;
 public class Operator {
 
     public Operator() {
-        
+
         Robot.operatorController.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
         Robot.operatorController.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
         Robot.driverController.rightBumper.whenPressed(new PanelIntakeCommand());
         Robot.driverController.leftBumper.whenPressed(new PanelOuttakeCommand());
-        //Robot.driverController.rightBumper.whenPressed(new ToggleSlowmodeCommand());
-    
+        // Robot.driverController.rightBumper.whenPressed(new ToggleSlowmodeCommand());
 
     }
 

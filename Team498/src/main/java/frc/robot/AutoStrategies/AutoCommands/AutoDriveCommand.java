@@ -12,16 +12,16 @@ import frc.robot.Robot;
 
 public class AutoDriveCommand extends Command {
 
-	private double moveValue;
-	private double desiredDistance;
-	
+    private double moveValue;
+    private double desiredDistance;
+
     public AutoDriveCommand(double moveValue, double desiredDistance) {
-    	super("AutoDriveCommand");
-    	
-    	requires(Robot.drivetrain);
-    	
-    	this.moveValue = moveValue;
-    	this.desiredDistance = desiredDistance;
+        super("AutoDriveCommand");
+
+        requires(Robot.drivetrain);
+
+        this.moveValue = moveValue;
+        this.desiredDistance = desiredDistance;
     }
 
     protected void initialize() {
@@ -32,11 +32,11 @@ public class AutoDriveCommand extends Command {
     }
 
     protected void execute() {
-    	Robot.drivetrain.autoDrive(moveValue, 0);
+        Robot.drivetrain.autoDrive(moveValue, 0);
     }
 
     protected boolean isFinished() {
-        return Math.abs(Robot.drivetrain.getDistance()) >= Math.abs(desiredDistance); 
+        return Math.abs(Robot.drivetrain.getDistance()) >= Math.abs(desiredDistance);
     }
 
     protected void end() {
@@ -45,6 +45,6 @@ public class AutoDriveCommand extends Command {
     }
 
     protected void interrupted() {
-    	end();
+        end();
     }
 }

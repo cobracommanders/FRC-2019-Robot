@@ -10,19 +10,17 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-
 public class PanelIntakeCommand extends InstantCommand {
- 
-  public PanelIntakeCommand() {
-    super("PanelIntakeCommand");
-     requires(Robot.panelIntake);
-  }
 
-  // Called once when the command executes
-  @Override
-  protected void initialize() {
-    Robot.panelIntake.setGrip(true);
-  }
-  
+    public PanelIntakeCommand() {
+        super("PanelIntakeCommand");
+        requires(Robot.panelIntake);
+    }
+
+    // Called once when the command executes
+    @Override
+    protected void initialize() {
+        Robot.panelIntake.setGrip(true);
+    }
 
 }
