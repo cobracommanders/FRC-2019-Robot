@@ -47,15 +47,15 @@ public class PanelSubsystem extends Subsystem {
             this.pushed = isPushed;
             push.set(Value.kReverse);
         }
-        
+
     }
-    
+
     public void turnGripOff() {
         grip.set(Value.kOff);
     }
 
     public void turnPushOff() {
-        push.set(Value.kOff); 
+        push.set(Value.kOff);
     }
 
     public void updateDashboard() {
