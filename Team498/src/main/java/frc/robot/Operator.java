@@ -11,11 +11,15 @@ import frc.robot.commands.PanelIntakeCommand;
 import frc.robot.commands.PanelOuttakeCommand;
 import frc.robot.commands.ToggleIntakeCommand;
 import frc.robot.commands.ToggleSlowmodeCommand;
+import frc.robot.commands.ToggleClampCommand;
+import frc.robot.commands.ReleaseClampCommand;
 
 public class Operator {
 
     public Operator() {
 
+        Robot.driverController.back.whenPressed(new ReleaseClampCommand());
+        Robot.driverController.start.whenPressed(new ToggleClampCommand());        
         Robot.operatorController.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
         Robot.operatorController.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
         Robot.driverController.rightBumper.whenPressed(new PanelIntakeCommand());
