@@ -11,13 +11,10 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import frc.robot.Pigeon;
 import frc.robot.commands.ManualDriveCommand;
-import com.ctre.phoenix.sensors.PigeonIMU;
-import com.ctre.phoenix.sensors.PigeonIMU_StickyFaults;
+
 
 public class DrivetrainSubsystem extends PIDSubsystem {
 
@@ -37,6 +34,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     private SpeedControllerGroup rightGroup = new SpeedControllerGroup(frontRightDrive, backRightDrive);
 
     private DifferentialDrive drive = new DifferentialDrive(leftGroup, rightGroup);
+    
 
     private Pigeon gyro = new Pigeon(backLeftDrive);
 
@@ -47,8 +45,6 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         this.getPIDController().setInputRange(-180, 180);
         this.getPIDController().setOutputRange(-1, 1);
         this.getPIDController().setAbsoluteTolerance(.01); //Was 1 last year
-
-        this.getPIDController().enable();
     }
 
     @Override

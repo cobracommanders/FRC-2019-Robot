@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -18,88 +19,102 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PanelSubsystem;
 import frc.robot.AutoStrategies.TestAuto;
 import edu.wpi.first.wpilibj.DriverStation;
-
+import frc.robot.AutoStrategies.CenterAutoStrategy;
+import frc.robot.AutoStrategies.LeftAutoStrategy;
+import frc.robot.AutoStrategies.RightAutoStrategy;
+import frc.robot.AutoStrategies.RobotStartPosition;
 
 public class Robot extends TimedRobot {
 
-  Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+    SendableChooser<RobotStartPosition> chooserPosition = new SendableChooser<>();
+    CommandGroup autonomousCommand;
+    RobotStartPosition autonomousPosition;
 
-  // Controls
-  public static DriverStation driverstation = DriverStation.getInstance();
-  
-  //instantiate one or more controllers here
-  public static Controller driverController = new Controller(ControllerConfiguration.ControllerPort1);
-  public static Controller operatorController = new Controller(ControllerConfiguration.ControllerPort2);
-  
-  // Subsystems  
-  public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
-  public static IntakeSubsystem intake = new IntakeSubsystem();
-  public static WristSubsystem wrist = new WristSubsystem();
-  public static PanelSubsystem panelIntake = new PanelSubsystem();
+    // Controls
+    public static DriverStation driverstation = DriverStation.getInstance();
 
-  public static Operator operator = new Operator();
+    // instantiate one or more controllers here
+    public static Controller driverController = new Controller(ControllerConfiguration.ControllerPort1);
+    public static Controller operatorController = new Controller(ControllerConfiguration.ControllerPort2);
 
-  @Override
-  public void robotInit() {
-    SmartDashboard.putData("Auto mode", m_chooser);
-  }
+    // Subsystems
+    public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
+    public static IntakeSubsystem intake = new IntakeSubsystem();
+    public static WristSubsystem wrist = new WristSubsystem();
+    public static PanelSubsystem panelIntake = new PanelSubsystem();
 
-  @Override
-  public void robotPeriodic() {
-  }
+    public static Operator operator = new Operator();
 
-  @Override
-  public void disabledInit() {
-  }
-
-  @Override
-  public void disabledPeriodic() {
-    Scheduler.getInstance().run();
-  }
-
-  @Override
-  public void autonomousInit() {
-    //m_autonomousCommand = m_chooser.getSelected();
-
-    //if (m_autonomousCommand != null) {
-    //  m_autonomousCommand.start();
-    //}
-
-    m_autonomousCommand = new TestAuto();
-    m_autonomousCommand.start();
-  }
-
-  
-  @Override
-  public void autonomousPeriodic() {
-    Scheduler.getInstance().run();
-    updateDashboard();
-  }
-
-  @Override
-  public void teleopInit() {
-    drivetrain.resetGyro();
-    
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    @Override
+    public void robotInit() {
+        addAutonomousChoices();
     }
-  }
 
- 
-  @Override
-  public void teleopPeriodic() {
-    Scheduler.getInstance().run();
-    updateDashboard();
-  }
+    @Override
+    public void robotPeriodic() {
+    }
 
-  
-  @Override
-  public void testPeriodic() {
-  }
+    @Override
+    public void disabledInit() {
+    }
 
-  public void updateDashboard() {
-    wrist.updateDashboard();
-    panelIntake.updateDashboard();
-  }
+    @Override
+    public void disabledPeriodic() {
+        Scheduler.getInstance().run();
+    }
+
+    @Override
+    public void autonomousInit() {
+        autonomousPosition = chooserPosition.getSelected();
+        if(autonomousPosition == RobotStartPosition.LEFT) {
+            autonomousCommand = new LeftAutoStrategy();
+            autonomousCommand.start();
+        } else if(autonomousPosition == RobotStartPosition.CENTER) {
+            autonomousCommand = new CenterAutoStrategy();
+            autonomousCommand.start();
+        } else if(autonomousPosition == RobotStartPosition.RIGHT) {
+            autonomousCommand = new RightAutoStrategy();
+            autonomousCommand.start();
+        } else if(autonomousPosition == RobotStartPosition.FULLSEND) {
+        } 
+    }
+
+    @Override
+    public void autonomousPeriodic() {
+        Scheduler.getInstance().run();
+        updateDashboard();
+    }
+
+    @Override
+    public void teleopInit() {
+        drivetrain.resetGyro();
+
+        if (autonomousCommand != null) {
+            autonomousCommand.cancel();
+        }
+    }
+
+    @Override
+    public void teleopPeriodic() {
+        Scheduler.getInstance().run();
+        updateDashboard();
+    }
+
+    @Override
+    public void testPeriodic() {
+    }
+
+    private void addAutonomousChoices() {
+        chooserPosition.addDefault("Robot in: LEFT", RobotStartPosition.LEFT);
+        chooserPosition.addObject("Robot in: CENTER", RobotStartPosition.CENTER);
+        chooserPosition.addObject("Robot in: RIGHT", RobotStartPosition.RIGHT);
+        chooserPosition.addObject("Robot in: FULL SEND", RobotStartPosition.FULLSEND);
+    }
+
+    public void updateDashboard() {
+        SmartDashboard.putData("Autonomous Position", chooserPosition);
+        SmartDashboard.putString("Position Choice", autonomousPosition != null ? autonomousPosition.toString() : "");
+        wrist.updateDashboard();
+        panelIntake.updateDashboard();
+    }   
 }

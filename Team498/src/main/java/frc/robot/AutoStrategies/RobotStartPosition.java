@@ -5,24 +5,9 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.AutoStrategies;
 
-import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.Robot;
-
-
-public class PanelIntakeCommand extends InstantCommand {
- 
-  public PanelIntakeCommand() {
-    super("PanelIntakeCommand");
-     requires(Robot.panelIntake);
-  }
-
-  // Called once when the command executes
-  @Override
-  protected void initialize() {
-    Robot.panelIntake.setGrip(true);
-  }
-  
+public enum RobotStartPosition {
+	LEFT, CENTER, RIGHT, FULLSEND;
 
 }
