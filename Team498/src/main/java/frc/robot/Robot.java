@@ -8,7 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,15 +19,19 @@ import frc.robot.subsystems.PanelSubsystem;
 import frc.robot.subsystems.PulleySubsystem;
 import frc.robot.subsystems.ClampSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
+import frc.robot.AutoStrategies.CenterAutoStrategy;
+import frc.robot.AutoStrategies.LeftAutoStrategy;
+import frc.robot.AutoStrategies.RightAutoStrategy;
+import frc.robot.AutoStrategies.RobotStartPosition;
 
 public class Robot extends TimedRobot {
 
-    Command m_autonomousCommand;
-    SendableChooser<Command> m_chooser = new SendableChooser<>();
+    SendableChooser<RobotStartPosition> chooserPosition = new SendableChooser<>();
+    CommandGroup autonomousCommand;
+    RobotStartPosition autonomousPosition;
 
     // Controls
     public static DriverStation driverstation = DriverStation.getInstance();
-  public static ClampSubsystem clamp = new ClampSubsystem();
 
     // instantiate one or more controllers here
     public static Controller driverController = new Controller(ControllerConfiguration.ControllerPort1);
@@ -44,7 +48,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotInit() {
-        SmartDashboard.putData("Auto mode", m_chooser);
+        addAutonomousChoices();
     }
 
     @Override
@@ -62,23 +66,32 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-        m_autonomousCommand = m_chooser.getSelected();
-
-        if (m_autonomousCommand != null) {
-            m_autonomousCommand.start();
+        autonomousPosition = chooserPosition.getSelected();
+        if (autonomousPosition == RobotStartPosition.LEFT) {
+            autonomousCommand = new LeftAutoStrategy();
+            autonomousCommand.start();
+        } else if (autonomousPosition == RobotStartPosition.CENTER) {
+            autonomousCommand = new CenterAutoStrategy();
+            autonomousCommand.start();
+        } else if (autonomousPosition == RobotStartPosition.RIGHT) {
+            autonomousCommand = new RightAutoStrategy();
+            autonomousCommand.start();
+        } else if (autonomousPosition == RobotStartPosition.FULLSEND) {
         }
     }
 
     @Override
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        updateDashboard();
     }
 
     @Override
     public void teleopInit() {
+        drivetrain.resetGyro();
 
-        if (m_autonomousCommand != null) {
-            m_autonomousCommand.cancel();
+        if (autonomousCommand != null) {
+            autonomousCommand.cancel();
         }
     }
 
@@ -92,7 +105,16 @@ public class Robot extends TimedRobot {
     public void testPeriodic() {
     }
 
+    private void addAutonomousChoices() {
+        chooserPosition.addDefault("Robot in: LEFT", RobotStartPosition.LEFT);
+        chooserPosition.addObject("Robot in: CENTER", RobotStartPosition.CENTER);
+        chooserPosition.addObject("Robot in: RIGHT", RobotStartPosition.RIGHT);
+        chooserPosition.addObject("Robot in: FULL SEND", RobotStartPosition.FULLSEND);
+    }
+
     public void updateDashboard() {
+        SmartDashboard.putData("Autonomous Position", chooserPosition);
+        SmartDashboard.putString("Position Choice", autonomousPosition != null ? autonomousPosition.toString() : "");
         wrist.updateDashboard();
         panelIntake.updateDashboard();
     }

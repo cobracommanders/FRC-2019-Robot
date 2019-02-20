@@ -14,50 +14,51 @@ import frc.robot.Robot;
 
 public class PanelOuttakeCommand extends Command {
 
-  private Timer timer;
-  private boolean finished = false;
+    private Timer timer;
+    private boolean finished = false;
 
-  public PanelOuttakeCommand() {
-    super("PanelOuttakeCommand");
-    requires(Robot.panelIntake);
-    timer = new Timer();
-  }
-
-  // Called just before this Command runs the first time
-  @Override
-  protected void initialize() {
-    timer.reset();
-    timer.start();
-  }
-
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() {
-    double t = timer.get();
-      Robot.panelIntake.setGrip(false);
-      Robot.panelIntake.setPush(true);
-
-    if (t > 1.4) {
-      Robot.panelIntake.setPush(false);
-      finished = true;
+    public PanelOuttakeCommand() {
+        super("PanelOuttakeCommand");
+        requires(Robot.panelIntake);
+        timer = new Timer();
     }
-  }
 
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
-  protected boolean isFinished() {
-    return finished;
-  }
+    // Called just before this Command runs the first time
+    @Override
+    protected void initialize() {
+        timer.reset();
+        timer.start();
+    }
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {
-    finished = false;
-  }
+    // Called repeatedly when this Command is scheduled to run
+    @Override
+    protected void execute() {
+        double t = timer.get();
+        Robot.panelIntake.setGrip(false);
+        Robot.panelIntake.setPush(true);
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-  }
+        if (t > 1.4) {
+            Robot.panelIntake.setPush(false);
+            finished = true;
+        }
+
+    }
+
+    // Make this return true when this Command no longer needs to run execute()
+    @Override
+    protected boolean isFinished() {
+        return finished;
+    }
+
+    // Called once after isFinished returns true
+    @Override
+    protected void end() {
+        finished = false;
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    @Override
+    protected void interrupted() {
+    }
 }

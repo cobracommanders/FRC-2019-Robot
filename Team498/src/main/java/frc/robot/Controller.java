@@ -11,10 +11,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 
-
 public class Controller {
-    //controller 
-    private Joystick joystick; 
+    // controller
+    private Joystick joystick;
 
     public JoystickButton buttonA;
     public JoystickButton buttonB;
@@ -37,10 +36,10 @@ public class Controller {
 
     public Controller(int port) {
 
-        //controller
+        // controller
         joystick = new Joystick(port);
 
-        //buttons 
+        // buttons
         buttonA = new JoystickButton(joystick, ControllerConfiguration.ButtonA);
         buttonB = new JoystickButton(joystick, ControllerConfiguration.ButtonB);
         buttonX = new JoystickButton(joystick, ControllerConfiguration.ButtonX);
@@ -51,9 +50,10 @@ public class Controller {
         rightJoyPress = new JoystickButton(joystick, ControllerConfiguration.RightJoyPress);
         start = new JoystickButton(joystick, ControllerConfiguration.ButtonStart);
         back = new JoystickButton(joystick, ControllerConfiguration.ButtonBack);
-        bothJoyPresses = new DoubleButton(joystick, ControllerConfiguration.LeftJoyPress, ControllerConfiguration.RightJoyPress);
+        bothJoyPresses = new DoubleButton(joystick, ControllerConfiguration.LeftJoyPress,
+                ControllerConfiguration.RightJoyPress);
 
-        //Axes 
+        // Axes
         axisLeftX = new JoystickAxis(joystick, ControllerConfiguration.LeftXAxis, 0.2);
         axisLeftY = new JoystickAxis(joystick, ControllerConfiguration.LeftYAxis, 0);
         axisRightX = new JoystickAxis(joystick, ControllerConfiguration.RightXAxis, 0);
@@ -64,12 +64,12 @@ public class Controller {
     }
 
     public class JoystickAxis {
-        //tolerance fixes any issues with the joysticks
-        private Joystick joystick; 
+        // tolerance fixes any issues with the joysticks
+        private Joystick joystick;
         private int axis;
         private double tolerance;
 
-        //this is for the joysticks and the triggers 
+        // this is for the joysticks and the triggers
         public JoystickAxis(Joystick joystick, int axis, double tolerance) {
             this.joystick = joystick;
             this.axis = axis;
@@ -79,18 +79,18 @@ public class Controller {
         public double getAxisValue() {
             return Helpers.normalize(joystick.getRawAxis(axis), tolerance);
         }
-    }    
+    }
 
     public class DoubleButton extends Trigger {
         private Joystick joy;
         private int button1, button2;
-        
+
         public DoubleButton(Joystick joy, int button1, int button2) {
             this.joy = joy;
             this.button1 = button1;
             this.button2 = button2;
-        }	
-        
+        }
+
         public boolean get() {
             return joy.getRawButton(button1) && joy.getRawButton(button2);
         }

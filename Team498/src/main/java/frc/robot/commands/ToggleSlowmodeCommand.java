@@ -11,17 +11,16 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 
 public class ToggleSlowmodeCommand extends InstantCommand {
 
- 
-  public ToggleSlowmodeCommand() {
-    super("ToggleSlowmodeCommand");
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-  }
+    public ToggleSlowmodeCommand() {
+        super("ToggleSlowmodeCommand");
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    }
 
-  // Called once when the command executes
-  @Override
-  protected void initialize() {
-    ManualDriveCommand.slowMode = !ManualDriveCommand.slowMode;
-  }
+    // Called once when the command executes
+    @Override
+    protected void initialize() {
+        ManualDriveCommand.slowMode = !ManualDriveCommand.slowMode;
+    }
 
 }

@@ -17,13 +17,15 @@ import frc.robot.commands.ReleaseClampCommand;
 public class Operator {
 
     public Operator() {
+
         Robot.driverController.back.whenPressed(new ReleaseClampCommand());
         Robot.driverController.start.whenPressed(new ToggleClampCommand());        
         Robot.operatorController.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
         Robot.operatorController.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
         Robot.driverController.rightBumper.whenPressed(new PanelIntakeCommand());
         Robot.driverController.leftBumper.whenPressed(new PanelOuttakeCommand());
-        //Robot.driverController.rightBumper.whenPressed(new ToggleSlowmodeCommand());
+        // Robot.driverController.rightBumper.whenPressed(new ToggleSlowmodeCommand());
+
     }
 
 }
