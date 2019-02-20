@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Spark;
+import frc.robot.commands.ManualPulleyCommand;
 import edu.wpi.first.wpilibj.Victor;
 
 public class PulleySubsystem extends Subsystem {
@@ -16,15 +16,12 @@ public class PulleySubsystem extends Subsystem {
     private static final int leftPulleyMotorChannel = 0;
     private static final int rightPulleyMotorChannel = 0;
 
-    //private Spark leftPulley = new Spark(leftPulleyMotorChannel);
-    //private Spark rightPulley = new Spark(rightPulleyMotorChannel);
-
     private Victor leftPulley = new Victor(leftPulleyMotorChannel);
     private Victor rightPulley = new Victor(rightPulleyMotorChannel);
 
     @Override
     public void initDefaultCommand() {
-
+        setDefaultCommand(new ManualPulleyCommand());
     }
 
     public void setPulleyPower(double power) {
