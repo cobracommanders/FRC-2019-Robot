@@ -17,7 +17,6 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PanelSubsystem;
-import frc.robot.AutoStrategies.TestAuto;
 import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.AutoStrategies.CenterAutoStrategy;
 import frc.robot.AutoStrategies.LeftAutoStrategy;
