@@ -8,27 +8,20 @@
 package frc.robot.AutoStrategies;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.AutoStrategies.AutoCommands.AutoDriveCommand;
+import frc.robot.AutoStrategies.AutoCommands.AutoTurnCommand;
+import frc.robot.commands.PanelOuttakeCommand;
 
 public class RightAutoStrategy extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
-  public RightAutoStrategy() {
-    // Add Commands here:
-    // e.g. addSequential(new Command1());
-    // addSequential(new Command2());
-    // these will run in order.
-
-    // To run multiple commands at the same time,
-    // use addParallel()
-    // e.g. addParallel(new Command1());
-    // addSequential(new Command2());
-    // Command1 and Command2 will run in parallel.
-
-    // A command group will require all of the subsystems that each member
-    // would require.
-    // e.g. if Command1 requires chassis, and Command2 requires arm,
-    // a CommandGroup containing them would require both the chassis and the
-    // arm.
-  }
+ 
+    public RightAutoStrategy() {
+        // 219.25 inches away from cargo ship
+        // 47.88 inches to the right of the cargo ship
+        addSequential(new AutoDriveCommand(.8, 100)); // 80% power, drives forward 100 inches
+        addSequential(new AutoTurnCommand(-90)); // turns 90 degrees
+        addSequential(new AutoDriveCommand(.8, 47.88)); // 80% power, drives forward 47.88 inches
+        addSequential(new AutoTurnCommand(90)); // turns back to facing cargo ship
+        addSequential(new AutoDriveCommand(.8, 119.25)); // 80% power, drives forward 119.25 inches
+        addSequential(new PanelOuttakeCommand());
+    }
 }
