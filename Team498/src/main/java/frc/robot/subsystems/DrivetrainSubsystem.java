@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Pigeon;
 import frc.robot.commands.ManualDriveCommand;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 public class DrivetrainSubsystem extends PIDSubsystem {
 
@@ -48,6 +49,9 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         this.getPIDController().setInputRange(-180, 180);
         this.getPIDController().setOutputRange(-1, 1);
         this.getPIDController().setAbsoluteTolerance(.01); // Was 1 last year
+
+        frontLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+        backRightDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
     }
 
     @Override
