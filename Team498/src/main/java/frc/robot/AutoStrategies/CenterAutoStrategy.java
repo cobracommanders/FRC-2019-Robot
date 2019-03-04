@@ -10,11 +10,14 @@ package frc.robot.AutoStrategies;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.AutoStrategies.AutoCommands.AutoDriveCommand;
 import frc.robot.commands.PanelOuttakeCommand;
+//import frc.robot.AutoStrategies.AutoCommands.AutoTimedDriveCommand;
 
 public class CenterAutoStrategy extends CommandGroup {
 
     public CenterAutoStrategy() {
         // start 8 inches off to the left for this to be accurate
+
+        //addSequential(new AutoTimedDriveCommand(.8, 0, 3));
         addSequential(new AutoDriveCommand(.8, 172.25)); // 80% power and 172.25 inches
         addSequential(new PanelOuttakeCommand()); // place panels
     }
