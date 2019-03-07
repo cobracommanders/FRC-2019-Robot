@@ -16,9 +16,9 @@ import frc.robot.commands.ReleaseClampCommand;
 import frc.robot.AutoStrategies.LeftAutoStrategy;
 import frc.robot.AutoStrategies.RightAutoStrategy;
 import edu.wpi.first.wpilibj.DriverStation;
+import frc.robot.commands.DefenseModeCommand;
 
 public class Operator {
-
 
     public Operator() {
 
@@ -30,13 +30,12 @@ public class Operator {
 
         Robot.driverController.rightBumper.whenPressed(new PanelIntakeCommand());
         Robot.driverController.leftBumper.whenPressed(new PanelOuttakeCommand());
+        Robot.driverController.buttonX.whenPressed(new DefenseModeCommand());
 
         // Robot.driverController.rightBumper.whenPressed(new ToggleSlowmodeCommand());
 
-        if(DriverStation.getInstance().isAutonomous()) {
-            Robot.driverController.buttonA.whenPressed(new LeftAutoStrategy());
-            Robot.driverController.buttonY.whenPressed(new RightAutoStrategy());
-        }
+        Robot.driverController.buttonA.whenPressed(new LeftAutoStrategy());
+        Robot.driverController.buttonY.whenPressed(new RightAutoStrategy());
 
     }
 

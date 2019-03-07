@@ -10,12 +10,14 @@ package frc.robot.AutoStrategies;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.AutoStrategies.AutoCommands.AutoDriveCommand;
 import frc.robot.AutoStrategies.AutoCommands.AutoTurnCommand;
+import edu.wpi.first.wpilibj.DriverStation;
 //import frc.robot.commands.PanelOuttakeCommand;
 //import frc.robot.AutoStrategies.AutoCommands.AutoTimedDriveCommand;
 
 public class RightAutoStrategy extends CommandGroup {
 
     public RightAutoStrategy() {
+        if(DriverStation.getInstance().isAutonomous()){
         // start next to the cargo
         // 219.25 inches away from cargo ship
         // 47.88 inches to the right of the cargo ship
@@ -37,6 +39,6 @@ public class RightAutoStrategy extends CommandGroup {
         addSequential(new AutoDriveCommand(.8, 117.47)); //drives forward 
         addSequential(new AutoTurnCommand(90)); // turns right
         addSequential(new AutoDriveCommand(.8, 61.97)); // drive to loading station
-
+        }
     }
 }
