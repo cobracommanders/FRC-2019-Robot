@@ -17,6 +17,7 @@ import frc.robot.subsystems.WristSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PanelSubsystem;
 import frc.robot.subsystems.PulleySubsystem;
+import frc.robot.subsystems.VisionSubsystem;
 import frc.robot.subsystems.ClampSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
 //import frc.robot.AutoStrategies.CenterAutoStrategy;
@@ -46,11 +47,13 @@ public class Robot extends TimedRobot {
     public static PanelSubsystem panelIntake = new PanelSubsystem();
     public static PulleySubsystem pulley = new PulleySubsystem();
     public static ClampSubsystem clamp = new ClampSubsystem();
+    public static VisionSubsystem vision = new VisionSubsystem();
 
     public static Operator operator = new Operator();
 
     @Override
     public void robotInit() {
+        vision.startCapture();
         //addAutonomousChoices();
     }
 
