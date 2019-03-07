@@ -17,6 +17,7 @@ import frc.robot.AutoStrategies.LeftAutoStrategy;
 import frc.robot.AutoStrategies.RightAutoStrategy;
 import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.commands.DefenseModeCommand;
+import frc.robot.commands.AutoWristCommand;
 
 public class Operator {
 
@@ -27,6 +28,9 @@ public class Operator {
 
         Robot.operatorController.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
         Robot.operatorController.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
+
+        Robot.operatorController.leftBumper.whenPressed(new AutoWristCommand(true));
+        Robot.operatorController.rightBumper.whenPressed(new AutoWristCommand(false));
 
         Robot.driverController.rightBumper.whenPressed(new PanelIntakeCommand());
         Robot.driverController.leftBumper.whenPressed(new PanelOuttakeCommand());

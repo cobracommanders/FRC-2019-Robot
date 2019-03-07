@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -124,8 +125,8 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         return -gyro.getAngle();
     }
 
-    public void usePIDOutput(double PIDInput) {
-        drive.arcadeDrive(this.currentMove, PIDInput);
+    public void usePIDOutput(double PIDOutput) {
+        drive.arcadeDrive(this.currentMove, PIDOutput);
     }
 
 }
