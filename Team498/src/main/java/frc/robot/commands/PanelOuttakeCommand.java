@@ -37,7 +37,7 @@ public class PanelOuttakeCommand extends Command {
         Robot.panelIntake.setGrip(false);
         Robot.panelIntake.setPush(true);
 
-        if (t > 1.4) {
+        if (t > .5) {
             Robot.panelIntake.setPush(false);
             finished = true;
         }
