@@ -13,18 +13,30 @@ import frc.robot.commands.ToggleIntakeCommand;
 import frc.robot.commands.ToggleSlowmodeCommand;
 import frc.robot.commands.ToggleClampCommand;
 import frc.robot.commands.ReleaseClampCommand;
+import frc.robot.AutoStrategies.LeftAutoStrategy;
+import frc.robot.AutoStrategies.RightAutoStrategy;
+import edu.wpi.first.wpilibj.DriverStation;
 
 public class Operator {
+
 
     public Operator() {
 
         Robot.driverController.back.whenPressed(new ReleaseClampCommand());
-        Robot.driverController.start.whenPressed(new ToggleClampCommand());        
+        Robot.driverController.start.whenPressed(new ToggleClampCommand());
+
         Robot.operatorController.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
         Robot.operatorController.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
+
         Robot.driverController.rightBumper.whenPressed(new PanelIntakeCommand());
         Robot.driverController.leftBumper.whenPressed(new PanelOuttakeCommand());
+
         // Robot.driverController.rightBumper.whenPressed(new ToggleSlowmodeCommand());
+
+        if(DriverStation.getInstance().isAutonomous()) {
+            Robot.driverController.buttonA.whenPressed(new LeftAutoStrategy());
+            Robot.driverController.buttonY.whenPressed(new RightAutoStrategy());
+        }
 
     }
 
