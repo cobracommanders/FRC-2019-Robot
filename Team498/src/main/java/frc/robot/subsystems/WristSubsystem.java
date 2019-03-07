@@ -41,7 +41,8 @@ public class WristSubsystem extends PIDSubsystem {
         this.getPIDController().setInputRange(0, 130);
         this.getPIDController().setOutputRange(-1, 1);
         this.getPIDController().setAbsoluteTolerance(.01); // Was 1 last year
-        this.getPIDController().enable();
+        this.getPIDController().disable(); //testing purposes
+        //this.getPIDController().enable();
 
     }
 
