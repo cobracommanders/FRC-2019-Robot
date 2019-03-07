@@ -9,8 +9,11 @@ package frc.robot.commands;
 
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Timer;
 
 public class DefenseModeCommand extends Command {
+  private Timer timer;
+
   public DefenseModeCommand() {
     super("DefenseModeCommand");
     requires(Robot.wrist);
@@ -22,19 +25,28 @@ public class DefenseModeCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    timer.reset();
+    timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    double t = timer.get();
     Robot.panelIntake.setGrip(true);
     Robot.panelIntake.setPush(false);
+    
+    if (t < 1) {
+      Robot.wrist.wristPower(.4);
+    } else {
+      Robot.wrist.wristPower(0);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

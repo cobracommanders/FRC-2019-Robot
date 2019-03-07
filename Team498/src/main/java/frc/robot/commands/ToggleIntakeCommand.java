@@ -15,10 +15,10 @@ public class ToggleIntakeCommand extends Command {
     private double leftPower;
     private double rightPower;
 
-    public ToggleIntakeCommand(double leftPower, double rightPower) {
+    public ToggleIntakeCommand() {
         super("ToggleIntakeCommand");
-        this.leftPower = leftPower;
-        this.rightPower = rightPower;
+        //this.leftPower = leftPower;
+        //this.rightPower = rightPower;
         requires(Robot.intake);
     }
 
@@ -28,16 +28,25 @@ public class ToggleIntakeCommand extends Command {
 
     @Override
     protected void execute() {
-        if (Robot.intake.getLastLeft() == leftPower) {
-            Robot.intake.setIntake(0, 0);
-        } else {
-            Robot.intake.setIntake(leftPower, rightPower);
+        double power = Robot.driverController.axisRightTrigger.getAxisValue() - Robot.driverController.axisLeftTrigger.getAxisValue();
+        if(power > .1){
+            Robot.intake.setIntake(1, 1);
+        }else if(power < -.1){
+            Robot.intake.setIntake(-.5,-.5);
+        }else{
+            Robot.intake.setIntake(0,0);
         }
+        
+        //if (Robot.intake.getLastLeft() == leftPower) {
+            //Robot.intake.setIntake(0, 0);
+       // } else {
+            //Robot.intake.setIntake(leftPower, rightPower);
+       // }
     }
 
     @Override
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     @Override
