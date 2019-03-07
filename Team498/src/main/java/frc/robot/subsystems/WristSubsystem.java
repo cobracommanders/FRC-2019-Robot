@@ -18,14 +18,20 @@ import edu.wpi.first.wpilibj.DigitalInput;
 
 public class WristSubsystem extends PIDSubsystem {
     private static final int wristMotorChannel = 6;
-    private static final int wristEncoderChannelA = 2;
-    private static final int wristEncoderChannelB = 3;
-    private static final int inLimitSwitchChannel = 0;
-    private static final int outLimitSwitchChannel = 1;
+    private static final int wristEncoderChannelA = 0;
+    private static final int wristEncoderChannelB = 1;
+    private static final int inLimitSwitchChannel = 2;
+    private static final int outLimitSwitchChannel = 3;
+
+    //Good start is to have p = 0.1, i = 0.0, and d = 0.0
+    private static final double p = 0.1;  //Increase slowly until it just undershoots, then
+    private static final double i = 0.0;  //Increase slowly until it oscilates, then
+    private static final double d = 0.0;  //Increase slowly until it doesn't oscilate
 
     private int target = 0;
 
-    private double distancePerPulse = 360 / (4096 * 150); // does the math to change to degrees. 1 to 150 gear ratio
+    //Does the math to convert pulses into degrees, 4096 pulses per rotation and gear ratio of 150
+    private double distancePerPulse = 360.0 / (4096.0 * 150.0);
 
     private CANSparkMax wrist = new CANSparkMax(wristMotorChannel, MotorType.kBrushed);
 
@@ -35,7 +41,7 @@ public class WristSubsystem extends PIDSubsystem {
     private Encoder encoder = new Encoder(wristEncoderChannelA, wristEncoderChannelB);
 
     public WristSubsystem() {
-        super("WristSubsystem", 0.1, 0.01, 0.1);
+        super("WristSubsystem", p, i, d);
         this.encoder.setDistancePerPulse(distancePerPulse);
         this.getPIDController().setContinuous(false);
         this.getPIDController().setInputRange(0, 130);
@@ -79,7 +85,7 @@ public class WristSubsystem extends PIDSubsystem {
     }
 
     public double returnPIDInput() {
-        return encoder.get(); // TODO: UPDATE TO WHAT WE ACTUALLY READ TO GET THIS
+        return encoder.getDistance(); // TODO: UPDATE TO WHAT WE ACTUALLY READ TO GET THIS
     }
 
     public void usePIDOutput(double PIDOutput) {

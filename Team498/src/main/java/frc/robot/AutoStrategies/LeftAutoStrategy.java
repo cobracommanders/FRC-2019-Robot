@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 public class LeftAutoStrategy extends CommandGroup {
 
     public LeftAutoStrategy() {
-        if(DriverStation.getInstance().isAutonomous()){
+        if (DriverStation.getInstance().isAutonomous()) {
         // start next to the cargo
         /*
         // 219.25 inches away from cargo ship
@@ -41,6 +41,5 @@ public class LeftAutoStrategy extends CommandGroup {
         addSequential(new AutoTurnCommand(-90)); // turns left
         addSequential(new AutoDriveCommand(.8, 61.97)); // drive to loading station
         }
-
     }
 }

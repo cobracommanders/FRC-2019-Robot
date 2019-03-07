@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 public class RightAutoStrategy extends CommandGroup {
 
     public RightAutoStrategy() {
-        if(DriverStation.getInstance().isAutonomous()){
+        if (DriverStation.getInstance().isAutonomous()) {
         // start next to the cargo
         // 219.25 inches away from cargo ship
         // 47.88 inches to the right of the cargo ship

@@ -26,8 +26,8 @@ public class Operator {
         Robot.driverController.back.whenPressed(new ReleaseClampCommand());
         Robot.driverController.start.whenPressed(new ToggleClampCommand());
 
-        Robot.operatorController.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
-        Robot.operatorController.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
+        Robot.driverController.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
+        Robot.driverController.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
 
         Robot.operatorController.leftBumper.whenPressed(new AutoWristCommand(true));
         Robot.operatorController.rightBumper.whenPressed(new AutoWristCommand(false));
