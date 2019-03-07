@@ -37,7 +37,7 @@ public class DefenseModeCommand extends Command {
     Robot.panelIntake.setPush(false);
     
     if (t < 1) {
-      Robot.wrist.wristPower(.4);
+      Robot.wrist.wristPower(-1);
     } else {
       Robot.wrist.wristPower(0);
     }
