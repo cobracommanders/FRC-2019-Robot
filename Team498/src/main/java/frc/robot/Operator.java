@@ -42,7 +42,6 @@ public class Operator {
         Robot.driverController.buttonY.whenPressed(new RightAutoStrategy());
 
         Robot.operatorController.buttonX.whenPressed(new DefenseModeCommand());
-
     }
 
 }

@@ -12,8 +12,8 @@ import frc.robot.Robot;
 
 public class ToggleIntakeCommand extends Command {
 
-    private double leftPower;
-    private double rightPower;
+    //private double leftPower;
+    //private double rightPower;
 
     public ToggleIntakeCommand() {
         super("ToggleIntakeCommand");
@@ -30,11 +30,11 @@ public class ToggleIntakeCommand extends Command {
     protected void execute() {
         double power = Robot.driverController.axisRightTrigger.getAxisValue() - Robot.driverController.axisLeftTrigger.getAxisValue();
         if(power > .1){
-            Robot.intake.setIntake(1, 1);
+            Robot.intake.setIntake(.6, .6);
         }else if(power < -.1){
             Robot.intake.setIntake(-.5,-.5);
         }else{
-            Robot.intake.setIntake(0,0);
+            Robot.intake.setIntake(0, 0);
         }
         
         //if (Robot.intake.getLastLeft() == leftPower) {
