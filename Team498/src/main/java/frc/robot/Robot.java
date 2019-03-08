@@ -73,6 +73,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+        drivetrain.resetEncoders();
         wrist.resetEncoder();
     
         /*autonomousPosition = chooserPosition.getSelected();
@@ -128,5 +129,6 @@ public class Robot extends TimedRobot {
         //SmartDashboard.putString("Position Choice", autonomousPosition != null ? autonomousPosition.toString() : "");
         wrist.updateDashboard();
         panelIntake.updateDashboard();
+        drivetrain.updateDashboard();
     }
 }

@@ -31,7 +31,6 @@ public class WristSubsystem extends PIDSubsystem {
     private int target = 0;
 
     public double encoderOrigin = 0;
-
     //Does the math to convert pulses into degrees, 4096 pulses per rotation and gear ratio of 150
     private double distancePerPulse = 360.0 / (4096.0 * 150.0);
 
@@ -46,17 +45,16 @@ public class WristSubsystem extends PIDSubsystem {
         super("WristSubsystem", p, i, d);
         this.encoder.setDistancePerPulse(distancePerPulse);
         this.getPIDController().setContinuous(false);
-        this.getPIDController().setInputRange(0, 110);
+        this.getPIDController().setInputRange(0, 115);
         this.getPIDController().setOutputRange(-1, 1);
-        this.getPIDController().setAbsoluteTolerance(.01); // Was 1 last year
-        this.getPIDController().disable(); //testing purposes
-        //this.getPIDController().enable();
+        this.getPIDController().setAbsoluteTolerance(.15); // Was 1 last year
+        this.getPIDController().enable();
 
     }
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new ManualWristCommand());
+        //setDefaultCommand(new ManualWristCommand());
     }
 
     public void setTarget(boolean isGoingUp) {
@@ -65,7 +63,7 @@ public class WristSubsystem extends PIDSubsystem {
                 target--;
             }
         } else {
-            if (target < 1) {
+            if (target < 2) {
                 target++;
             }
         }
@@ -74,13 +72,16 @@ public class WristSubsystem extends PIDSubsystem {
             this.getPIDController().setSetpoint(0); // All the way in to be changed
             break;
         case 1:
-            this.getPIDController().setSetpoint(110); // Intake / down angle to be changed
+            this.getPIDController().setSetpoint(45);
+            break;
+        case 2:
+            this.getPIDController().setSetpoint(115); // Intake / down angle to be changed
             break;
         }
     }
 
     public void wristPower(double power) {
-        wrist.set(.4 * power);
+        wrist.set(.3 * power);
     }
 
     public void resetEncoder() {
@@ -95,7 +96,16 @@ public class WristSubsystem extends PIDSubsystem {
     }
 
     public void usePIDOutput(double PIDOutput) {
-        wristPower(PIDOutput);
+        if (inLimitSwitch.get() && PIDOutput < 0) {
+            wristPower(0);
+        } else if(outLimitSwitch.get() && PIDOutput > 0) {
+            wristPower(0);
+        } else if (target == 2){
+            wristPower(PIDOutput * .5);
+        }else{
+            wristPower(PIDOutput);
+        }
+        SmartDashboard.putNumber("PID Output", PIDOutput);
     }
 
     public void updateDashboard() {
@@ -106,6 +116,7 @@ public class WristSubsystem extends PIDSubsystem {
         SmartDashboard.putBoolean("InLimitSwitchValue", inLimitSwitch.get());
         SmartDashboard.putBoolean("OutLimitSwitchValue", outLimitSwitch.get());
         SmartDashboard.putNumber("PIDInput", returnPIDInput());
-
+        SmartDashboard.putNumber("PID SetPoint", getSetpoint());
+        
     }
 }

@@ -26,8 +26,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
 
     private static final double WheelDiameter = 4; // 4 inch wheels.
     private static final double PulsePerRevolution = 4096;
-    private static final double GearRatio = 10;
-    private static final double DistancePerPulse = WheelDiameter / (PulsePerRevolution * GearRatio);
+    private static final double DistancePerPulse = (WheelDiameter * Math.PI) / (PulsePerRevolution);
 
     private double currentMove;
 
@@ -97,9 +96,9 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     public double getDistance() {
         // frontLeftDrive.getSelectedSensorPosition();
         double frontLeftDistance = frontLeftDrive.getSelectedSensorPosition();
-        double backRightDistance = backLeftDrive.getSelectedSensorPosition();
+        double backRightDistance = backRightDrive.getSelectedSensorPosition();
 
-        double distanceInPulses = ((frontLeftDistance + backRightDistance) / 2);
+        double distanceInPulses = ((frontLeftDistance - backRightDistance) / 2);
 
         double distance = distanceInPulses * DistancePerPulse;
 
@@ -117,7 +116,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     public void updateDashboard() {
         SmartDashboard.putNumber("Angle X", gyro.getAngle());
         SmartDashboard.putNumber("Left Encoder", frontLeftDrive.getSensorCollection().getQuadraturePosition());
-        SmartDashboard.putNumber("Right Encoder", backLeftDrive.getSensorCollection().getQuadraturePosition());
+        SmartDashboard.putNumber("Right Encoder", backRightDrive.getSensorCollection().getQuadraturePosition());
         SmartDashboard.putNumber("DriveDistance", getDistance());
     }
 
