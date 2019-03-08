@@ -61,7 +61,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     }
 
     public void drive(double move, double turn) {
-        drive.arcadeDrive(move, turn);
+        drive.arcadeDrive(move, turn * .7);
         this.currentMove = move;
 
         // Replacement code if we want PID turn in teleop

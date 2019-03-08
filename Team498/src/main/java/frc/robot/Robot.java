@@ -73,6 +73,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+        wrist.resetEncoder();
     
         /*autonomousPosition = chooserPosition.getSelected();
         if (autonomousPosition == RobotStartPosition.LEFT) {
