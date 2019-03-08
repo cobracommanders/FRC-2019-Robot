@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ManualWristCommand;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -54,7 +53,6 @@ public class WristSubsystem extends PIDSubsystem {
 
     @Override
     public void initDefaultCommand() {
-        //setDefaultCommand(new ManualWristCommand());
     }
 
     public void setTarget(boolean isGoingUp) {

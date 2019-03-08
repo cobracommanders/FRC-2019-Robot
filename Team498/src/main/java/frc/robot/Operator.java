@@ -9,7 +9,7 @@ package frc.robot;
 
 import frc.robot.commands.PanelIntakeCommand;
 import frc.robot.commands.PanelOuttakeCommand;
-import frc.robot.commands.ToggleIntakeCommand;
+import frc.robot.commands.ManualIntakeCommand;
 import frc.robot.commands.ToggleSlowmodeCommand;
 import frc.robot.commands.ToggleClampCommand;
 import frc.robot.commands.ReleaseClampCommand;
