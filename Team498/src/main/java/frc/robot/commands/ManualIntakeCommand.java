@@ -23,12 +23,11 @@ public class ManualIntakeCommand extends Command {
 
     @Override
     protected void execute() {
-        double power = Robot.driverController.axisRightTrigger.getAxisValue()
-                - Robot.driverController.axisLeftTrigger.getAxisValue();
-        if (Robot.wrist.returnPIDInput() > 100) {
-            Robot.intake.setIntake(-.5, -.5);
+        double power = Robot.driverController.axisRightTrigger.getAxisValue()- Robot.operatorController.axisLeftTrigger.getAxisValue();
+        if (Robot.operatorController.axisRightTrigger.getAxisValue() > .1) {
+            Robot.intake.setIntake(.4, .4);
         } else if (power > .1) {
-            Robot.intake.setIntake(.6, .6);
+            Robot.intake.setIntake(.69, .69); // Rocket is .38
         } else if (power < -.1) {
             Robot.intake.setIntake(-.5, -.5);
         } else {

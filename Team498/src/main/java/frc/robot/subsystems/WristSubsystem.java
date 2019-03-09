@@ -70,7 +70,7 @@ public class WristSubsystem extends PIDSubsystem {
             this.getPIDController().setSetpoint(0); // All the way in to be changed
             break;
         case 1:
-            this.getPIDController().setSetpoint(45);
+            this.getPIDController().setSetpoint(38);
             break;
         case 2:
             this.getPIDController().setSetpoint(115); // Intake / down angle to be changed

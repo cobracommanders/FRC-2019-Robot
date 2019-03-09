@@ -27,7 +27,7 @@ public class PanelSubsystem extends Subsystem {
 
     public PanelSubsystem() {
         super("PanelSubsystem");
-        this.grip.set(Value.kReverse);
+        this.grip.set(Value.kForward);
         this.push.set(Value.kForward);
     }
 
@@ -38,10 +38,10 @@ public class PanelSubsystem extends Subsystem {
     public void setGrip(boolean holdingOnToHatch) {
         if (holdingOnToHatch) {
             this.holdingOnToHatch = holdingOnToHatch;
-            grip.set(Value.kReverse);
+            grip.set(Value.kForward);
         } else {
             this.holdingOnToHatch = holdingOnToHatch;
-            grip.set(Value.kForward);
+            grip.set(Value.kReverse);
         }
         
     }

@@ -26,14 +26,11 @@ public class Operator {
         Robot.driverController.back.whenPressed(new ReleaseClampCommand());
         Robot.driverController.start.whenPressed(new ToggleClampCommand());
 
-        //Robot.driverController.buttonB.whenPressed(new ToggleIntakeCommand(1, 1));
-        //Robot.driverController.buttonX.whenPressed(new ToggleIntakeCommand(-.4, -.4));
-
         Robot.operatorController.leftBumper.whenPressed(new AutoWristCommand(true));
         Robot.operatorController.rightBumper.whenPressed(new AutoWristCommand(false));
 
-        Robot.driverController.rightBumper.whenPressed(new PanelIntakeCommand());
-        Robot.driverController.leftBumper.whenPressed(new PanelOuttakeCommand());
+        Robot.driverController.leftBumper.whenPressed(new PanelIntakeCommand());
+        Robot.driverController.rightBumper.whenPressed(new PanelOuttakeCommand());
         Robot.driverController.buttonX.whenPressed(new DefenseModeCommand());
 
         // Robot.driverController.rightBumper.whenPressed(new ToggleSlowmodeCommand());
