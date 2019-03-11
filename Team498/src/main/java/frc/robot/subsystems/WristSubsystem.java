@@ -27,7 +27,7 @@ public class WristSubsystem extends PIDSubsystem {
     private static final double i = 0.0;  //Increase slowly until it oscilates, then
     private static final double d = 0.0;  //Increase slowly until it doesn't oscilate
 
-    private int target = 0;
+    public int target = 0;
 
     public double encoderOrigin = 0;
     //Does the math to convert pulses into degrees, 4096 pulses per rotation and gear ratio of 150

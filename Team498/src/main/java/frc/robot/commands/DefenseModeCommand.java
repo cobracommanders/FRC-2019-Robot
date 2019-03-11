@@ -31,7 +31,7 @@ public class DefenseModeCommand extends Command {
   protected void execute() {
     Robot.panelIntake.setPush(false);
     Robot.panelIntake.setGrip(true);
-    Robot.wrist.setSetpoint(0);
+    Robot.wrist.target = 0;
   }
 
   // Make this return true when this Command no longer needs to run execute()
