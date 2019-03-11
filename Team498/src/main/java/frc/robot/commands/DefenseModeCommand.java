@@ -25,22 +25,15 @@ public class DefenseModeCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    timer.reset();
-    timer.start();
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double t = timer.get();
     Robot.panelIntake.setGrip(true);
     Robot.panelIntake.setPush(false);
-    
-    if (t < 1) {
-      Robot.wrist.wristPower(-1);
-    } else {
-      Robot.wrist.wristPower(0);
-    }
+    Robot.wrist.setSetpoint(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
