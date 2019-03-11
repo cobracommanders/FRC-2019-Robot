@@ -28,11 +28,13 @@ public class ManualDriveCommand extends Command {
         double move = Robot.driverController.axisLeftY.getAxisValue();
         double turn = Robot.driverController.axisRightX.getAxisValue();
 
+        //slowmode
         if (Robot.driverController.axisLeftTrigger.getAxisValue() > .1) {
             move *= 0.8;
             turn *= 0.7;
         } 
 
+        //when left joypress is true turn will be at 100% 
         if (!Robot.driverController.leftJoyPress.get()) {
             turn *= .85;
         }
