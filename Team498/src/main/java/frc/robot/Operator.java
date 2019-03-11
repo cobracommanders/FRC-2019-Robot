@@ -9,13 +9,10 @@ package frc.robot;
 
 import frc.robot.commands.PanelIntakeCommand;
 import frc.robot.commands.PanelOuttakeCommand;
-import frc.robot.commands.ManualIntakeCommand;
-import frc.robot.commands.ToggleSlowmodeCommand;
 import frc.robot.commands.ToggleClampCommand;
 import frc.robot.commands.ReleaseClampCommand;
 import frc.robot.AutoStrategies.LeftAutoStrategy;
 import frc.robot.AutoStrategies.RightAutoStrategy;
-import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.commands.DefenseModeCommand;
 import frc.robot.commands.AutoWristCommand;
 
@@ -31,9 +28,8 @@ public class Operator {
 
         Robot.driverController.leftBumper.whenPressed(new PanelIntakeCommand());
         Robot.driverController.rightBumper.whenPressed(new PanelOuttakeCommand());
-        Robot.driverController.buttonX.whenPressed(new DefenseModeCommand());
 
-        // Robot.driverController.rightBumper.whenPressed(new ToggleSlowmodeCommand());
+        Robot.driverController.buttonX.whenPressed(new DefenseModeCommand());
 
         Robot.driverController.buttonA.whenPressed(new LeftAutoStrategy());
         Robot.driverController.buttonY.whenPressed(new RightAutoStrategy());
