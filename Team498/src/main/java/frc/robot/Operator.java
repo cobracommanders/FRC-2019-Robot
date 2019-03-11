@@ -23,8 +23,8 @@ public class Operator {
 
     public Operator() {
 
-        Robot.driverController.back.whenPressed(new ReleaseClampCommand());
-        Robot.driverController.start.whenPressed(new ToggleClampCommand());
+        Robot.operatorController.back.whenPressed(new ReleaseClampCommand());
+        Robot.operatorController.start.whenPressed(new ToggleClampCommand());
 
         Robot.operatorController.leftBumper.whenPressed(new AutoWristCommand(true));
         Robot.operatorController.rightBumper.whenPressed(new AutoWristCommand(false));

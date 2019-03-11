@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 //import frc.robot.AutoStrategies.LeftAutoStrategy;
 //import frc.robot.AutoStrategies.RightAutoStrategy;
 //import frc.robot.AutoStrategies.RobotStartPosition;
+import edu.wpi.first.wpilibj.Timer;
 
 public class Robot extends TimedRobot {
 
@@ -50,7 +51,6 @@ public class Robot extends TimedRobot {
     public static VisionSubsystem vision = new VisionSubsystem();
 
     public static Operator operator = new Operator();
-
     @Override
     public void robotInit() {
         vision.startCapture();
@@ -100,7 +100,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         drivetrain.resetGyro();
-
+        //clamp.startClampTimer();
         /*if (autonomousCommand != null) {
             autonomousCommand.cancel();
         }
@@ -111,10 +111,12 @@ public class Robot extends TimedRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         updateDashboard();
+        
     }
 
     @Override
     public void testPeriodic() {
+
     }
 
     /*private void addAutonomousChoices() {
@@ -130,5 +132,6 @@ public class Robot extends TimedRobot {
         wrist.updateDashboard();
         panelIntake.updateDashboard();
         drivetrain.updateDashboard();
+        clamp.updateDashboard();
     }
 }

@@ -24,8 +24,12 @@ public class ManualPulleyCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-       // double power = Robot.operatorController.axisLeftY.getAxisValue();
-       // Robot.pulley.setPulleyPower(power);
+        double power = Robot.operatorController.axisLeftY.getAxisValue();
+       if(Math.abs(power) > .2){
+        Robot.pulley.setPulleyPower(power);
+       }else{
+           Robot.pulley.setPulleyPower(0);
+       }
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ToggleClampCommand;
+import edu.wpi.first.wpilibj.Timer;
 
 public class ClampSubsystem extends Subsystem {
   private static final int clampForwardChannel = 4;
@@ -23,6 +25,10 @@ public class ClampSubsystem extends Subsystem {
 
   private Solenoid open = new Solenoid(releaseChannel);
 
+  private Timer timer;
+
+  private boolean matchStarted = false;
+
   public ClampSubsystem() {
     super("ClampSubsystem");
     this.clamp.set(Value.kOff);
@@ -33,7 +39,7 @@ public class ClampSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    
+    //setDefaultCommand(new ClampChecker());
   }
 
   public void setClamp() {
@@ -47,5 +53,32 @@ public class ClampSubsystem extends Subsystem {
 
   public void releaseClamps() {
       open.set(true);
+  }
+
+  public void shutDownClamps() {
+    if(matchStarted){
+    clamp.set(Value.kForward);
+
+    }
+  }
+
+  public void startClampTimer() {
+    timer.reset();
+    timer.start();
+  }
+  /*
+  public boolean checkShutdownPoint() {
+    double t = timer.get();
+    if(t >= 134){
+      shutDownClamps();
+      return true;
+    }else{
+      return false;
+    }
+  }
+  */
+
+  public void updateDashboard() {
+    //SmartDashboard.putBoolean("ShutDownPoint", checkShutdownPoint());
   }
 }
