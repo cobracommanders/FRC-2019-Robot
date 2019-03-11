@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Pigeon;
 import frc.robot.commands.ManualDriveCommand;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 public class DrivetrainSubsystem extends PIDSubsystem {
 
@@ -24,8 +26,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
 
     private static final double WheelDiameter = 4; // 4 inch wheels.
     private static final double PulsePerRevolution = 4096;
-    private static final double GearRatio = 10;
-    private static final double DistancePerPulse = WheelDiameter / (PulsePerRevolution * GearRatio);
+    private static final double DistancePerPulse = (WheelDiameter * Math.PI) / (PulsePerRevolution);
 
     private double currentMove;
 
@@ -48,6 +49,9 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         this.getPIDController().setInputRange(-180, 180);
         this.getPIDController().setOutputRange(-1, 1);
         this.getPIDController().setAbsoluteTolerance(.01); // Was 1 last year
+
+        frontLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+        backRightDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
     }
 
     @Override
@@ -56,7 +60,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     }
 
     public void drive(double move, double turn) {
-        drive.arcadeDrive(move, turn);
+        drive.arcadeDrive(move, turn * .85);
         this.currentMove = move;
 
         // Replacement code if we want PID turn in teleop
@@ -92,9 +96,9 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     public double getDistance() {
         // frontLeftDrive.getSelectedSensorPosition();
         double frontLeftDistance = frontLeftDrive.getSelectedSensorPosition();
-        double backRightDistance = backLeftDrive.getSelectedSensorPosition();
+        double backRightDistance = backRightDrive.getSelectedSensorPosition();
 
-        double distanceInPulses = ((frontLeftDistance + backRightDistance) / 2);
+        double distanceInPulses = ((frontLeftDistance - backRightDistance) / 2);
 
         double distance = distanceInPulses * DistancePerPulse;
 
@@ -112,7 +116,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     public void updateDashboard() {
         SmartDashboard.putNumber("Angle X", gyro.getAngle());
         SmartDashboard.putNumber("Left Encoder", frontLeftDrive.getSensorCollection().getQuadraturePosition());
-        SmartDashboard.putNumber("Right Encoder", backLeftDrive.getSensorCollection().getQuadraturePosition());
+        SmartDashboard.putNumber("Right Encoder", backRightDrive.getSensorCollection().getQuadraturePosition());
         SmartDashboard.putNumber("DriveDistance", getDistance());
     }
 
@@ -120,8 +124,8 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         return -gyro.getAngle();
     }
 
-    public void usePIDOutput(double PIDInput) {
-        drive.arcadeDrive(this.currentMove, PIDInput);
+    public void usePIDOutput(double PIDOutput) {
+        drive.arcadeDrive(this.currentMove, PIDOutput);
     }
 
 }

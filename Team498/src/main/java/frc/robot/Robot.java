@@ -17,18 +17,22 @@ import frc.robot.subsystems.WristSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PanelSubsystem;
 import frc.robot.subsystems.PulleySubsystem;
+import frc.robot.subsystems.VisionSubsystem;
 import frc.robot.subsystems.ClampSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
-import frc.robot.AutoStrategies.CenterAutoStrategy;
-import frc.robot.AutoStrategies.LeftAutoStrategy;
-import frc.robot.AutoStrategies.RightAutoStrategy;
-import frc.robot.AutoStrategies.RobotStartPosition;
+//import frc.robot.AutoStrategies.CenterAutoStrategy;
+//import frc.robot.AutoStrategies.LeftAutoStrategy;
+//import frc.robot.AutoStrategies.RightAutoStrategy;
+//import frc.robot.AutoStrategies.RobotStartPosition;
+import edu.wpi.first.wpilibj.Timer;
 
 public class Robot extends TimedRobot {
 
-    SendableChooser<RobotStartPosition> chooserPosition = new SendableChooser<>();
-    CommandGroup autonomousCommand;
-    RobotStartPosition autonomousPosition;
+
+
+    //SendableChooser<RobotStartPosition> chooserPosition = new SendableChooser<>();
+    //CommandGroup autonomousCommand;
+    //RobotStartPosition autonomousPosition;
 
     // Controls
     public static DriverStation driverstation = DriverStation.getInstance();
@@ -44,16 +48,18 @@ public class Robot extends TimedRobot {
     public static PanelSubsystem panelIntake = new PanelSubsystem();
     public static PulleySubsystem pulley = new PulleySubsystem();
     public static ClampSubsystem clamp = new ClampSubsystem();
+    public static VisionSubsystem vision = new VisionSubsystem();
 
     public static Operator operator = new Operator();
-
     @Override
     public void robotInit() {
-        addAutonomousChoices();
+        vision.startCapture();
+        //addAutonomousChoices();
     }
 
     @Override
     public void robotPeriodic() {
+        updateDashboard();
     }
 
     @Override
@@ -67,7 +73,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-        autonomousPosition = chooserPosition.getSelected();
+        drivetrain.resetEncoders();
+        wrist.resetEncoder();
+    
+        /*autonomousPosition = chooserPosition.getSelected();
         if (autonomousPosition == RobotStartPosition.LEFT) {
             autonomousCommand = new LeftAutoStrategy();
             autonomousCommand.start();
@@ -79,6 +88,7 @@ public class Robot extends TimedRobot {
             autonomousCommand.start();
         } else if (autonomousPosition == RobotStartPosition.FULLSEND) {
         }
+        */
     }
 
     @Override
@@ -90,33 +100,38 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         drivetrain.resetGyro();
-
-        if (autonomousCommand != null) {
+        //clamp.startClampTimer();
+        /*if (autonomousCommand != null) {
             autonomousCommand.cancel();
         }
+        */
     }
 
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         updateDashboard();
+        
     }
 
     @Override
     public void testPeriodic() {
+
     }
 
-    private void addAutonomousChoices() {
+    /*private void addAutonomousChoices() {
         chooserPosition.addDefault("Robot in: LEFT", RobotStartPosition.LEFT);
         chooserPosition.addObject("Robot in: CENTER", RobotStartPosition.CENTER);
         chooserPosition.addObject("Robot in: RIGHT", RobotStartPosition.RIGHT);
         chooserPosition.addObject("Robot in: FULL SEND", RobotStartPosition.FULLSEND);
     }
-
+    */
     public void updateDashboard() {
-        SmartDashboard.putData("Autonomous Position", chooserPosition);
-        SmartDashboard.putString("Position Choice", autonomousPosition != null ? autonomousPosition.toString() : "");
+        //SmartDashboard.putData("Autonomous Position", chooserPosition);
+        //SmartDashboard.putString("Position Choice", autonomousPosition != null ? autonomousPosition.toString() : "");
         wrist.updateDashboard();
         panelIntake.updateDashboard();
+        drivetrain.updateDashboard();
+        clamp.updateDashboard();
     }
 }

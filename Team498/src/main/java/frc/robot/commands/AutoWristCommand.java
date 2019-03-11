@@ -7,19 +7,31 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
-public class ToggleClampCommand extends InstantCommand {
+/**
+ * Add your docs here.
+ */
+public class AutoWristCommand extends InstantCommand {
+  /**
+   * Add your docs here.
+   */
+  boolean isGoingUp;
 
-  public ToggleClampCommand() {
-    super("ToggleClamp");
-    requires(Robot.clamp);
+  public AutoWristCommand(boolean isGoingUp) {
+    super("AutoWristCommand");
+    requires(Robot.wrist);
+    this.isGoingUp = isGoingUp;
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
+  // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.clamp.setClamp();
+    Robot.wrist.setTarget(isGoingUp);
+
   }
+
 }

@@ -10,15 +10,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ToggleIntakeCommand extends Command {
+public class ManualIntakeCommand extends Command {
 
-    private double leftPower;
-    private double rightPower;
-
-    public ToggleIntakeCommand(double leftPower, double rightPower) {
-        super("ToggleIntakeCommand");
-        this.leftPower = leftPower;
-        this.rightPower = rightPower;
+    public ManualIntakeCommand() {
+        super("ManualIntakeCommand");
         requires(Robot.intake);
     }
 
@@ -28,16 +23,21 @@ public class ToggleIntakeCommand extends Command {
 
     @Override
     protected void execute() {
-        if (Robot.intake.getLastLeft() == leftPower) {
-            Robot.intake.setIntake(0, 0);
+        double power = Robot.driverController.axisRightTrigger.getAxisValue()- Robot.operatorController.axisLeftTrigger.getAxisValue();
+        if (Robot.operatorController.axisRightTrigger.getAxisValue() > .1) {
+            Robot.intake.setIntake(.4, .4);
+        } else if (power > .1) {
+            Robot.intake.setIntake(.69, .69); // Rocket is .38
+        } else if (power < -.1) {
+            Robot.intake.setIntake(-.5, -.5);
         } else {
-            Robot.intake.setIntake(leftPower, rightPower);
+            Robot.intake.setIntake(0, 0);
         }
     }
 
     @Override
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     @Override

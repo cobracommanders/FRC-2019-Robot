@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.ManualIntakeCommand;
 
 public class IntakeSubsystem extends Subsystem {
 
@@ -23,6 +24,7 @@ public class IntakeSubsystem extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
+        setDefaultCommand(new ManualIntakeCommand());
     }
 
     public void setIntake(double leftPower, double rightPower) {
