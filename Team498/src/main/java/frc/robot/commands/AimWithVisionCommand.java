@@ -14,7 +14,8 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class AimWithVisionCommand extends Command {
-  private double Kp = -0.1;
+  //change Kp and min_command to get the aim more accurate 
+  private double Kp = -0.1; 
   private double min_command = 0.05;
 
   private double leftSpeed;
