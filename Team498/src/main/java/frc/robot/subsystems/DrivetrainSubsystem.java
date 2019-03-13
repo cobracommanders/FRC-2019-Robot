@@ -85,6 +85,10 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         }
     }
 
+    public void aimAssistDrive(double leftSpeed, double rightSpeed) {
+        drive.tankDrive(leftSpeed, rightSpeed);
+    }
+
     public void resetEncoders() {
         frontLeftDrive.setSelectedSensorPosition(0);
         backRightDrive.setSelectedSensorPosition(0);

@@ -20,6 +20,7 @@ import frc.robot.subsystems.PulleySubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 import frc.robot.subsystems.ClampSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
+import frc.robot.LimeLight;
 //import frc.robot.AutoStrategies.CenterAutoStrategy;
 //import frc.robot.AutoStrategies.LeftAutoStrategy;
 //import frc.robot.AutoStrategies.RightAutoStrategy;
@@ -51,6 +52,7 @@ public class Robot extends TimedRobot {
     public static VisionSubsystem vision = new VisionSubsystem();
 
     public static Operator operator = new Operator();
+    public static LimeLight limelight = new LimeLight();
     @Override
     public void robotInit() {
         vision.startCapture();
@@ -133,5 +135,6 @@ public class Robot extends TimedRobot {
         panelIntake.updateDashboard();
         drivetrain.updateDashboard();
         clamp.updateDashboard();
+        limelight.updateDashboard();
     }
 }
