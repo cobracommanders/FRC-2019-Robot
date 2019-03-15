@@ -15,6 +15,7 @@ import frc.robot.AutoStrategies.LeftAutoStrategy;
 import frc.robot.AutoStrategies.RightAutoStrategy;
 import frc.robot.commands.DefenseModeCommand;
 import frc.robot.commands.AutoWristCommand;
+import frc.robot.commands.ManualVacuumCommand;
 
 public class Operator {
 
@@ -35,6 +36,8 @@ public class Operator {
         Robot.driverController.buttonY.whenPressed(new RightAutoStrategy());
 
         Robot.operatorController.buttonX.whenPressed(new DefenseModeCommand());
+
+        
     }
 
 }

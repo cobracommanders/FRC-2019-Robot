@@ -61,7 +61,7 @@ public class WristSubsystem extends PIDSubsystem {
                 target--;
             }
         } else {
-            if (target < 2) {
+            if (target < 3) {
                 target++;
             }
         }
@@ -70,9 +70,12 @@ public class WristSubsystem extends PIDSubsystem {
             this.getPIDController().setSetpoint(0); // All the way in to be changed
             break;
         case 1:
-            this.getPIDController().setSetpoint(38);
+            this.getPIDController().setSetpoint(10);
             break;
         case 2:
+            this.getPIDController().setSetpoint(38);
+            break;
+        case 3:
             this.getPIDController().setSetpoint(115); // Intake / down angle to be changed
             break;
         }
@@ -98,7 +101,7 @@ public class WristSubsystem extends PIDSubsystem {
             wristPower(0);
         } else if(outLimitSwitch.get() && PIDOutput > 0) {
             wristPower(0);
-        } else if (target == 2){
+        } else if (target == 3){
             wristPower(PIDOutput * .5);
         }else{
             wristPower(PIDOutput);

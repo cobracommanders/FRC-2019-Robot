@@ -7,45 +7,31 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.TimedCommand;
 import frc.robot.Robot;
-//import frc.robot.commands.VacuumCurrentListenerCommand;
 
-public class ManualVacuumCommand extends Command {
-  public ManualVacuumCommand() {
+public class VacuumCurrentListenerCommand extends TimedCommand {
+ 
+  public VacuumCurrentListenerCommand(double timeout) {
+    super(timeout);
     requires(Robot.vacuum);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.operatorController.buttonB.get()) {
-      Robot.vacuum.setVacuumPower(1);
-    } else {
-      Robot.vacuum.setVacuumPower(0);
-    }
-    /*
-    if (Robot.vacuum.rightMotorChannelCurrent > .1 && Robot.vacuum.leftMotorChannelCurrent > .1) {
-      new VacuumCurrentListenerCommand(1);
-    }
-    */
+    Robot.operatorController.setRumble(1);
   }
 
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
-  protected boolean isFinished() {
-    return false;
-  }
-
-  // Called once after isFinished returns true
+  // Called once after timeout
   @Override
   protected void end() {
+    Robot.operatorController.setRumble(0);
   }
 
   // Called when another command which requires one or more of the same

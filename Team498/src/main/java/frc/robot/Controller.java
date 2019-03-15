@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 public class Controller {
     // controller
@@ -95,5 +96,15 @@ public class Controller {
             return joy.getRawButton(button1) && joy.getRawButton(button2);
         }
     }
+
+    public void setRumble(double value) {
+		joystick.setRumble(RumbleType.kLeftRumble, value);
+		joystick.setRumble(RumbleType.kRightRumble, value);
+	} 
+	
+	public void setRumble(double leftPower, double rightPower) {
+		joystick.setRumble(RumbleType.kLeftRumble, leftPower);
+		joystick.setRumble(RumbleType.kRightRumble, rightPower);
+	}
 
 }
