@@ -34,8 +34,8 @@ public class ManualDriveCommand extends Command {
             turn *= 0.7;
         } 
 
-        //when left joypress is true turn will be at 100% 
-        if (!Robot.driverController.leftJoyPress.get()) {
+        //when right joypress is true turn will be at 100% 
+        if (!Robot.driverController.rightJoyPress.get()) {
             turn *= .85;
         }
 

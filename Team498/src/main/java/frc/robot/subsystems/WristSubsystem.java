@@ -22,15 +22,16 @@ public class WristSubsystem extends PIDSubsystem {
     private static final int inLimitSwitchChannel = 2;
     private static final int outLimitSwitchChannel = 3;
 
-    //Good start is to have p = 0.1, i = 0.0, and d = 0.0
-    private static final double p = 0.1;  //Increase slowly until it just undershoots, then
-    private static final double i = 0.0;  //Increase slowly until it oscilates, then
-    private static final double d = 0.0;  //Increase slowly until it doesn't oscilate
+    // Good start is to have p = 0.1, i = 0.0, and d = 0.0
+    private static final double p = 0.1; // Increase slowly until it just undershoots, then
+    private static final double i = 0.0; // Increase slowly until it oscilates, then
+    private static final double d = 0.0; // Increase slowly until it doesn't oscilate
 
     public int target = 0;
 
     public double encoderOrigin = 0;
-    //Does the math to convert pulses into degrees, 4096 pulses per rotation and gear ratio of 150
+    // Does the math to convert pulses into degrees, 4096 pulses per rotation and
+    // gear ratio of 150
     private double distancePerPulse = 360.0 / (4096.0 * 150.0);
 
     private CANSparkMax wrist = new CANSparkMax(wristMotorChannel, MotorType.kBrushed);
@@ -61,7 +62,7 @@ public class WristSubsystem extends PIDSubsystem {
                 target--;
             }
         } else {
-            if (target < 3) {
+            if (target < 2) {
                 target++;
             }
         }
@@ -70,19 +71,16 @@ public class WristSubsystem extends PIDSubsystem {
             this.getPIDController().setSetpoint(0); // All the way in to be changed
             break;
         case 1:
-            this.getPIDController().setSetpoint(10);
-            break;
-        case 2:
             this.getPIDController().setSetpoint(38);
             break;
-        case 3:
+        case 2:
             this.getPIDController().setSetpoint(115); // Intake / down angle to be changed
             break;
         }
     }
 
     public void wristPower(double power) {
-        wrist.set(.3 * power);
+        wrist.set(.35 * power);
     }
 
     public void resetEncoder() {
@@ -93,19 +91,20 @@ public class WristSubsystem extends PIDSubsystem {
         if (inLimitSwitch.get()) {
             resetEncoder();
         }
-        return encoder.get() - encoderOrigin; 
+        return encoder.get() - encoderOrigin;
     }
 
     public void usePIDOutput(double PIDOutput) {
         if (inLimitSwitch.get() && PIDOutput < 0) {
             wristPower(0);
-        } else if(outLimitSwitch.get() && PIDOutput > 0) {
-            wristPower(0);
-        } else if (target == 3){
+        } else if (outLimitSwitch.get()) {//added to keep arm down when intaking balls
+            wristPower(PIDOutput);
+        } else if (target == 2) {
             wristPower(PIDOutput * .5);
-        }else{
+        } else {
             wristPower(PIDOutput);
         }
+
         SmartDashboard.putNumber("PID Output", PIDOutput);
     }
 
@@ -118,6 +117,6 @@ public class WristSubsystem extends PIDSubsystem {
         SmartDashboard.putBoolean("OutLimitSwitchValue", outLimitSwitch.get());
         SmartDashboard.putNumber("PIDInput", returnPIDInput());
         SmartDashboard.putNumber("PID SetPoint", getSetpoint());
-        
+
     }
 }

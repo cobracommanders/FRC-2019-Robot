@@ -23,8 +23,8 @@ public class VacuumSubsystem extends Subsystem {
 
   public PowerDistributionPanel pdp = new PowerDistributionPanel();
 
-  public double leftMotorChannelCurrent = pdp.getCurrent(vacuumLeftMotorChannel);
-  public double rightMotorChannelCurrent = pdp.getCurrent(vacuumRightMotorChannel);
+  public double leftMotorChannelCurrent = pdp.getCurrent(12);
+  public double rightMotorChannelCurrent = pdp.getCurrent(13);
   
   public VacuumSubsystem() {
     super("VacuumSubsystem");

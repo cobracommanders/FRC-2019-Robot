@@ -16,6 +16,7 @@ import frc.robot.AutoStrategies.RightAutoStrategy;
 import frc.robot.commands.DefenseModeCommand;
 import frc.robot.commands.AutoWristCommand;
 import frc.robot.commands.ManualVacuumCommand;
+import frc.robot.commands.CargoShipWristPositionCommand;
 
 public class Operator {
 
@@ -37,7 +38,7 @@ public class Operator {
 
         Robot.operatorController.buttonX.whenPressed(new DefenseModeCommand());
 
-        
+        Robot.operatorController.buttonA.whenPressed(new CargoShipWristPositionCommand());
     }
 
 }
