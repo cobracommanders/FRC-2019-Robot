@@ -9,34 +9,22 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-//import frc.robot.commands.VacuumCurrentListenerCommand;
 
-public class ManualVacuumCommand extends Command {
-  public ManualVacuumCommand() {
-    requires(Robot.vacuum);
+public class IntakeWristPositionCommand extends Command {
+  public IntakeWristPositionCommand() {
+    requires(Robot.wrist);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    /*
-    if (Robot.operatorController.buttonB.get()) {
-      Robot.vacuum.setVacuumPower(1);
-    } else {
-      Robot.vacuum.setVacuumPower(0);
-    }
-    */
-    /*
-    if (Robot.vacuum.rightMotorChannelCurrent > .1 && Robot.vacuum.leftMotorChannelCurrent > .1) {
-      new VacuumCurrentListenerCommand(1);
-    }
-    */
+    Robot.wrist.target = 2;
+    Robot.wrist.setTarget(false);
   }
 
   // Make this return true when this Command no longer needs to run execute()

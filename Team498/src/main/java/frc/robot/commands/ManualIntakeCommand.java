@@ -27,8 +27,10 @@ public class ManualIntakeCommand extends Command {
         
         if (Robot.operatorController.axisRightTrigger.getAxisValue() > .1) {
             Robot.intake.setIntake(.4, .4); //outtake rocket
-        } else if (power > .1) {
-            Robot.intake.setIntake(.69, .69); //outtake cargo ship
+        } else if(Robot.operatorController.buttonB.get()) { //emergency outtake
+            Robot.intake.setIntake(.9, .9);
+        }else if (power > .1) {
+            Robot.intake.setIntake(.8, .8); //outtake cargo ship
         } else if (power < -.1) {
             Robot.intake.setIntake(-.5, -.5); //intake
         } else {

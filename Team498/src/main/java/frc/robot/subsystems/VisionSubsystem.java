@@ -16,12 +16,12 @@ public class VisionSubsystem extends Subsystem {
  	private static final int cameraDevice2 = 1;
 
   private UsbCamera camera1;
-	private int width1 = 150;
-	private int height1 = 100;
+	private int width1 = 126;
+	private int height1 = 84;
 	
 	private UsbCamera camera2;	
-	private int width2 = 150;
-	private int height2 = 100;
+	private int width2 = 141;
+	private int height2 = 94;
 
 	public void startCapture() { 
 		camera1 = CameraServer.getInstance().startAutomaticCapture("camera1", cameraDevice1);

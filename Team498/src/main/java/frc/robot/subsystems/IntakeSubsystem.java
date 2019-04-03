@@ -19,7 +19,7 @@ public class IntakeSubsystem extends Subsystem {
     private WPI_VictorSPX intakeLeft = new WPI_VictorSPX(intakeLeftMotorChannel);
     private WPI_VictorSPX intakeRight = new WPI_VictorSPX(intakeRightMotorChannel);
 
-    private double lastLeft = 0;
+    public double lastLeft = 0;
     private double lastRight = 0;
 
     @Override
