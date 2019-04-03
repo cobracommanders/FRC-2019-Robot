@@ -7,17 +7,13 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
+//import frc.robot.commands.VacuumCurrentListenerCommand;
 
-public class DefenseModeCommand extends Command {
-
-  public DefenseModeCommand() {
-    super("DefenseModeCommand");
-    requires(Robot.wrist);
-    requires(Robot.panelIntake);
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+public class ManualVacuumCommand extends Command {
+  public ManualVacuumCommand() {
+    requires(Robot.vacuum);
   }
 
   // Called just before this Command runs the first time
@@ -29,10 +25,15 @@ public class DefenseModeCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.panelIntake.setPush(false);
-    Robot.panelIntake.setGrip(true);
-    Robot.wrist.target = 0;
-    Robot.wrist.setTarget(true);
+    /*
+     * if (Robot.operatorController.buttonB.get()) { Robot.vacuum.setVacuumPower(1);
+     * } else { Robot.vacuum.setVacuumPower(0); }
+     */
+    /*
+     * if (Robot.vacuum.rightMotorChannelCurrent > .1 &&
+     * Robot.vacuum.leftMotorChannelCurrent > .1) { new
+     * VacuumCurrentListenerCommand(1); }
+     */
   }
 
   // Make this return true when this Command no longer needs to run execute()

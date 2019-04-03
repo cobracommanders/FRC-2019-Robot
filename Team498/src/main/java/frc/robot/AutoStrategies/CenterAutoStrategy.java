@@ -17,7 +17,7 @@ public class CenterAutoStrategy extends CommandGroup {
     public CenterAutoStrategy() {
         // start 8 inches off to the left for this to be accurate
 
-        //addSequential(new AutoTimedDriveCommand(.8, 0, 3));
+        // addSequential(new AutoTimedDriveCommand(.8, 0, 3));
         addSequential(new AutoDriveCommand(.8, 172.25)); // 80% power and 172.25 inches
         addSequential(new PanelOuttakeCommand()); // place panels
     }

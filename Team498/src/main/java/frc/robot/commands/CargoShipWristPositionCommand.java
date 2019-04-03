@@ -7,30 +7,22 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
-public class DefenseModeCommand extends Command {
-
-  public DefenseModeCommand() {
-    super("DefenseModeCommand");
+public class CargoShipWristPositionCommand extends Command {
+  public CargoShipWristPositionCommand() {
     requires(Robot.wrist);
-    requires(Robot.panelIntake);
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.panelIntake.setPush(false);
-    Robot.panelIntake.setGrip(true);
     Robot.wrist.target = 0;
     Robot.wrist.setTarget(true);
   }

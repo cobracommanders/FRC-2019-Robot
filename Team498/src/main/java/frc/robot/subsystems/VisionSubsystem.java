@@ -12,31 +12,32 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 
 public class VisionSubsystem extends Subsystem {
-  private static final int cameraDevice1 = 0;
- 	private static final int cameraDevice2 = 1;
+	private static final int cameraDevice1 = 0;
+	private static final int cameraDevice2 = 1;
 
-  private UsbCamera camera1;
-	private int width1 = 150;
-	private int height1 = 100;
-	
-	private UsbCamera camera2;	
-	private int width2 = 150;
-	private int height2 = 100;
+	private UsbCamera camera1;
+	private int width1 = 126;
+	private int height1 = 84;
 
-	public void startCapture() { 
+	private UsbCamera camera2;
+	private int width2 = 141;
+	private int height2 = 94;
+
+	public void startCapture() {
 		camera1 = CameraServer.getInstance().startAutomaticCapture("camera1", cameraDevice1);
 		camera1.setResolution(width1, height1);
 		camera1.setFPS(30);
-		
+
 		camera2 = CameraServer.getInstance().startAutomaticCapture("camera2", cameraDevice2);
 		camera2.setResolution(width2, height2);
 		camera2.setFPS(30);
-		
-		//SmartDashboard.putString("Camera connections", String.format("Camera 1: %s\nCamera 2: %s", camera1.isConnected(), camera2.isConnected()));
-	}
-	
-  @Override
-  public void initDefaultCommand() {
 
-  }
+		// SmartDashboard.putString("Camera connections", String.format("Camera 1:
+		// %s\nCamera 2: %s", camera1.isConnected(), camera2.isConnected()));
+	}
+
+	@Override
+	public void initDefaultCommand() {
+
+	}
 }

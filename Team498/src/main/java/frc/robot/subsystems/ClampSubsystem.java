@@ -20,7 +20,6 @@ public class ClampSubsystem extends Subsystem {
   private static final int clampReverseChannel = 5;
   private static final int releaseChannel = 6;
 
-  // TODO: Need to change the forward and reverse channels of double solenoid
   private DoubleSolenoid clamp = new DoubleSolenoid(clampForwardChannel, clampReverseChannel);
 
   private Solenoid open = new Solenoid(releaseChannel);
@@ -39,7 +38,6 @@ public class ClampSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    //setDefaultCommand(new ClampChecker());
   }
 
   public void setClamp() {
@@ -66,19 +64,5 @@ public class ClampSubsystem extends Subsystem {
     timer.reset();
     timer.start();
   }
-  /*
-  public boolean checkShutdownPoint() {
-    double t = timer.get();
-    if(t >= 134){
-      shutDownClamps();
-      return true;
-    }else{
-      return false;
-    }
-  }
-  */
 
-  public void updateDashboard() {
-    //SmartDashboard.putBoolean("ShutDownPoint", checkShutdownPoint());
-  }
 }

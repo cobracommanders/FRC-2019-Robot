@@ -12,8 +12,6 @@ import frc.robot.Robot;
 
 public class ManualDriveCommand extends Command {
 
-    public static boolean slowMode = false;
-
     public ManualDriveCommand() {
         super("ManualDriveCommand");
         requires(Robot.drivetrain);
@@ -30,16 +28,18 @@ public class ManualDriveCommand extends Command {
         double move = Robot.driverController.axisLeftY.getAxisValue();
         double turn = Robot.driverController.axisRightX.getAxisValue();
 
-        /*
-         * if slowmode == true, move is 75%, otherwise normal. if slowmode == true, turn
-         * is 60% otherwise turn
-         */
+        // slowmode
         if (Robot.driverController.axisLeftTrigger.getAxisValue() > .1) {
-            slowMode = true;
-        } else {
-            slowMode = false;
+            move *= 0.8;
+            turn *= 0.7;
         }
-        Robot.drivetrain.drive(slowMode ? move * 0.8 : move, slowMode ? turn * 0.7 : turn);
+
+        // when right joypress is true turn will be at 100%
+        if (!Robot.driverController.rightJoyPress.get()) {
+            turn *= .85;
+        }
+
+        Robot.drivetrain.drive(move, turn);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -25,13 +25,13 @@ public class PulleySubsystem extends Subsystem {
     }
 
     public void setPulleyPower(double power) {
-        leftPulley.set(-power);
-        rightPulley.set(power);
+        leftPulley.set(power);
+        rightPulley.set(-power);
     }
-    
-    //adds an overload
+
+    // adds an overload
     public void setPulleyPower(double leftPower, double rightPower) {
-        leftPulley.set(-leftPower);
-        rightPulley.set(rightPower);
+        leftPulley.set(leftPower);
+        rightPulley.set(-rightPower);
     }
 }

@@ -18,9 +18,10 @@ public class LeftAutoStrategy extends CommandGroup {
 
     public LeftAutoStrategy() {
         if (DriverStation.getInstance().isAutonomous()) {
-            //123.97 inches away from the loading station 
-            addSequential(new AutoDriveCommand(-.8, 62)); // drive backward from cargo ship 62 inches about halfway to loading station
-            addSequential(new AutoTurnCommand(-90)); //turns left 
+            // 123.97 inches away from the loading station
+            addSequential(new AutoDriveCommand(-.8, 62)); // drive backward from cargo ship 62 inches about halfway to
+                                                          // loading station
+            addSequential(new AutoTurnCommand(-90)); // turns left
             addSequential(new AutoDriveCommand(.8, 117.47)); // drives forward
             addSequential(new AutoTurnCommand(-90)); // turns left
             addSequential(new AutoDriveCommand(.8, 61.97)); // drive to loading station

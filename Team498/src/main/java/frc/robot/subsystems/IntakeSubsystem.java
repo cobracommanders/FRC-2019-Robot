@@ -19,7 +19,7 @@ public class IntakeSubsystem extends Subsystem {
     private WPI_VictorSPX intakeLeft = new WPI_VictorSPX(intakeLeftMotorChannel);
     private WPI_VictorSPX intakeRight = new WPI_VictorSPX(intakeRightMotorChannel);
 
-    private double lastLeft = 0;
+    public double lastLeft = 0;
     private double lastRight = 0;
 
     @Override
@@ -28,17 +28,17 @@ public class IntakeSubsystem extends Subsystem {
     }
 
     public void setIntake(double leftPower, double rightPower) {
-        intakeLeft.set(-leftPower);
-        intakeRight.set(rightPower);
-        lastLeft = -leftPower;
-        lastRight = rightPower;
+        intakeLeft.set(leftPower);
+        intakeRight.set(-rightPower);
+        lastLeft = leftPower;
+        lastRight = -rightPower;
     }
 
     public double getLastLeft() {
-        return -lastLeft;
+        return lastLeft;
     }
 
     public double getLastRight() {
-        return lastRight;
+        return -lastRight;
     }
 }

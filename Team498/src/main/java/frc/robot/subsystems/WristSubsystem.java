@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DigitalInput;
+import frc.robot.Robot;
 
 public class WristSubsystem extends PIDSubsystem {
     private static final int wristMotorChannel = 6;
@@ -22,15 +23,16 @@ public class WristSubsystem extends PIDSubsystem {
     private static final int inLimitSwitchChannel = 2;
     private static final int outLimitSwitchChannel = 3;
 
-    //Good start is to have p = 0.1, i = 0.0, and d = 0.0
-    private static final double p = 0.1;  //Increase slowly until it just undershoots, then
-    private static final double i = 0.0;  //Increase slowly until it oscilates, then
-    private static final double d = 0.0;  //Increase slowly until it doesn't oscilate
+    // Good start is to have p = 0.1, i = 0.0, and d = 0.0
+    private static final double p = 0.1; // Increase slowly until it just undershoots, then
+    private static final double i = 0.0; // Increase slowly until it oscilates, then
+    private static final double d = 0.0; // Increase slowly until it doesn't oscilate
 
-    private int target = 0;
+    public int target = 0;
 
     public double encoderOrigin = 0;
-    //Does the math to convert pulses into degrees, 4096 pulses per rotation and gear ratio of 150
+    // Does the math to convert pulses into degrees, 4096 pulses per rotation and
+    // gear ratio of 150
     private double distancePerPulse = 360.0 / (4096.0 * 150.0);
 
     private CANSparkMax wrist = new CANSparkMax(wristMotorChannel, MotorType.kBrushed);
@@ -79,7 +81,7 @@ public class WristSubsystem extends PIDSubsystem {
     }
 
     public void wristPower(double power) {
-        wrist.set(.3 * power);
+        wrist.set(.35 * power);
     }
 
     public void resetEncoder() {
@@ -90,19 +92,21 @@ public class WristSubsystem extends PIDSubsystem {
         if (inLimitSwitch.get()) {
             resetEncoder();
         }
-        return encoder.get() - encoderOrigin; 
+        return encoder.get() - encoderOrigin;
     }
 
     public void usePIDOutput(double PIDOutput) {
+
         if (inLimitSwitch.get() && PIDOutput < 0) {
             wristPower(0);
-        } else if(outLimitSwitch.get() && PIDOutput > 0) {
+        } else if (returnPIDInput() >= 90 && Robot.intake.lastLeft != 0) {// added to keep arm down when intaking balls
+            wristPower(.4);
+        } else if (target == 2 && outLimitSwitch.get()) {
             wristPower(0);
-        } else if (target == 2){
-            wristPower(PIDOutput * .5);
-        }else{
+        } else {
             wristPower(PIDOutput);
         }
+
         SmartDashboard.putNumber("PID Output", PIDOutput);
     }
 
@@ -115,6 +119,6 @@ public class WristSubsystem extends PIDSubsystem {
         SmartDashboard.putBoolean("OutLimitSwitchValue", outLimitSwitch.get());
         SmartDashboard.putNumber("PIDInput", returnPIDInput());
         SmartDashboard.putNumber("PID SetPoint", getSetpoint());
-        
+
     }
 }

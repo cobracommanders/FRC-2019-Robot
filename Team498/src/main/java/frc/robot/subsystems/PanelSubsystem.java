@@ -43,7 +43,7 @@ public class PanelSubsystem extends Subsystem {
             this.holdingOnToHatch = holdingOnToHatch;
             grip.set(Value.kReverse);
         }
-        
+
     }
 
     public void setPush(boolean isPushed) {
@@ -53,7 +53,7 @@ public class PanelSubsystem extends Subsystem {
         } else {
             this.pushed = isPushed;
             push.set(Value.kForward);
-        }  
+        }
     }
 
     public void turnGripOff() {

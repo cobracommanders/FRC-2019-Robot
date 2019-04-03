@@ -9,15 +9,14 @@ package frc.robot;
 
 import frc.robot.commands.PanelIntakeCommand;
 import frc.robot.commands.PanelOuttakeCommand;
-import frc.robot.commands.ManualIntakeCommand;
-import frc.robot.commands.ToggleSlowmodeCommand;
 import frc.robot.commands.ToggleClampCommand;
 import frc.robot.commands.ReleaseClampCommand;
 import frc.robot.AutoStrategies.LeftAutoStrategy;
 import frc.robot.AutoStrategies.RightAutoStrategy;
-import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.commands.DefenseModeCommand;
+import frc.robot.commands.IntakeWristPositionCommand;
 import frc.robot.commands.AutoWristCommand;
+import frc.robot.commands.CargoShipWristPositionCommand;
 
 public class Operator {
 
@@ -31,14 +30,16 @@ public class Operator {
 
         Robot.driverController.leftBumper.whenPressed(new PanelIntakeCommand());
         Robot.driverController.rightBumper.whenPressed(new PanelOuttakeCommand());
+
         Robot.driverController.buttonX.whenPressed(new DefenseModeCommand());
 
-        // Robot.driverController.rightBumper.whenPressed(new ToggleSlowmodeCommand());
-
-        Robot.driverController.buttonA.whenPressed(new LeftAutoStrategy());
-        Robot.driverController.buttonY.whenPressed(new RightAutoStrategy());
+        //Robot.driverController.buttonA.whenPressed(new LeftAutoStrategy());
+        //Robot.driverController.buttonY.whenPressed(new RightAutoStrategy());
 
         Robot.operatorController.buttonX.whenPressed(new DefenseModeCommand());
+
+        Robot.operatorController.buttonA.whenPressed(new CargoShipWristPositionCommand());
+        Robot.operatorController.buttonY.whenPressed(new IntakeWristPositionCommand());
     }
 
 }
