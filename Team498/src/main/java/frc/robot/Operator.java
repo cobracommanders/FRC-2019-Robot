@@ -16,7 +16,6 @@ import frc.robot.AutoStrategies.RightAutoStrategy;
 import frc.robot.commands.DefenseModeCommand;
 import frc.robot.commands.IntakeWristPositionCommand;
 import frc.robot.commands.AutoWristCommand;
-import frc.robot.commands.ManualVacuumCommand;
 import frc.robot.commands.CargoShipWristPositionCommand;
 
 public class Operator {

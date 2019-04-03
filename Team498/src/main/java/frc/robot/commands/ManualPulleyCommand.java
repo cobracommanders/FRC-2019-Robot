@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class ManualPulleyCommand extends Command {
-    
+
     public ManualPulleyCommand() {
         requires(Robot.pulley);
     }
@@ -25,11 +25,11 @@ public class ManualPulleyCommand extends Command {
     @Override
     protected void execute() {
         double power = Robot.operatorController.axisLeftY.getAxisValue();
-       if(Math.abs(power) > .2){
-        Robot.pulley.setPulleyPower(power, power * .90);
-       }else{
-           Robot.pulley.setPulleyPower(0);
-       }
+        if (Math.abs(power) > .2) {
+            Robot.pulley.setPulleyPower(power, power * .90);
+        } else {
+            Robot.pulley.setPulleyPower(0);
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()

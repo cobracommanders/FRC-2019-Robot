@@ -10,21 +10,13 @@ package frc.robot.commands;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-/**
- * Add your docs here.
- */
 public class AutoWristCommand extends InstantCommand {
-  /**
-   * Add your docs here.
-   */
   boolean isGoingUp;
 
   public AutoWristCommand(boolean isGoingUp) {
     super("AutoWristCommand");
     requires(Robot.wrist);
     this.isGoingUp = isGoingUp;
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
   }
 
   // Called once when the command executes

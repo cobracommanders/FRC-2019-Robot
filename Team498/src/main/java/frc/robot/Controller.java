@@ -98,13 +98,13 @@ public class Controller {
     }
 
     public void setRumble(double value) {
-		joystick.setRumble(RumbleType.kLeftRumble, value);
-		joystick.setRumble(RumbleType.kRightRumble, value);
-	} 
-	
-	public void setRumble(double leftPower, double rightPower) {
-		joystick.setRumble(RumbleType.kLeftRumble, leftPower);
-		joystick.setRumble(RumbleType.kRightRumble, rightPower);
-	}
+        joystick.setRumble(RumbleType.kLeftRumble, value);
+        joystick.setRumble(RumbleType.kRightRumble, value);
+    }
+
+    public void setRumble(double leftPower, double rightPower) {
+        joystick.setRumble(RumbleType.kLeftRumble, leftPower);
+        joystick.setRumble(RumbleType.kRightRumble, rightPower);
+    }
 
 }

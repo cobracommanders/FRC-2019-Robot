@@ -29,8 +29,6 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class Robot extends TimedRobot {
 
-
-
     //SendableChooser<RobotStartPosition> chooserPosition = new SendableChooser<>();
     //CommandGroup autonomousCommand;
     //RobotStartPosition autonomousPosition;
@@ -102,11 +100,6 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         drivetrain.resetGyro();
-        //clamp.startClampTimer();
-        /*if (autonomousCommand != null) {
-            autonomousCommand.cancel();
-        }
-        */
     }
 
     @Override
@@ -133,8 +126,6 @@ public class Robot extends TimedRobot {
         //SmartDashboard.putString("Position Choice", autonomousPosition != null ? autonomousPosition.toString() : "");
         wrist.updateDashboard();
         panelIntake.updateDashboard();
-        drivetrain.updateDashboard();
-        clamp.updateDashboard();
         vacuum.updateDashboard();
     }
 }

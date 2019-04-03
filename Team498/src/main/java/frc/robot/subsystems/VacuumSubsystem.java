@@ -25,7 +25,7 @@ public class VacuumSubsystem extends Subsystem {
 
   public double leftMotorChannelCurrent = pdp.getCurrent(12);
   public double rightMotorChannelCurrent = pdp.getCurrent(13);
-  
+
   public VacuumSubsystem() {
     super("VacuumSubsystem");
   }
@@ -35,9 +35,9 @@ public class VacuumSubsystem extends Subsystem {
     setDefaultCommand(new ManualVacuumCommand());
   }
 
-  public void setVacuumPower(double power){
-      leftVacuum.set(power);
-      rightVacuum.set(power);
+  public void setVacuumPower(double power) {
+    leftVacuum.set(power);
+    rightVacuum.set(power);
 
   }
 

@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.TimedCommand;
 import frc.robot.Robot;
 
 public class VacuumCurrentListenerCommand extends TimedCommand {
- 
+
   public VacuumCurrentListenerCommand(double timeout) {
     super(timeout);
     requires(Robot.vacuum);

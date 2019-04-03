@@ -96,10 +96,10 @@ public class WristSubsystem extends PIDSubsystem {
     }
 
     public void usePIDOutput(double PIDOutput) {
-        
+
         if (inLimitSwitch.get() && PIDOutput < 0) {
             wristPower(0);
-        } else if (returnPIDInput() >= 90 && Robot.intake.lastLeft != 0) {//added to keep arm down when intaking balls
+        } else if (returnPIDInput() >= 90 && Robot.intake.lastLeft != 0) {// added to keep arm down when intaking balls
             wristPower(.4);
         } else if (target == 2 && outLimitSwitch.get()) {
             wristPower(0);
