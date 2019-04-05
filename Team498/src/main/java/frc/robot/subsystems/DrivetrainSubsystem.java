@@ -43,12 +43,12 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     private Pigeon gyro = new Pigeon(backLeftDrive);
 
     public DrivetrainSubsystem() {
-        super("DrivetrainSubsystem", 0.1, 0.01, 0.1);
+        super("DrivetrainSubsystem", 0.1, 0, 0); // was .1, .01, .1
 
         this.getPIDController().setContinuous(false);
         this.getPIDController().setInputRange(-180, 180);
         this.getPIDController().setOutputRange(-1, 1);
-        this.getPIDController().setAbsoluteTolerance(.01); // Was 1 last year
+        this.getPIDController().setAbsoluteTolerance(.1); // Was 1 last year
 
         frontLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         backRightDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);

@@ -5,26 +5,38 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.AutoStrategies.AutoCommands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.Timer;
 
-public class IntakeWristPositionCommand extends Command {
-  public IntakeWristPositionCommand() {
-    requires(Robot.wrist);
+public class AutoTimedIntakeCommand extends Command {
+
+  private Timer timer;
+  private double power;
+
+  public AutoTimedIntakeCommand(double power) {
+    super("AutoTimedIntakeCommand");
+    requires(Robot.intake);
+    this.power = power;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    System.out.println("We got here lol");
+    timer.reset();
+    timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.wrist.target = 3;
-    Robot.wrist.setTarget(false);
+    double t = timer.get();
+    if(t < 3) {
+      Robot.intake.setIntake(power, power);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

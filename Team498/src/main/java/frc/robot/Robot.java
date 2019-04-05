@@ -21,17 +21,17 @@ import frc.robot.subsystems.VacuumSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 import frc.robot.subsystems.ClampSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
-//import frc.robot.AutoStrategies.CenterAutoStrategy;
-//import frc.robot.AutoStrategies.LeftAutoStrategy;
-//import frc.robot.AutoStrategies.RightAutoStrategy;
-//import frc.robot.AutoStrategies.RobotStartPosition;
+import frc.robot.AutoStrategies.CenterAutoStrategy;
+import frc.robot.AutoStrategies.LeftAutoStrategy;
+import frc.robot.AutoStrategies.RightAutoStrategy;
+import frc.robot.AutoStrategies.RobotStartPosition;
 import edu.wpi.first.wpilibj.Timer;
 
 public class Robot extends TimedRobot {
 
-    //SendableChooser<RobotStartPosition> chooserPosition = new SendableChooser<>();
-    //CommandGroup autonomousCommand;
-    //RobotStartPosition autonomousPosition;
+    SendableChooser<RobotStartPosition> chooserPosition = new SendableChooser<>();
+    CommandGroup autonomousCommand;
+    RobotStartPosition autonomousPosition;
 
     // Controls
     public static DriverStation driverstation = DriverStation.getInstance();
@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         vision.startCapture();
-        //addAutonomousChoices();
+        addAutonomousChoices();
     }
 
     @Override
@@ -76,7 +76,7 @@ public class Robot extends TimedRobot {
         drivetrain.resetEncoders();
         wrist.resetEncoder();
     
-        /*autonomousPosition = chooserPosition.getSelected();
+        autonomousPosition = chooserPosition.getSelected();
         if (autonomousPosition == RobotStartPosition.LEFT) {
             autonomousCommand = new LeftAutoStrategy();
             autonomousCommand.start();
@@ -88,7 +88,7 @@ public class Robot extends TimedRobot {
             autonomousCommand.start();
         } else if (autonomousPosition == RobotStartPosition.FULLSEND) {
         }
-        */
+        
     }
 
     @Override
@@ -99,6 +99,9 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+        if (autonomousCommand != null) {
+            autonomousCommand.cancel();
+        }
         drivetrain.resetGyro();
     }
 
@@ -114,16 +117,16 @@ public class Robot extends TimedRobot {
 
     }
 
-    /*private void addAutonomousChoices() {
+    private void addAutonomousChoices() {
         chooserPosition.addDefault("Robot in: LEFT", RobotStartPosition.LEFT);
         chooserPosition.addObject("Robot in: CENTER", RobotStartPosition.CENTER);
         chooserPosition.addObject("Robot in: RIGHT", RobotStartPosition.RIGHT);
         chooserPosition.addObject("Robot in: FULL SEND", RobotStartPosition.FULLSEND);
     }
-    */
+    
     public void updateDashboard() {
-        //SmartDashboard.putData("Autonomous Position", chooserPosition);
-        //SmartDashboard.putString("Position Choice", autonomousPosition != null ? autonomousPosition.toString() : "");
+        SmartDashboard.putData("Autonomous Position", chooserPosition);
+        SmartDashboard.putString("Position Choice", autonomousPosition != null ? autonomousPosition.toString() : "");
         wrist.updateDashboard();
         panelIntake.updateDashboard();
         vacuum.updateDashboard();

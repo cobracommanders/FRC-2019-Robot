@@ -63,7 +63,7 @@ public class WristSubsystem extends PIDSubsystem {
                 target--;
             }
         } else {
-            if (target < 2) {
+            if (target < 3) {
                 target++;
             }
         }
@@ -72,9 +72,12 @@ public class WristSubsystem extends PIDSubsystem {
             this.getPIDController().setSetpoint(0); // All the way in to be changed
             break;
         case 1:
-            this.getPIDController().setSetpoint(38);
+            this.getPIDController().setSetpoint(10);
             break;
         case 2:
+            this.getPIDController().setSetpoint(38); // Intake / down angle to be changed
+            break;
+        case 3:
             this.getPIDController().setSetpoint(115); // Intake / down angle to be changed
             break;
         }
@@ -101,7 +104,9 @@ public class WristSubsystem extends PIDSubsystem {
             wristPower(0);
         } else if (returnPIDInput() >= 90 && Robot.intake.lastLeft != 0) {// added to keep arm down when intaking balls
             wristPower(.4);
-        } else if (target == 2 && outLimitSwitch.get()) {
+        } else if (target == 0) {
+            wristPower(PIDOutput * 1.4);
+        } else if (target == 3 && outLimitSwitch.get()) {
             wristPower(0);
         } else {
             wristPower(PIDOutput);
@@ -119,6 +124,6 @@ public class WristSubsystem extends PIDSubsystem {
         SmartDashboard.putBoolean("OutLimitSwitchValue", outLimitSwitch.get());
         SmartDashboard.putNumber("PIDInput", returnPIDInput());
         SmartDashboard.putNumber("PID SetPoint", getSetpoint());
-
+        SmartDashboard.putNumber("Target Value", target);
     }
 }
