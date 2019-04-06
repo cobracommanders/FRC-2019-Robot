@@ -84,6 +84,7 @@ public class WristSubsystem extends PIDSubsystem {
     }
 
     public void wristPower(double power) {
+        // wrist.set(0);
         wrist.set(.35 * power);
     }
 
@@ -106,6 +107,8 @@ public class WristSubsystem extends PIDSubsystem {
             wristPower(.4);
         } else if (target == 0) {
             wristPower(PIDOutput * 1.4);
+        } else if (target == 3 && returnPIDInput() > 45) {
+            wristPower(.5);
         } else if (target == 3 && outLimitSwitch.get()) {
             wristPower(0);
         } else {

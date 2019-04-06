@@ -37,5 +37,6 @@ public class LeftAutoStrategy extends CommandGroup {
         addSequential(new AutoOldTurnCommand(.8, 90));
         addSequential(new AutoTimedDriveCommand(-.8, 0, 2));
         addSequential(new AutoTimedIntakeCommand(.6));
+        
     }
 }
