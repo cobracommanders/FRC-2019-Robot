@@ -40,7 +40,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
 
     private DifferentialDrive drive = new DifferentialDrive(leftGroup, rightGroup);
 
-    private Pigeon gyro = new Pigeon(backLeftDrive);
+    // private Pigeon gyro = new Pigeon(backLeftDrive);
 
     public DrivetrainSubsystem() {
         super("DrivetrainSubsystem", 0.16, 0.02, 1.1); // was .1, .01, .1
@@ -106,22 +106,24 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     }
 
     public double getAngle() {
-        return gyro.getAngle();
+        // return gyro.getAngle();
+        return 0;
     }
 
     public void resetGyro() {
-        gyro.resetPosition();
+        // gyro.resetPosition();
     }
 
     public void updateDashboard() {
-        SmartDashboard.putNumber("Angle X", gyro.getAngle());
+        // SmartDashboard.putNumber("Angle X", gyro.getAngle());
         SmartDashboard.putNumber("Left Encoder", frontLeftDrive.getSensorCollection().getQuadraturePosition());
         SmartDashboard.putNumber("Right Encoder", backRightDrive.getSensorCollection().getQuadraturePosition());
         SmartDashboard.putNumber("DriveDistance", getDistance());
     }
 
     public double returnPIDInput() {
-        return -gyro.getAngle();
+        // return -gyro.getAngle();
+        return 0;
     }
 
     public void usePIDOutput(double PIDOutput) {

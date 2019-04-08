@@ -40,16 +40,16 @@ public class WristSubsystem extends PIDSubsystem {
     private DigitalInput inLimitSwitch = new DigitalInput(inLimitSwitchChannel);
     private DigitalInput outLimitSwitch = new DigitalInput(outLimitSwitchChannel);
 
-    private Encoder encoder = new Encoder(wristEncoderChannelA, wristEncoderChannelB);
+    //private Encoder encoder = new Encoder(wristEncoderChannelA, wristEncoderChannelB);
 
     public WristSubsystem() {
         super("WristSubsystem", p, i, d);
-        this.encoder.setDistancePerPulse(distancePerPulse);
-        this.getPIDController().setContinuous(false);
-        this.getPIDController().setInputRange(0, 115);
-        this.getPIDController().setOutputRange(-1, 1);
-        this.getPIDController().setAbsoluteTolerance(.15); // Was 1 last year
-        this.getPIDController().enable();
+        // this.encoder.setDistancePerPulse(distancePerPulse);
+        // this.getPIDController().setContinuous(false);
+        // this.getPIDController().setInputRange(0, 115);
+        // this.getPIDController().setOutputRange(-1, 1);
+        // this.getPIDController().setAbsoluteTolerance(.15); // Was 1 last year
+        // this.getPIDController().enable();
 
     }
 
@@ -89,14 +89,15 @@ public class WristSubsystem extends PIDSubsystem {
     }
 
     public void resetEncoder() {
-        encoderOrigin = encoder.get();
+        // encoderOrigin = encoder.get();
     }
 
     public double returnPIDInput() {
-        if (inLimitSwitch.get()) {
-            resetEncoder();
-        }
-        return encoder.get() - encoderOrigin;
+        return 0;
+        // if (inLimitSwitch.get()) {
+        //     resetEncoder();
+        // }
+        // return encoder.get() - encoderOrigin;
     }
 
     public void usePIDOutput(double PIDOutput) {
@@ -119,10 +120,10 @@ public class WristSubsystem extends PIDSubsystem {
     }
 
     public void updateDashboard() {
-        SmartDashboard.putNumber("EncoderGetDistance", encoder.getDistance());
-        SmartDashboard.putNumber("EncoderGet", encoder.get());
-        SmartDashboard.putNumber("EncoderGetRate", encoder.getRate());
-        SmartDashboard.putNumber("EncoderGetDistancePerPulse", encoder.getDistancePerPulse());
+        // SmartDashboard.putNumber("EncoderGetDistance", encoder.getDistance());
+        // SmartDashboard.putNumber("EncoderGet", encoder.get());
+        // SmartDashboard.putNumber("EncoderGetRate", encoder.getRate());
+        // SmartDashboard.putNumber("EncoderGetDistancePerPulse", encoder.getDistancePerPulse());
         SmartDashboard.putBoolean("InLimitSwitchValue", inLimitSwitch.get());
         SmartDashboard.putBoolean("OutLimitSwitchValue", outLimitSwitch.get());
         SmartDashboard.putNumber("PIDInput", returnPIDInput());

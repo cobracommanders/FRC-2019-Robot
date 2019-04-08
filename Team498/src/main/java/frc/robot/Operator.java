@@ -22,22 +22,22 @@ public class Operator {
 
     public Operator() {
 
-        Robot.operatorController.back.whenPressed(new ReleaseClampCommand());
-        Robot.operatorController.start.whenPressed(new ToggleClampCommand());
+        // Robot.operatorController.back.whenPressed(new ReleaseClampCommand());
+        // Robot.operatorController.start.whenPressed(new ToggleClampCommand());
 
-        Robot.operatorController.leftBumper.whenPressed(new AutoWristCommand(true));
-        Robot.operatorController.rightBumper.whenPressed(new AutoWristCommand(false));
+        // Robot.operatorController.leftBumper.whenPressed(new AutoWristCommand(true));
+        // Robot.operatorController.rightBumper.whenPressed(new AutoWristCommand(false));
 
-        Robot.driverController.leftBumper.whenPressed(new PanelIntakeCommand());
-        Robot.driverController.rightBumper.whenPressed(new PanelOuttakeCommand());
+        // Robot.driverController.leftBumper.whenPressed(new PanelIntakeCommand());
+        // Robot.driverController.rightBumper.whenPressed(new PanelOuttakeCommand());
 
-        Robot.driverController.buttonX.whenPressed(new DefenseModeCommand());
+        // Robot.driverController.buttonX.whenPressed(new DefenseModeCommand());
 
         //Robot.driverController.buttonA.whenPressed(new LeftAutoStrategy());
         //Robot.driverController.buttonY.whenPressed(new RightAutoStrategy());
 
-        Robot.operatorController.buttonA.whenPressed(new CargoShipWristPositionCommand());
-        Robot.operatorController.buttonY.whenPressed(new IntakeWristPositionCommand());
+        // Robot.operatorController.buttonA.whenPressed(new CargoShipWristPositionCommand());
+        // Robot.operatorController.buttonY.whenPressed(new IntakeWristPositionCommand());
     }
 
 }
