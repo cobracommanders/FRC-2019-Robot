@@ -21,10 +21,10 @@ import frc.robot.subsystems.VacuumSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 import frc.robot.subsystems.ClampSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
-//import frc.robot.AutoStrategies.CenterAutoStrategy;
-//import frc.robot.AutoStrategies.LeftAutoStrategy;
-//import frc.robot.AutoStrategies.RightAutoStrategy;
-//import frc.robot.AutoStrategies.RobotStartPosition;
+import frc.robot.AutoStrategies.CenterAutoStrategy;
+import frc.robot.AutoStrategies.LeftAutoStrategy;
+import frc.robot.AutoStrategies.RightAutoStrategy;
+import frc.robot.AutoStrategies.RobotStartPosition;
 import edu.wpi.first.wpilibj.Timer;
 
 public class Robot extends TimedRobot {
@@ -75,8 +75,8 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         drivetrain.resetEncoders();
         wrist.resetEncoder();
-    
-        /*autonomousPosition = chooserPosition.getSelected();
+    /*
+        autonomousPosition = chooserPosition.getSelected();
         if (autonomousPosition == RobotStartPosition.LEFT) {
             autonomousCommand = new LeftAutoStrategy();
             autonomousCommand.start();
@@ -99,6 +99,11 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+        /*
+        if (autonomousCommand != null) {
+            autonomousCommand.cancel();
+        }
+     */
         drivetrain.resetGyro();
     }
 
@@ -114,11 +119,12 @@ public class Robot extends TimedRobot {
 
     }
 
-    /*private void addAutonomousChoices() {
-        chooserPosition.addDefault("Robot in: LEFT", RobotStartPosition.LEFT);
+    /*
+    private void addAutonomousChoices() {
+        chooserPosition.addDefault("Robot in: FULL SEND", RobotStartPosition.FULLSEND);
         chooserPosition.addObject("Robot in: CENTER", RobotStartPosition.CENTER);
         chooserPosition.addObject("Robot in: RIGHT", RobotStartPosition.RIGHT);
-        chooserPosition.addObject("Robot in: FULL SEND", RobotStartPosition.FULLSEND);
+        chooserPosition.addObject("Robot in: LEFT", RobotStartPosition.LEFT);
     }
     */
     public void updateDashboard() {
@@ -127,5 +133,6 @@ public class Robot extends TimedRobot {
         wrist.updateDashboard();
         panelIntake.updateDashboard();
         vacuum.updateDashboard();
+        drivetrain.updateDashboard();
     }
 }

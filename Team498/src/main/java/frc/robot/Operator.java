@@ -36,8 +36,6 @@ public class Operator {
         //Robot.driverController.buttonA.whenPressed(new LeftAutoStrategy());
         //Robot.driverController.buttonY.whenPressed(new RightAutoStrategy());
 
-        Robot.operatorController.buttonX.whenPressed(new DefenseModeCommand());
-
         Robot.operatorController.buttonA.whenPressed(new CargoShipWristPositionCommand());
         Robot.operatorController.buttonY.whenPressed(new IntakeWristPositionCommand());
     }
