@@ -19,7 +19,6 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.PulleySubsystem;
 import frc.robot.subsystems.VacuumSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
-//import frc.robot.subsystems.ClampSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.AutoStrategies.CenterAutoStrategy;
 import frc.robot.AutoStrategies.LeftAutoStrategy;
@@ -42,13 +41,13 @@ public class Robot extends TimedRobot {
 
     // Subsystems
     public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
+    
+    public static PulleySubsystem pulley = new PulleySubsystem();
+    public static VisionSubsystem vision = new VisionSubsystem();
+    public static VacuumSubsystem vacuum = new VacuumSubsystem();
     //public static IntakeSubsystem intake = new IntakeSubsystem();
     //public static WristSubsystem wrist = new WristSubsystem();
     //public static PanelSubsystem panelIntake = new PanelSubsystem();
-    public static PulleySubsystem pulley = new PulleySubsystem();
-    //public static ClampSubsystem clamp = new ClampSubsystem();
-    public static VisionSubsystem vision = new VisionSubsystem();
-    public static VacuumSubsystem vacuum = new VacuumSubsystem();
 
     public static Operator operator = new Operator();
     @Override

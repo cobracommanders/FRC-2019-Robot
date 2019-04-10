@@ -10,13 +10,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ManualPulleyCommand;
 import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.Victor;
 
 public class PulleySubsystem extends Subsystem {
 
-    private static final int leftPulleyChannel = 5;
+    private static final int pulleyMotorChannel = 5;
 
-    private Spark pulley = new Spark(leftPulleyChannel);
+    private Spark pulley = new Spark(pulleyMotorChannel);
 
     @Override
     public void initDefaultCommand() {

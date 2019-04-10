@@ -25,16 +25,19 @@ public class ManualVacuumCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    /*
-     * if (Robot.operatorController.buttonB.get()) { Robot.vacuum.setVacuumPower(1);
-     * } else { Robot.vacuum.setVacuumPower(0); }
-     */
+
+    if (Robot.operatorController.buttonB.get()) {
+      Robot.vacuum.setVacuumPower(1);
+    } else {
+      Robot.vacuum.setVacuumPower(0);
+    }
+
     /*
      * if (Robot.vacuum.rightMotorChannelCurrent > .1 &&
      * Robot.vacuum.leftMotorChannelCurrent > .1) { new
      * VacuumCurrentListenerCommand(1); }
      */
-    
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
