@@ -13,18 +13,12 @@ import frc.robot.Robot;
 import frc.robot.commands.ManualVacuumCommand;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Spark;
 
 public class VacuumSubsystem extends Subsystem {
-  private static final int vacuumLeftMotorChannel = 2;
-  private static final int vacuumRightMotorChannel = 3;
+  private static final int vacuumMotorChannel = 4;
 
-  private Victor leftVacuum = new Victor(vacuumLeftMotorChannel);
-  private Victor rightVacuum = new Victor(vacuumRightMotorChannel);
-
-  public PowerDistributionPanel pdp = new PowerDistributionPanel();
-
-  public double leftMotorChannelCurrent = pdp.getCurrent(12);
-  public double rightMotorChannelCurrent = pdp.getCurrent(13);
+  private Spark vacuum = new Spark(vacuumMotorChannel);
 
   public VacuumSubsystem() {
     super("VacuumSubsystem");
@@ -36,15 +30,10 @@ public class VacuumSubsystem extends Subsystem {
   }
 
   public void setVacuumPower(double power) {
-    leftVacuum.set(power);
-    rightVacuum.set(power);
-
+    vacuum.set(power);
   }
 
   public void updateDashboard() {
-    SmartDashboard.putNumber("Left Vacuum Power", leftVacuum.get());
-    SmartDashboard.putNumber("Right Vacuum Power", rightVacuum.get());
-    SmartDashboard.putNumber("Left Vacuum Current", leftMotorChannelCurrent);
-    SmartDashboard.putNumber("Right Vacuum Current", rightMotorChannelCurrent);
+    SmartDashboard.putNumber("Vacuum Power", vacuum.get());
   }
 }

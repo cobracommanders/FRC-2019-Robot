@@ -7,16 +7,16 @@
 
 package frc.robot;
 
-import frc.robot.commands.PanelIntakeCommand;
-import frc.robot.commands.PanelOuttakeCommand;
-import frc.robot.commands.ToggleClampCommand;
-import frc.robot.commands.ReleaseClampCommand;
+//import frc.robot.commands.PanelIntakeCommand;
+//import frc.robot.commands.PanelOuttakeCommand;
+//import frc.robot.commands.ToggleClampCommand;
+//import frc.robot.commands.ReleaseClampCommand;
 import frc.robot.AutoStrategies.LeftAutoStrategy;
 import frc.robot.AutoStrategies.RightAutoStrategy;
-import frc.robot.commands.DefenseModeCommand;
-import frc.robot.commands.IntakeWristPositionCommand;
-import frc.robot.commands.AutoWristCommand;
-import frc.robot.commands.CargoShipWristPositionCommand;
+//import frc.robot.commands.DefenseModeCommand;
+//import frc.robot.commands.IntakeWristPositionCommand;
+//import frc.robot.commands.AutoWristCommand;
+//import frc.robot.commands.CargoShipWristPositionCommand;
 
 public class Operator {
 

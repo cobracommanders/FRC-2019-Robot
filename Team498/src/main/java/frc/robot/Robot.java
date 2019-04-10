@@ -13,13 +13,13 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.WristSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.PanelSubsystem;
+//import frc.robot.subsystems.WristSubsystem;
+//import frc.robot.subsystems.IntakeSubsystem;
+//import frc.robot.subsystems.PanelSubsystem;
 import frc.robot.subsystems.PulleySubsystem;
 import frc.robot.subsystems.VacuumSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
-import frc.robot.subsystems.ClampSubsystem;
+//import frc.robot.subsystems.ClampSubsystem;
 import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.AutoStrategies.CenterAutoStrategy;
 import frc.robot.AutoStrategies.LeftAutoStrategy;
@@ -42,18 +42,18 @@ public class Robot extends TimedRobot {
 
     // Subsystems
     public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
-    public static IntakeSubsystem intake = new IntakeSubsystem();
-    public static WristSubsystem wrist = new WristSubsystem();
-    public static PanelSubsystem panelIntake = new PanelSubsystem();
+    //public static IntakeSubsystem intake = new IntakeSubsystem();
+    //public static WristSubsystem wrist = new WristSubsystem();
+    //public static PanelSubsystem panelIntake = new PanelSubsystem();
     public static PulleySubsystem pulley = new PulleySubsystem();
-    public static ClampSubsystem clamp = new ClampSubsystem();
+    //public static ClampSubsystem clamp = new ClampSubsystem();
     public static VisionSubsystem vision = new VisionSubsystem();
     public static VacuumSubsystem vacuum = new VacuumSubsystem();
 
     public static Operator operator = new Operator();
     @Override
     public void robotInit() {
-        vision.startCapture();
+        //vision.startCapture();
         //addAutonomousChoices();
     }
 
@@ -74,7 +74,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         drivetrain.resetEncoders();
-        wrist.resetEncoder();
+        //wrist.resetEncoder();
     /*
         autonomousPosition = chooserPosition.getSelected();
         if (autonomousPosition == RobotStartPosition.LEFT) {
@@ -130,9 +130,9 @@ public class Robot extends TimedRobot {
     public void updateDashboard() {
         //SmartDashboard.putData("Autonomous Position", chooserPosition);
         //SmartDashboard.putString("Position Choice", autonomousPosition != null ? autonomousPosition.toString() : "");
-        wrist.updateDashboard();
-        panelIntake.updateDashboard();
-        vacuum.updateDashboard();
-        drivetrain.updateDashboard();
+       // wrist.updateDashboard();
+        //panelIntake.updateDashboard();
+        //vacuum.updateDashboard();
+        //drivetrain.updateDashboard();
     }
 }

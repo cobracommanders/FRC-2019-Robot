@@ -8,11 +8,11 @@
 package frc.robot.AutoStrategies;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.AutoStrategies.AutoCommands.AutoDriveCommand;
+//import frc.robot.AutoStrategies.AutoCommands.AutoDriveCommand;
 import frc.robot.AutoStrategies.AutoCommands.AutoTurnCommand;
 import edu.wpi.first.wpilibj.DriverStation;
-import frc.robot.AutoStrategies.AutoCommands.AutoIntakeCommand;
-import frc.robot.AutoStrategies.AutoCommands.AutoTimedIntakeCommand;
+//import frc.robot.AutoStrategies.AutoCommands.AutoIntakeCommand;
+//import frc.robot.AutoStrategies.AutoCommands.AutoTimedIntakeCommand;
 import frc.robot.AutoStrategies.AutoCommands.AutoOldTurnCommand;
 //import frc.robot.commands.PanelOuttakeCommand;
 import frc.robot.AutoStrategies.AutoCommands.AutoTimedDriveCommand;
@@ -33,10 +33,10 @@ public class LeftAutoStrategy extends CommandGroup {
         }
         */
 
-        addSequential(new AutoDriveCommand(-.8, 225));
+        /*addSequential(new AutoDriveCommand(-.8, 225));
         addSequential(new AutoOldTurnCommand(.8, 90));
         addSequential(new AutoTimedDriveCommand(-.8, 0, 2));
-        addSequential(new AutoTimedIntakeCommand(.6));
+        addSequential(new AutoTimedIntakeCommand(.6));*/
         
     }
 }

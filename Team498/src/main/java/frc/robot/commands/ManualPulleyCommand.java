@@ -26,7 +26,7 @@ public class ManualPulleyCommand extends Command {
     protected void execute() {
         double power = Robot.operatorController.axisLeftY.getAxisValue();
         if (Math.abs(power) > .2) {
-            Robot.pulley.setPulleyPower(power, power * .90);
+            Robot.pulley.setPulleyPower(power);
         } else {
             Robot.pulley.setPulleyPower(0);
         }

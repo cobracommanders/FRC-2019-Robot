@@ -8,8 +8,8 @@
 package frc.robot.AutoStrategies;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.AutoStrategies.AutoCommands.AutoDriveCommand;
-import frc.robot.commands.PanelOuttakeCommand;
+//import frc.robot.AutoStrategies.AutoCommands.AutoDriveCommand;
+//import frc.robot.commands.PanelOuttakeCommand;
 import frc.robot.AutoStrategies.AutoCommands.AutoTurnCommand;
 //import frc.robot.AutoStrategies.AutoCommands.AutoTimedDriveCommand;
 
@@ -24,6 +24,6 @@ public class CenterAutoStrategy extends CommandGroup {
         addSequential(new PanelOuttakeCommand()); // place panels
         */
 
-        addSequential(new AutoTurnCommand(90));
+       // addSequential(new AutoTurnCommand(90));
     }
 }

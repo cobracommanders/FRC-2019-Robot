@@ -9,15 +9,14 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ManualPulleyCommand;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Victor;
 
 public class PulleySubsystem extends Subsystem {
 
-    private static final int leftPulleyMotorChannel = 0;
-    private static final int rightPulleyMotorChannel = 1;
+    private static final int leftPulleyChannel = 5;
 
-    private Victor leftPulley = new Victor(leftPulleyMotorChannel);
-    private Victor rightPulley = new Victor(rightPulleyMotorChannel);
+    private Spark pulley = new Spark(leftPulleyChannel);
 
     @Override
     public void initDefaultCommand() {
@@ -25,13 +24,7 @@ public class PulleySubsystem extends Subsystem {
     }
 
     public void setPulleyPower(double power) {
-        leftPulley.set(power);
-        rightPulley.set(-power);
+        pulley.set(power);
     }
 
-    // adds an overload
-    public void setPulleyPower(double leftPower, double rightPower) {
-        leftPulley.set(leftPower);
-        rightPulley.set(-rightPower);
-    }
 }

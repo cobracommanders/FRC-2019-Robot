@@ -7,22 +7,25 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.Victor;
 import frc.robot.Pigeon;
 import frc.robot.commands.ManualDriveCommand;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 public class DrivetrainSubsystem extends PIDSubsystem {
 
-    private static final int frontLeftDriveMotorChannel = 0;
-    private static final int backLeftDriveMotorChannel = 1;
-    private static final int frontRightDriveMotorChannel = 2;
-    private static final int backRightDriveMotorChannel = 3;
+    private static final int frontLeftDriveMotorChannel = 2;
+    private static final int backLeftDriveMotorChannel = 3; 
+    private static final int frontRightDriveMotorChannel = 0; 
+    private static final int backRightDriveMotorChannel = 1; 
 
     private static final double WheelDiameter = 4; // 4 inch wheels.
     private static final double PulsePerRevolution = 4096;
@@ -30,10 +33,10 @@ public class DrivetrainSubsystem extends PIDSubsystem {
 
     private double currentMove;
 
-    private WPI_TalonSRX frontLeftDrive = new WPI_TalonSRX(frontLeftDriveMotorChannel);
-    private WPI_TalonSRX frontRightDrive = new WPI_TalonSRX(frontRightDriveMotorChannel);
-    private WPI_TalonSRX backLeftDrive = new WPI_TalonSRX(backLeftDriveMotorChannel);
-    private WPI_TalonSRX backRightDrive = new WPI_TalonSRX(backRightDriveMotorChannel);
+    private Talon frontLeftDrive = new Talon(frontLeftDriveMotorChannel);
+    private Talon frontRightDrive = new Talon(frontRightDriveMotorChannel);
+    private Talon backLeftDrive = new Talon(backLeftDriveMotorChannel);
+    private Talon backRightDrive = new Talon(backRightDriveMotorChannel);
 
     private SpeedControllerGroup leftGroup = new SpeedControllerGroup(frontLeftDrive, backLeftDrive);
     private SpeedControllerGroup rightGroup = new SpeedControllerGroup(frontRightDrive, backRightDrive);
@@ -50,8 +53,8 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         this.getPIDController().setOutputRange(-1, 1);
         this.getPIDController().setAbsoluteTolerance(4.64); // Was 1 last year
 
-        frontLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
-        backRightDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+        //frontLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+        //backRightDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
     }
 
     @Override
@@ -86,14 +89,14 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     }
 
     public void resetEncoders() {
-        frontLeftDrive.setSelectedSensorPosition(0);
-        backRightDrive.setSelectedSensorPosition(0);
+        //frontLeftDrive.setSelectedSensorPosition(0);
+        //backRightDrive.setSelectedSensorPosition(0);
         // frontLeftDrive.getSensorCollection().setQuadraturePosition(0, 0); //second is
         // timeout, don't worry about it
         // backRightDrive.getSensorCollection().setQuadraturePosition(0, 0);
     }
 
-    public double getDistance() {
+    /*public double getDistance() {
         // frontLeftDrive.getSelectedSensorPosition();
         double frontLeftDistance = frontLeftDrive.getSelectedSensorPosition();
         double backRightDistance = backRightDrive.getSelectedSensorPosition();
@@ -103,7 +106,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         double distance = distanceInPulses * DistancePerPulse;
 
         return distance;
-    }
+    }*/
 
     public double getAngle() {
         // return gyro.getAngle();
@@ -116,9 +119,9 @@ public class DrivetrainSubsystem extends PIDSubsystem {
 
     public void updateDashboard() {
         // SmartDashboard.putNumber("Angle X", gyro.getAngle());
-        SmartDashboard.putNumber("Left Encoder", frontLeftDrive.getSensorCollection().getQuadraturePosition());
+        /*SmartDashboard.putNumber("Left Encoder", frontLeftDrive.getSensorCollection().getQuadraturePosition());
         SmartDashboard.putNumber("Right Encoder", backRightDrive.getSensorCollection().getQuadraturePosition());
-        SmartDashboard.putNumber("DriveDistance", getDistance());
+        SmartDashboard.putNumber("DriveDistance", getDistance());*/
     }
 
     public double returnPIDInput() {
