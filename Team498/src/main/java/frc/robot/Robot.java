@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
     public static Operator operator = new Operator();
     @Override
     public void robotInit() {
-        //vision.startCapture();
+        vision.startCapture();
         //addAutonomousChoices();
     }
 
