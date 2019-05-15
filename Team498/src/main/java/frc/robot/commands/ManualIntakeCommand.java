@@ -24,7 +24,7 @@ public class ManualIntakeCommand extends Command {
     @Override
     protected void execute() {
         double power = Robot.driverController.axisRightTrigger.getAxisValue()
-                - Robot.operatorController.axisLeftTrigger.getAxisValue();
+                - Robot.driverController.axisLeftTrigger.getAxisValue();
 
         if (Robot.operatorController.axisRightTrigger.getAxisValue() > .1) {
             Robot.intake.setIntake(.4, .4); // outtake rocket
@@ -33,7 +33,7 @@ public class ManualIntakeCommand extends Command {
         } else if(Robot.operatorController.buttonX.get()) {
             Robot.intake.setIntake(.35, .35);
         } else if (power > .1) {
-            Robot.intake.setIntake(.6, .6); // outtake cargo ship
+            Robot.intake.setIntake(1, 1); // outtake cargo ship
         } else if (power < -.1) {
             Robot.intake.setIntake(-.5, -.5); // intake
         } else {

@@ -28,10 +28,10 @@ public class IntakeSubsystem extends Subsystem {
     }
 
     public void setIntake(double leftPower, double rightPower) {
-        intakeLeft.set(-leftPower);
-        intakeRight.set(rightPower);
-        lastLeft = -leftPower;
-        lastRight = rightPower;
+        intakeLeft.set(leftPower);
+        intakeRight.set(-rightPower);
+        lastLeft = leftPower;
+        lastRight = -rightPower;
     }
 
     public double getLastLeft() {
