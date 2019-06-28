@@ -15,14 +15,14 @@ public class AutoWristCommand extends InstantCommand {
 
   public AutoWristCommand(boolean isGoingUp) {
     super("AutoWristCommand");
-    requires(Robot.wrist);
+    //requires(Robot.wrist);
     this.isGoingUp = isGoingUp;
   }
 
   // Called once when the command executes
   @Override
   protected void initialize() {
-    Robot.wrist.setTarget(isGoingUp);
+    //Robot.wrist.setTarget(isGoingUp);
 
   }
 

@@ -29,6 +29,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     private static final double DistancePerPulse = (WheelDiameter * Math.PI) / (PulsePerRevolution);
 
     private double currentMove;
+    private double cap;
 
     private WPI_TalonSRX frontLeftDrive = new WPI_TalonSRX(frontLeftDriveMotorChannel);
     private WPI_TalonSRX frontRightDrive = new WPI_TalonSRX(frontRightDriveMotorChannel);
@@ -42,13 +43,15 @@ public class DrivetrainSubsystem extends PIDSubsystem {
 
     private Pigeon gyro = new Pigeon(backLeftDrive);
 
+    private boolean usingGyro = true;
+
     public DrivetrainSubsystem() {
-        super("DrivetrainSubsystem", 0.16, 0.02, 1.1); // was .1, .01, .1
+        //0.16, 0.02, 1.1
+        super("DrivetrainSubsystem", .1, .01, .1); // was .1, .01, .1
 
         this.getPIDController().setContinuous(false);
-        this.getPIDController().setInputRange(-180, 180);
+        this.getPIDController().setAbsoluteTolerance(4.65); // Was 1 last year.174
         this.getPIDController().setOutputRange(-1, 1);
-        this.getPIDController().setAbsoluteTolerance(4.64); // Was 1 last year
 
         frontLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         backRightDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
@@ -76,6 +79,10 @@ public class DrivetrainSubsystem extends PIDSubsystem {
 
     }
 
+    public void setCap(double cap) {
+        this.cap = cap;
+    }
+
     public void autoDrive(double move, double turn) {
         if (turn != 0) {
             drive.arcadeDrive(move, turn);
@@ -88,6 +95,8 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     public void resetEncoders() {
         frontLeftDrive.setSelectedSensorPosition(0);
         backRightDrive.setSelectedSensorPosition(0);
+
+
         // frontLeftDrive.getSensorCollection().setQuadraturePosition(0, 0); //second is
         // timeout, don't worry about it
         // backRightDrive.getSensorCollection().setQuadraturePosition(0, 0);
@@ -114,18 +123,40 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     }
 
     public void updateDashboard() {
+
         SmartDashboard.putNumber("Angle X", gyro.getAngle());
         SmartDashboard.putNumber("Left Encoder Quad", frontLeftDrive.getSensorCollection().getQuadraturePosition());
         SmartDashboard.putNumber("Right Encoder Quad", backRightDrive.getSensorCollection().getQuadraturePosition());
         SmartDashboard.putNumber("DriveDistance (Average SelSens)", getDistance());
+        SmartDashboard.putBoolean("OnTarget", getPIDController().onTarget());
+        SmartDashboard.putNumber("Error", getPIDController().getError());
+    }
+
+    public void useGyro(boolean b) {
+        usingGyro = b;
+        if(usingGyro) {
+            this.getPIDController().setPID(.1, .01, .1);
+            this.getPIDController().setInputRange(-180, 180);
+        }
+        else {
+            this.getPIDController().setPID(0.1, 0, 0);
+            this.getPIDController().setInputRange(-144, 144);
+        }
     }
 
     public double returnPIDInput() {
-        return -gyro.getAngle();
+        if(usingGyro) return -gyro.getAngle();
+        return -getDistance();
     }
 
     public void usePIDOutput(double PIDOutput) {
-        drive.arcadeDrive(this.currentMove, PIDOutput);
+        if(usingGyro) drive.arcadeDrive(this.currentMove, PIDOutput);
+        else {
+            double newTurn;
+            newTurn = gyro.getAngle();
+            newTurn /= -90;
+            drive.arcadeDrive(cap * PIDOutput, newTurn);
+        }
     }
 
 }

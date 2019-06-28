@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class CargoShipWristPositionCommand extends Command {
   public CargoShipWristPositionCommand() {
-    requires(Robot.wrist);
+    //requires(Robot.wrist);
   }
 
   // Called just before this Command runs the first time
@@ -23,8 +23,8 @@ public class CargoShipWristPositionCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.wrist.target = 0;
-    Robot.wrist.setTarget(true);
+   // Robot.wrist.target = 0;
+    //Robot.wrist.setTarget(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()

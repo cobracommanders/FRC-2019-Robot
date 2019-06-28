@@ -14,7 +14,7 @@ public class DefenseModeCommand extends Command {
 
   public DefenseModeCommand() {
     super("DefenseModeCommand");
-    requires(Robot.wrist);
+    //requires(Robot.wrist);
     requires(Robot.panelIntake);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -31,8 +31,8 @@ public class DefenseModeCommand extends Command {
   protected void execute() {
     Robot.panelIntake.setPush(false);
     Robot.panelIntake.setGrip(true);
-    Robot.wrist.target = 0;
-    Robot.wrist.setTarget(true);
+    //Robot.wrist.target = 0;
+    //Robot.wrist.setTarget(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()

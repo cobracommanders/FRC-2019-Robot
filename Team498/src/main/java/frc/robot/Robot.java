@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
     // Subsystems
     public static DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
     public static IntakeSubsystem intake = new IntakeSubsystem();
-    public static WristSubsystem wrist = new WristSubsystem();
+    //public static WristSubsystem wrist = new WristSubsystem();
     public static PanelSubsystem panelIntake = new PanelSubsystem();
     public static PulleySubsystem pulley = new PulleySubsystem();
     public static ClampSubsystem clamp = new ClampSubsystem();
@@ -74,7 +74,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         drivetrain.resetEncoders();
-        wrist.resetEncoder();
+        //wrist.resetEncoder();
     /*
         autonomousPosition = chooserPosition.getSelected();
         if (autonomousPosition == RobotStartPosition.LEFT) {
@@ -105,6 +105,7 @@ public class Robot extends TimedRobot {
         }
      */
         drivetrain.resetGyro();
+        drivetrain.resetEncoders();
     }
 
     @Override
@@ -130,7 +131,7 @@ public class Robot extends TimedRobot {
     public void updateDashboard() {
         //SmartDashboard.putData("Autonomous Position", chooserPosition);
         //SmartDashboard.putString("Position Choice", autonomousPosition != null ? autonomousPosition.toString() : "");
-        wrist.updateDashboard();
+        //wrist.updateDashboard();
         panelIntake.updateDashboard();
         vacuum.updateDashboard();
         drivetrain.updateDashboard();

@@ -25,18 +25,21 @@ public class AutoDriveCommand extends Command {
     }
 
     protected void initialize() {
-        Robot.drivetrain.getPIDController().enable();
+        Robot.drivetrain.setCap(moveValue);
+        Robot.drivetrain.useGyro(false);
         Robot.drivetrain.resetEncoders();
         Robot.drivetrain.resetGyro();
-        Robot.drivetrain.getPIDController().setSetpoint(0);
+        Robot.drivetrain.getPIDController().setSetpoint(desiredDistance);
+        Robot.drivetrain.getPIDController().enable();
     }
 
     protected void execute() {
-        Robot.drivetrain.autoDrive(moveValue, 0);
+        //Robot.drivetrain.autoDrive(moveValue, 0);
     }
 
     protected boolean isFinished() {
-        return Math.abs(Robot.drivetrain.getDistance()) >= Math.abs(desiredDistance);
+        return Robot.drivetrain.getPIDController().onTarget();
+        //return Math.abs(Robot.drivetrain.getDistance()) >= Math.abs(desiredDistance);
     }
 
     protected void end() {
