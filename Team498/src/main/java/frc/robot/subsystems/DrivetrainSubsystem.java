@@ -115,9 +115,9 @@ public class DrivetrainSubsystem extends PIDSubsystem {
 
     public void updateDashboard() {
         SmartDashboard.putNumber("Angle X", gyro.getAngle());
-        SmartDashboard.putNumber("Left Encoder", frontLeftDrive.getSensorCollection().getQuadraturePosition());
-        SmartDashboard.putNumber("Right Encoder", backRightDrive.getSensorCollection().getQuadraturePosition());
-        SmartDashboard.putNumber("DriveDistance", getDistance());
+        SmartDashboard.putNumber("Left Encoder Quad", frontLeftDrive.getSensorCollection().getQuadraturePosition());
+        SmartDashboard.putNumber("Right Encoder Quad", backRightDrive.getSensorCollection().getQuadraturePosition());
+        SmartDashboard.putNumber("DriveDistance (Average SelSens)", getDistance());
     }
 
     public double returnPIDInput() {
