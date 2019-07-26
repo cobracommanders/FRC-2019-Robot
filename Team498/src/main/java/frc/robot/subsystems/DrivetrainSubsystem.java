@@ -17,7 +17,7 @@ import frc.robot.Pigeon;
 import frc.robot.commands.ManualDriveCommand;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
-public class DrivetrainSubsystem extends PIDSubsystem {
+public class DrivetrainSubsystem extends DoublePIDSubsystem {
 
     private static final int frontLeftDriveMotorChannel = 0;
     private static final int backLeftDriveMotorChannel = 1;
@@ -47,11 +47,17 @@ public class DrivetrainSubsystem extends PIDSubsystem {
 
     public DrivetrainSubsystem() {
         //0.16, 0.02, 1.1
-        super("DrivetrainSubsystem", .1, .01, .1); // was .1, .01, .1
+        //First three numbers are gyro PID, second three are encoder PID
+        super("DrivetrainSubsystem", .1, .01, .1, .1, 0, 0); // was .1, .01, .1
 
-        this.getPIDController().setContinuous(false);
-        this.getPIDController().setAbsoluteTolerance(.174); // Was 1 last year4.65
-        this.getPIDController().setOutputRange(-1, 1);
+        this.getPIDController0().setContinuous(false);
+        this.getPIDController0().setAbsoluteTolerance(.174); // Was 1 last year4.65
+        this.getPIDController0().setOutputRange(-1, 1); //power
+        this.getPIDController0().setInputRange(-180, 180); //degrees
+        this.getPIDController1().setContinuous(false);
+        this.getPIDController1().setAbsoluteTolerance(.174);
+        this.getPIDController1().setOutputRange(-1, 1); //power
+        this.getPIDController1().setInputRange(-144,144); //-12 feet to 12 feet
 
         frontLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         backRightDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
@@ -128,35 +134,32 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         SmartDashboard.putNumber("Left Encoder Quad", frontLeftDrive.getSensorCollection().getQuadraturePosition());
         SmartDashboard.putNumber("Right Encoder Quad", backRightDrive.getSensorCollection().getQuadraturePosition());
         SmartDashboard.putNumber("DriveDistance (Average SelSens)", getDistance());
-        SmartDashboard.putBoolean("OnTarget", getPIDController().onTarget());
-        SmartDashboard.putNumber("Error", getPIDController().getError());
+        SmartDashboard.putBoolean("OnTarget0", getPIDController0().onTarget());
+        SmartDashboard.putNumber("Error0", getPIDController0().getError());
+        SmartDashboard.putBoolean("OnTarget1", getPIDController1().onTarget());
+        SmartDashboard.putNumber("Error1", getPIDController1().getError());
+        SmartDashboard.putNumber("Output 0 (Gyro)", output0);
+        SmartDashboard.putNumber("Output 1 (Encoders)", output1);
     }
 
-    public void useGyro(boolean b) {
-        usingGyro = b;
-        if(usingGyro) {
-            this.getPIDController().setPID(.1, .01, .1);
-            this.getPIDController().setInputRange(-180, 180);
-        }
-        else {
-            this.getPIDController().setPID(0.5, 0, 0);
-            this.getPIDController().setInputRange(-144, 144);
-        }
+    public double returnPIDInput0() {
+        return -gyro.getAngle();
     }
 
-    public double returnPIDInput() {
-        if(usingGyro) return -gyro.getAngle();
-        return -getDistance();
+    public void usePIDOutput0(double PIDOutput) {
+        drive.arcadeDrive(this.currentMove, PIDOutput);
     }
 
-    public void usePIDOutput(double PIDOutput) {
-        if(usingGyro) drive.arcadeDrive(this.currentMove, PIDOutput);
-        else {
-            double newTurn;
-            newTurn = gyro.getAngle();
-            newTurn /= 5;
-            drive.arcadeDrive(cap * PIDOutput, newTurn);
-        }
+    public double returnPIDInput1() {
+        return getDistance();
     }
 
+    public void usePIDOutput1(double PIDOutput) {
+        drive.arcadeDrive(PIDOutput, 0);
+    }
+
+    public void usePIDOutput(double output0, double output1) {
+        //output 0 is gyro pid, output 1 is encoder pid
+        drive.arcadeDrive(output1, -output0);
+    }
 }

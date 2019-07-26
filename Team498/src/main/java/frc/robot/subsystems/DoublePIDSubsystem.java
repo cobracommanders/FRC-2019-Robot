@@ -24,8 +24,12 @@ public abstract class DoublePIDSubsystem extends Subsystem {
   private final PIDController m_controller;
   private final PIDController n_controller;
 
-  private final PIDOutput m_output = this::usePIDOutput0;
-  private final PIDOutput n_output = this::usePIDOutput1;
+  private final PIDOutput m_output = this::setPIDOutput0;
+  private final PIDOutput n_output = this::setPIDOutput1;
+
+  protected double output0, output1;
+
+  private boolean second = false;
 
   private final PIDSource m_source = new PIDSource() {
     @Override
@@ -182,6 +186,36 @@ public abstract class DoublePIDSubsystem extends Subsystem {
   protected abstract double returnPIDInput1();
   protected abstract void usePIDOutput0(double output);
   protected abstract void usePIDOutput1(double output);
+  protected abstract void usePIDOutput(double output0, double output1);
+
+  private void setPIDOutput0(double output) {
+    if(n_controller.isEnabled()) {
+      output0 = output;
+      if(second) {
+        usePIDOutput(output0, output1);
+        second = false;
+      }
+      else
+        second = true;
+    }
+    else {
+      usePIDOutput0(output);
+    }
+  }
+
+  private void setPIDOutput1(double output) {
+    if(m_controller.isEnabled()) {
+      output1 = output;
+      if(second) {
+        usePIDOutput(output0, output1);
+        second = false;
+      }
+      else
+        second = true;
+    }
+    else
+      usePIDOutput1(output);
+  }
 
   public void enable0() {
     m_controller.enable();

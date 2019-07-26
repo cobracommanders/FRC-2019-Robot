@@ -21,17 +21,18 @@ public class AutoTurnCommand extends Command {
     }
 
     protected void initialize() {
-        Robot.drivetrain.getPIDController().enable();
+        Robot.drivetrain.enable0();
+        Robot.drivetrain.disable1();
         Robot.drivetrain.resetGyro();
         timer.reset();
     }
 
     protected void execute() {
-        Robot.drivetrain.getPIDController().setSetpoint(gyroGoal);
+        Robot.drivetrain.setSetpoint0(gyroGoal);
     }
 
     protected boolean isFinished() {
-        boolean isOnTarget = Robot.drivetrain.getPIDController().onTarget();
+        boolean isOnTarget = Robot.drivetrain.onTarget0();
         if (isOnTarget && timer.get() == 0) {
             timer.start();
         }
@@ -47,7 +48,7 @@ public class AutoTurnCommand extends Command {
     }
 
     protected void end() {
-        Robot.drivetrain.getPIDController().disable();
+        Robot.drivetrain.disable0();
     }
 
     protected void interrupted() {

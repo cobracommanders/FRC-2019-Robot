@@ -26,11 +26,12 @@ public class AutoDriveCommand extends Command {
 
     protected void initialize() {
         Robot.drivetrain.setCap(moveValue);
-        Robot.drivetrain.useGyro(false);
         Robot.drivetrain.resetEncoders();
         Robot.drivetrain.resetGyro();
-        Robot.drivetrain.getPIDController().setSetpoint(desiredDistance);
-        Robot.drivetrain.getPIDController().enable();
+        Robot.drivetrain.setSetpoint0(0);
+        Robot.drivetrain.setSetpoint1(desiredDistance);
+        Robot.drivetrain.enable0();
+        Robot.drivetrain.enable1();
     }
 
     protected void execute() {
@@ -38,13 +39,14 @@ public class AutoDriveCommand extends Command {
     }
 
     protected boolean isFinished() {
-        return Robot.drivetrain.getPIDController().onTarget();
+        return Robot.drivetrain.onTarget0() && Robot.drivetrain.onTarget1();
         //return Math.abs(Robot.drivetrain.getDistance()) >= Math.abs(desiredDistance);
     }
 
     protected void end() {
         Robot.drivetrain.autoDrive(0, 0);
-        Robot.drivetrain.getPIDController().disable();
+        Robot.drivetrain.disable0();
+        Robot.drivetrain.disable1();
     }
 
     protected void interrupted() {
