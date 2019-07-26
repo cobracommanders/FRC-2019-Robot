@@ -50,7 +50,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         super("DrivetrainSubsystem", .1, .01, .1); // was .1, .01, .1
 
         this.getPIDController().setContinuous(false);
-        this.getPIDController().setAbsoluteTolerance(4.65); // Was 1 last year.174
+        this.getPIDController().setAbsoluteTolerance(.174); // Was 1 last year4.65
         this.getPIDController().setOutputRange(-1, 1);
 
         frontLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
@@ -139,7 +139,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
             this.getPIDController().setInputRange(-180, 180);
         }
         else {
-            this.getPIDController().setPID(0.1, 0, 0);
+            this.getPIDController().setPID(0.5, 0, 0);
             this.getPIDController().setInputRange(-144, 144);
         }
     }
@@ -154,7 +154,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         else {
             double newTurn;
             newTurn = gyro.getAngle();
-            newTurn /= -90;
+            newTurn /= 5;
             drive.arcadeDrive(cap * PIDOutput, newTurn);
         }
     }
