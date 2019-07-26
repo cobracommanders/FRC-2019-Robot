@@ -48,7 +48,7 @@ public class DrivetrainSubsystem extends DoublePIDSubsystem {
     public DrivetrainSubsystem() {
         //0.16, 0.02, 1.1
         //First three numbers are gyro PID, second three are encoder PID
-        super("DrivetrainSubsystem", .1, .01, .1, .1, 0, 0); // was .1, .01, .1
+        super("DrivetrainSubsystem", .1, .01, .1, .037, 0.02, 0); // was .1, .01, .1
 
         this.getPIDController0().setContinuous(false);
         this.getPIDController0().setAbsoluteTolerance(.174); // Was 1 last year4.65
@@ -151,7 +151,7 @@ public class DrivetrainSubsystem extends DoublePIDSubsystem {
     }
 
     public double returnPIDInput1() {
-        return getDistance();
+        return -getDistance();
     }
 
     public void usePIDOutput1(double PIDOutput) {
@@ -160,6 +160,6 @@ public class DrivetrainSubsystem extends DoublePIDSubsystem {
 
     public void usePIDOutput(double output0, double output1) {
         //output 0 is gyro pid, output 1 is encoder pid
-        drive.arcadeDrive(output1, -output0);
+        drive.arcadeDrive(output1, output0);
     }
 }
