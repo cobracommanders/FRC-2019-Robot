@@ -48,7 +48,7 @@ public class DrivetrainSubsystem extends DoublePIDSubsystem {
     public DrivetrainSubsystem() {
         //0.16, 0.02, 1.1
         //First three numbers are gyro PID, second three are encoder PID
-        super("DrivetrainSubsystem", .1, .01, .1, .037, 0.02, 0); // was .1, .01, .1
+        super("DrivetrainSubsystem", .1, .01, .1, .048, 0, 0); // was .1, .01, .1
 
         this.getPIDController0().setContinuous(false);
         this.getPIDController0().setAbsoluteTolerance(.174); // Was 1 last year4.65
